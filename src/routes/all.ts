@@ -1,12 +1,13 @@
 
 import express from "express";
+import { verificarAutenticacao } from "../api/middlewares/verificarAutenticacao";
 import { apiAdapter } from "../apiAdapter";
 const allRouter = express.Router();
 
 const BASE_URL = 'http://localhost:8000/api/v1';
 const gymapp_api = apiAdapter(BASE_URL);
 
-allRouter.get('/desafios/:desafioId/submissoes', (req, res) => {
+allRouter.get('/desafios/:desafioId/submissoes', verificarAutenticacao, (req, res) => {
   const userId = res.locals.uid;
   const desafioId = req.params.desafioId;
   gymapp_api.get(`/desafios/${desafioId}/submissoes`,
@@ -15,7 +16,7 @@ allRouter.get('/desafios/:desafioId/submissoes', (req, res) => {
   })
 })
 
-allRouter.get('/alunos/ginasio/:ginasioId', (req, res) => {
+allRouter.get('/alunos/ginasio/:ginasioId', verificarAutenticacao, (req, res) => {
   const userId = res.locals.uid;
   const ginasioId = req.params.ginasioId;
   gymapp_api.get(`/alunos/ginasio/${ginasioId}`,
@@ -24,7 +25,7 @@ allRouter.get('/alunos/ginasio/:ginasioId', (req, res) => {
   })
 })
 
-allRouter.post('/posts/comentarios', (req, res) => {
+allRouter.post('/posts/comentarios', verificarAutenticacao, (req, res) => {
   const userId = res.locals.uid;
   const postId = req.body.postId;
   let body = req.body;
@@ -36,7 +37,7 @@ allRouter.post('/posts/comentarios', (req, res) => {
   })
 })
 
-allRouter.post('/posts/comentario/gosto', (req, res) => {
+allRouter.post('/posts/comentario/gosto', verificarAutenticacao, (req, res) => {
   const userId = res.locals.uid;
   const postId = req.body.postId;
   const comentarioId = req.body.comentarioId;
@@ -46,7 +47,7 @@ allRouter.post('/posts/comentario/gosto', (req, res) => {
   })
 })
 
-allRouter.delete('/posts/:postId/comentario/:comentarioId/gosto', (req, res) => {
+allRouter.delete('/posts/:postId/comentario/:comentarioId/gosto', verificarAutenticacao, (req, res) => {
   const userId = res.locals.uid;
   const postId = req.params.postId;
   const comentarioId = req.params.comentarioId;
@@ -56,7 +57,7 @@ allRouter.delete('/posts/:postId/comentario/:comentarioId/gosto', (req, res) => 
   })
 })
 
-allRouter.delete('/posts/:postId/comentario/:comentarioId', (req, res) => {
+allRouter.delete('/posts/:postId/comentario/:comentarioId', verificarAutenticacao, (req, res) => {
   const userId = res.locals.uid;
   const postId = req.params.postId;
   const comentarioId = req.params.comentarioId;
@@ -67,7 +68,7 @@ allRouter.delete('/posts/:postId/comentario/:comentarioId', (req, res) => {
   })
 })
 
-allRouter.get('/posts/:postId', (req, res) => {
+allRouter.get('/posts/:postId', verificarAutenticacao, (req, res) => {
   const userId = res.locals.uid;
   const postId = req.params.postId;
   gymapp_api.get(`/posts/${postId}`,
@@ -76,7 +77,7 @@ allRouter.get('/posts/:postId', (req, res) => {
   })
 })
 
-allRouter.delete('/posts/:postId', (req, res) => {
+allRouter.delete('/posts/:postId', verificarAutenticacao, (req, res) => {
   const userId = res.locals.uid;
   const postId = req.params.postId;
   gymapp_api.delete(`/posts/${postId}`,
@@ -85,7 +86,7 @@ allRouter.delete('/posts/:postId', (req, res) => {
   })
 })
 
-allRouter.put('/posts/', (req, res) => {
+allRouter.put('/posts', verificarAutenticacao, (req, res) => {
   const userId = res.locals.uid;
   const postId = req.body.postId;
   let body = req.body;
@@ -97,7 +98,7 @@ allRouter.put('/posts/', (req, res) => {
   })
 })
 
-allRouter.post('/posts/gostos', (req, res) => {
+allRouter.post('/posts/gostos', verificarAutenticacao, (req, res) => {
   const userId = res.locals.uid;
   const postId = req.body.postId;
   let body = req.body;
@@ -109,7 +110,7 @@ allRouter.post('/posts/gostos', (req, res) => {
   })
 })
 
-allRouter.delete('/posts/:postId/gostos', (req, res) => {
+allRouter.delete('/posts/:postId/gostos', verificarAutenticacao, (req, res) => {
   const userId = res.locals.uid;
   const postId = req.params.postId;
   gymapp_api.delete(`/posts/${postId}/gostos`,
@@ -118,7 +119,7 @@ allRouter.delete('/posts/:postId/gostos', (req, res) => {
   })
 })
 
-allRouter.get('/desafios/:desafioId', (req, res) => {
+allRouter.get('/desafios/:desafioId', verificarAutenticacao, (req, res) => {
   const userId = res.locals.uid;
   const desafioId = req.params.desafioId;
   gymapp_api.get(`/desafios/${desafioId}`,
@@ -127,7 +128,7 @@ allRouter.get('/desafios/:desafioId', (req, res) => {
   })
 })
 
-allRouter.get('/atividades/', (req, res) => {
+allRouter.get('/atividades', verificarAutenticacao, (req, res) => {
   const userId = res.locals.uid;
   gymapp_api.get(`/atividades/`,
   ).then(resp => {
@@ -135,7 +136,7 @@ allRouter.get('/atividades/', (req, res) => {
   })
 })
 
-allRouter.get('/definicoes', (req, res) => {
+allRouter.get('/definicoes', verificarAutenticacao, (req, res) => {
   const userId = res.locals.uid;
   gymapp_api.get(`/definicoes`,
   ).then(resp => {
@@ -143,7 +144,7 @@ allRouter.get('/definicoes', (req, res) => {
   })
 })
 
-allRouter.put('/destinosNotificacao/notificacao/', (req, res) => {
+allRouter.put('/destinosNotificacao/notificacao', verificarAutenticacao, (req, res) => {
   const userId = res.locals.uid;
   const notiId = req.body.notiId;
   gymapp_api.put(`/destinosNotificacao/notificacao/${notiId}`,
@@ -152,7 +153,7 @@ allRouter.put('/destinosNotificacao/notificacao/', (req, res) => {
   })
 })
 
-allRouter.put('/perfil', (req, res) => {
+allRouter.put('/perfil', verificarAutenticacao, (req, res) => {
   const userId = res.locals.uid;
   gymapp_api.put(`/perfil`,
     req.body
@@ -161,7 +162,7 @@ allRouter.put('/perfil', (req, res) => {
   })
 })
 
-allRouter.get('/perfil', (req, res) => {
+allRouter.get('/perfil', verificarAutenticacao, (req, res) => {
   const userId = res.locals.uid;
   gymapp_api.get(`/perfil`,
   ).then(resp => {
@@ -169,7 +170,7 @@ allRouter.get('/perfil', (req, res) => {
   })
 })
 
-allRouter.get('/user/:uId', (req, res) => {
+allRouter.get('/user/:uId', verificarAutenticacao, (req, res) => {
   const userId = res.locals.uid;
   const uId = req.params.uId;
   gymapp_api.get(`/user/${uId}`,
@@ -178,7 +179,7 @@ allRouter.get('/user/:uId', (req, res) => {
   })
 })
 
-allRouter.put('/definicoes/identificacao/', (req, res) => {
+allRouter.put('/definicoes/identificacao', verificarAutenticacao, (req, res) => {
   const userId = res.locals.uid;
   gymapp_api.put(`/definicoes/identificacao/`,
     req.body
@@ -187,7 +188,7 @@ allRouter.put('/definicoes/identificacao/', (req, res) => {
   })
 })
 
-allRouter.put('/definicoes/mencoes', (req, res) => {
+allRouter.put('/definicoes/mencoes', verificarAutenticacao, (req, res) => {
   const userId = res.locals.uid;
   gymapp_api.put(`/definicoes/mencoes`,
     req.body
@@ -196,7 +197,7 @@ allRouter.put('/definicoes/mencoes', (req, res) => {
   })
 })
 
-allRouter.get('/posts', (req, res) => {
+allRouter.get('/posts', verificarAutenticacao, (req, res) => {
   const userId = res.locals.uid;
   gymapp_api.get(`/posts`,
   ).then(resp => {
@@ -204,7 +205,7 @@ allRouter.get('/posts', (req, res) => {
   })
 })
 
-allRouter.post('/posts', (req, res) => {
+allRouter.post('/posts', verificarAutenticacao, (req, res) => {
   const userId = res.locals.uid;
   gymapp_api.post(`/posts`,
     req.body
@@ -213,7 +214,7 @@ allRouter.post('/posts', (req, res) => {
   })
 })
 
-allRouter.put('/definicoes/perfil/privado/', (req, res) => {
+allRouter.put('/definicoes/perfil/privado', verificarAutenticacao, (req, res) => {
   const userId = res.locals.uid;
   gymapp_api.put(`/definicoes/perfil/privado/`,
     req.body
@@ -222,7 +223,7 @@ allRouter.put('/definicoes/perfil/privado/', (req, res) => {
   })
 })
 
-allRouter.get('/ginasio/:ginasioId/desafios/', (req, res) => {
+allRouter.get('/ginasio/:ginasioId/desafios', verificarAutenticacao, (req, res) => {
   const userId = res.locals.uid;
   const ginasioId = req.params.ginasioId;
   gymapp_api.get(`/ginasio/${ginasioId}/desafios/`,
@@ -231,7 +232,7 @@ allRouter.get('/ginasio/:ginasioId/desafios/', (req, res) => {
   })
 })
 
-allRouter.get('/ginasio/:ginasioId/desafios/disponiveis', (req, res) => {
+allRouter.get('/ginasio/:ginasioId/desafios/disponiveis', verificarAutenticacao, (req, res) => {
   const userId = res.locals.uid;
   const ginasioId = req.params.ginasioId;
   gymapp_api.get(`/ginasio/${ginasioId}/desafios/disponiveis`,
@@ -240,7 +241,7 @@ allRouter.get('/ginasio/:ginasioId/desafios/disponiveis', (req, res) => {
   })
 })
 
-allRouter.get('/notificacoes', (req, res) => {
+allRouter.get('/notificacoes', verificarAutenticacao, (req, res) => {
   const userId = res.locals.uid;
   gymapp_api.get(`/notificacoes`,
   ).then(resp => {
