@@ -248,4 +248,5 @@ allRouter.get('/notificacoes', verificarAutenticacao, (req, res) => {
     res.send(resp.data)
   })
 })
+
 export { allRouter }

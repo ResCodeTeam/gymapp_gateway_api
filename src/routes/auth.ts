@@ -30,4 +30,5 @@ authRouter.delete('/auth/logout', (req, res) => {
     res.send(resp.data)
   })
 })
+
 export { authRouter }

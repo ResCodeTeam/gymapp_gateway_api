@@ -1,3 +1,9 @@
+import express from "express";
+import { apiAdapter } from "../apiAdapter";
+const  alunoRouter = express.Router();
+
+const BASE_URL = 'http://localhost:8000/api/v1';
+const gymapp_api = apiAdapter(BASE_URL);
 
 import express from "express";
 import { verificarAluno } from "../api/middlewares/verificarAluno";
@@ -139,4 +145,5 @@ alunoRouter.delete('/aluno/plano/:planoId/realizado', verificarAutenticacao, ver
     res.send(resp.data)
   })
 })
+
 export { alunoRouter }
