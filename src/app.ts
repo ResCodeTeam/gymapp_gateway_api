@@ -3,9 +3,13 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import { morganConfig } from "./config/morganConfig";
-import { testeRouter } from "./routes/teste";
-
-
+import { adminRouter } from "./routes/admin";
+import { adminTreinadorRouter } from "./routes/adminTreinador";
+import { allRouter } from "./routes/all";
+import { alunoRouter } from "./routes/aluno";
+import { authRouter } from "./routes/auth";
+import { backendRouter } from "./routes/backend";
+import { treinadorRouter } from "./routes/treinador";
 
 const app = express()
 
@@ -24,14 +28,14 @@ app.use((error: Error, request: Request, response: Response, next: NextFunction)
   })
 })
 
-app.use(testeRouter)
+app.use(adminRouter)
+app.use(adminTreinadorRouter)
+app.use(allRouter)
+app.use(alunoRouter)
+app.use(authRouter)
+app.use(backendRouter)
+app.use(treinadorRouter)
 
-app.get('/hello', (req, resp) => {
-  return resp.send('HELLO WORLD!');
-})
-app.get('/dois/free', (req, resp) => {
-  return resp.send('HELLO WORLD2!');
-})
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
