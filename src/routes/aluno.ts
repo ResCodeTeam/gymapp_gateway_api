@@ -1,3 +1,9 @@
+import express from "express";
+import { apiAdapter } from "../apiAdapter";
+const  alunoRouter = express.Router();
+
+const BASE_URL = 'http://localhost:8000/api/v1';
+const gymapp_api = apiAdapter(BASE_URL);
 
 alunoRouter.post('/aluno/agenda/avaliacao/', (req, res) => {
   gymapp_api.post(`/aluno/agenda/avaliacao/`,
@@ -96,4 +102,5 @@ alunoRouter.delete('/aluno/plano/{planoId}/realizado/', (req, res) => {
     res.send(resp.data)
   })
 })
-            export { alunoRouter }
+
+export { alunoRouter }

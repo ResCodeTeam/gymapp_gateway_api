@@ -187,4 +187,5 @@ allRouter.get('/notificacoes', (req, res) => {
     res.send(resp.data)
   })
 })
-            export { allRouter }
+
+export { allRouter }

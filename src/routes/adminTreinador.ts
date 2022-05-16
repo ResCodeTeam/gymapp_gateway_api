@@ -40,4 +40,5 @@ adminTreinadorRouter.get('/adminTreinador/musculos/', (req, res) => {
     res.send(resp.data)
   })
 })
-            export { adminTreinadorRouter }
+
+export { adminTreinadorRouter }
