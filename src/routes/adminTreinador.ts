@@ -21,9 +21,9 @@ adminTreinadorRouter.post('/adminTreinador/ginasio/desafio/', verificarAutentica
   })
 })
 
-adminTreinadorRouter.delete('/adminTreinador/desafio/', verificarAutenticacao, verificarAdminTreinador, (req, res) => {
+adminTreinadorRouter.delete('/adminTreinador/desafio/:desafioId', verificarAutenticacao, verificarAdminTreinador, (req, res) => {
   const userId = res.locals.uid;
-  const desafioId = req.body.desafioId;
+  const desafioId = req.params.desafioId;
   gymapp_api.delete(`/adminTreinador/desafio/${desafioId}`,
   ).then(resp => {
     res.send(resp.data)
