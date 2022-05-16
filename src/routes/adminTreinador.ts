@@ -61,4 +61,5 @@ adminTreinadorRouter.get('/adminTreinador/musculos/', verificarAutenticacao, ver
     res.send(resp.data)
   })
 })
+
 export { adminTreinadorRouter }

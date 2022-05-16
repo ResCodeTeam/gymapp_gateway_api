@@ -280,4 +280,5 @@ treinadorRouter.delete('/treinador/desafio/:desafioId/submissoes/:submissaoId', 
     res.send(resp.data)
   })
 })
+
 export { treinadorRouter }
