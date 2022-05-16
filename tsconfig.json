@@ -1,8 +1,15 @@
 {
-  "extends": "@tsconfig/node16/tsconfig.json",
-  "include": ["src"],
-  "exclude": ["node_modules"],
   "compilerOptions": {
-    "outDir": "dist"
-  }
+    "sourceMap": true,
+    "outDir": "dist",
+    "strict": false,
+    "lib": ["esnext"],
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "target": "es2016",
+    "resolveJsonModule": true
+  },
+  "exclude": ["src/tests", "./node_modules/", "./dist/"]
 }
