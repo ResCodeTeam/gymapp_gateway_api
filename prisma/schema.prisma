@@ -1,0 +1,486 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model agendamentos_avaliacoes {
+  agendamento_id   String   @id
+  uid              String
+  data_agendamento DateTime
+  ginasio_id       String
+  isDeleted        Boolean  @default(false)
+  isAceite         Boolean  @default(false)
+  ginasio          ginasio  @relation(fields: [ginasio_id], references: [ginasio_id], onDelete: NoAction, onUpdate: NoAction, map: "fkagendament980386")
+  users            users    @relation(fields: [uid], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkagendament244850")
+}
+
+model agendamentos_desafios {
+  agendamento_id   String   @id
+  uid              String
+  data_agendamento DateTime
+  desafio_id       String
+  ginasio_id       String
+  isDeleted        Boolean  @default(false)
+  isAceite         Boolean  @default(false)
+  desafios         desafios @relation(fields: [desafio_id], references: [desafio_id], onDelete: NoAction, onUpdate: NoAction, map: "fkagendament612576")
+  ginasio          ginasio  @relation(fields: [ginasio_id], references: [ginasio_id], onDelete: NoAction, onUpdate: NoAction, map: "fkagendament841318")
+  users            users    @relation(fields: [uid], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkagendament394735")
+}
+
+model aluno_ginasio {
+  user_id    String
+  ginasio_id String
+  ginasio    ginasio @relation(fields: [ginasio_id], references: [ginasio_id], onDelete: NoAction, onUpdate: NoAction, map: "fkaluno_gina747871")
+  users      users   @relation(fields: [user_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkaluno_gina239330")
+
+  @@id([user_id, ginasio_id])
+}
+
+model alunos_marca {
+  uid      String
+  marca_id String
+  marcas   marcas @relation(fields: [marca_id], references: [marca_id], onDelete: NoAction, onUpdate: NoAction, map: "fkalunos_mar273324")
+  users    users  @relation(fields: [uid], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkalunos_mar464475")
+
+  @@id([uid, marca_id])
+}
+
+model atividades {
+  atividade_id String    @id
+  descricao    String    @db.VarChar(255)
+  icon         String    @db.VarChar(255)
+  isDeleted    Boolean   @default(false)
+  treinos      treinos[]
+}
+
+model avaliacao_imagens {
+  imagem_id    String     @id
+  avaliacao_id String
+  url          String     @db.VarChar(255)
+  avaliacoes   avaliacoes @relation(fields: [avaliacao_id], references: [avaliacao_id], onDelete: NoAction, onUpdate: NoAction, map: "fkavaliacao_266291")
+}
+
+model avaliacoes {
+  avaliacao_id                         String              @id
+  aluno_id                             String
+  data                                 DateTime
+  peso                                 Int
+  unidade_peso                         String              @db.VarChar(255)
+  treinador_id                         String
+  musculo                              Int
+  gordura_corporal                     Int
+  gordura_visceral                     Int
+  agua                                 Int
+  proteina                             Int
+  massa_ossea                          Int
+  metabolismo_basal                    Int
+  isDeleted                            Boolean             @default(false)
+  users_avaliacoes_aluno_idTousers     users               @relation("avaliacoes_aluno_idTousers", fields: [aluno_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkavaliacoes119892")
+  users_avaliacoes_treinador_idTousers users               @relation("avaliacoes_treinador_idTousers", fields: [treinador_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkavaliacoes194757")
+  avaliacao_imagens                    avaliacao_imagens[]
+  medidas_avaliacao                    medidas_avaliacao[]
+}
+
+model black_list {
+  tokenId String @id
+  uid     String
+  users   users  @relation(fields: [uid], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkblack_list909983")
+}
+
+model bloco_treino {
+  bloco_id         String             @id
+  plano_treino_id  String
+  n_ordem          Int
+  nome             String             @db.VarChar(255)
+  descricao        String             @db.VarChar(255)
+  planos_treino    planos_treino      @relation(fields: [plano_treino_id], references: [plano_treino_id], onDelete: Cascade, onUpdate: NoAction, map: "fkbloco_trei396073")
+  exercicios_bloco exercicios_bloco[]
+}
+
+model comentarios_publicacao {
+  comentario_id              String                       @id
+  publicacao_id              String
+  comentario                 String                       @db.VarChar(255)
+  criador_id                 String
+  data                       DateTime
+  users                      users                        @relation(fields: [criador_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkcomentario66141")
+  publicacoes                publicacoes                  @relation(fields: [publicacao_id], references: [publicacao_id], onDelete: NoAction, onUpdate: NoAction, map: "fkcomentario286998")
+  gostos_comentario          gostos_comentario[]
+  identificacoes_comentarios identificacoes_comentarios[]
+}
+
+model definicoes_user {
+  def_id         String  @id
+  usersuid       String  @unique
+  identificacoes Boolean @default(false)
+  is_privado     Boolean @default(false)
+  mencoes        Boolean @default(false)
+  users          users   @relation(fields: [usersuid], references: [uid])
+}
+
+model desafios {
+  desafio_id            String                  @id
+  criador_id            String
+  nome                  String                  @db.VarChar(255)
+  modalidade_id         String
+  data_inicio           DateTime
+  data_fim              DateTime?
+  recompensa            Int
+  ginasio_id            String
+  descricao             String?                 @db.VarChar(255)
+  isDeleted             Boolean                 @default(false)
+  isEncerrado           Boolean                 @default(false)
+  users                 users                   @relation(fields: [criador_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkdesafios277782")
+  ginasio               ginasio                 @relation(fields: [ginasio_id], references: [ginasio_id], onDelete: NoAction, onUpdate: NoAction, map: "fkdesafios556854")
+  modalidades_ginasio   modalidades_ginasio     @relation(fields: [modalidade_id], references: [modalidade_id], onDelete: NoAction, onUpdate: NoAction, map: "fkdesafios433214")
+  agendamentos_desafios agendamentos_desafios[]
+  exercicios_desafio    exercicios_desafio[]
+  regras_desafio        regras_desafio[]
+  submissoes_desafios   submissoes_desafios[]
+}
+
+model destinos_notificacao {
+  noti_id      String
+  dest_uid     String
+  visto        Boolean      @default(false)
+  users        users        @relation(fields: [dest_uid], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkdestinos_n728383")
+  notificacoes notificacoes @relation(fields: [noti_id], references: [noti_id], onDelete: NoAction, onUpdate: NoAction, map: "fkdestinos_n126435")
+
+  @@id([noti_id, dest_uid])
+}
+
+model exercicios {
+  exercicio_id        String                @id
+  nome                String                @db.VarChar(255)
+  descricao           String                @db.VarChar(255)
+  autor_id            String
+  is_tempo            Boolean
+  isDeleted           Boolean               @default(false)
+  users               users                 @relation(fields: [autor_id], references: [uid], onDelete: Cascade, onUpdate: NoAction, map: "fkexercicios806183")
+  exercicios_bloco    exercicios_bloco[]
+  exercicios_desafio  exercicios_desafio[]
+  exercicios_imagens  exercicios_imagens[]
+  exercicios_musculos exercicios_musculos[]
+}
+
+model exercicios_bloco {
+  exercicios_bloco_id String             @id
+  bloco_id            String
+  exercicio_id        String
+  n_ordem_exercicio   Int
+  bloco_treino        bloco_treino       @relation(fields: [bloco_id], references: [bloco_id], onDelete: Cascade, onUpdate: NoAction, map: "fkexercicios619094")
+  exercicios          exercicios         @relation(fields: [exercicio_id], references: [exercicio_id], onDelete: NoAction, onUpdate: NoAction, map: "fkexercicios561801")
+  series_exercicio    series_exercicio[]
+}
+
+model exercicios_desafio {
+  exercicio_desafio_id String           @id
+  desafio_id           String
+  exercicio_id         String
+  n_ordem_exercicio    Int
+  genero               Int
+  desafios             desafios         @relation(fields: [desafio_id], references: [desafio_id], onDelete: NoAction, onUpdate: NoAction, map: "fkexercicios16333")
+  exercicios           exercicios       @relation(fields: [exercicio_id], references: [exercicio_id], onDelete: NoAction, onUpdate: NoAction, map: "fkexercicios394574")
+  series_desafio       series_desafio[]
+}
+
+model exercicios_imagens {
+  imagem_id    String     @id
+  exercicio_id String
+  url          String     @db.VarChar(255)
+  exercicios   exercicios @relation(fields: [exercicio_id], references: [exercicio_id], onDelete: Cascade, onUpdate: NoAction, map: "fkexercicios255336")
+}
+
+model exercicios_musculos {
+  exercicio_id String
+  musculo_id   String
+  exercicios   exercicios @relation(fields: [exercicio_id], references: [exercicio_id], onDelete: Cascade, onUpdate: NoAction, map: "fkexercicios823659")
+  musculos     musculos   @relation(fields: [musculo_id], references: [musculo_id], onDelete: NoAction, onUpdate: NoAction, map: "fkexercicios621819")
+
+  @@id([exercicio_id, musculo_id])
+}
+
+model funcoes {
+  funcao_id String  @id
+  descricao String  @db.VarChar(255)
+  users     users[]
+}
+
+model ginasio {
+  ginasio_id              String                    @id
+  nome                    String                    @db.VarChar(255)
+  rua                     String                    @db.VarChar(255)
+  marca_id                String
+  tag                     String                    @db.VarChar(255)
+  imagem_url              String                    @db.VarChar(255)
+  lat                     String                    @db.VarChar(255)
+  long                    String                    @db.VarChar(255)
+  cp_id                   String
+  isDeleted               Boolean                   @default(false)
+  descricao               String?                   @db.VarChar(255)
+  localidades             localidades               @relation(fields: [cp_id], references: [cp_id], onDelete: NoAction, onUpdate: NoAction, map: "fkginasio942118")
+  marcas                  marcas                    @relation(fields: [marca_id], references: [marca_id], onDelete: NoAction, onUpdate: NoAction, map: "fkginasio173025")
+  agendamentos_avaliacoes agendamentos_avaliacoes[]
+  agendamentos_desafios   agendamentos_desafios[]
+  aluno_ginasio           aluno_ginasio[]
+  desafios                desafios[]
+  modalidades_ginasio     modalidades_ginasio[]
+  publicacoes             publicacoes[]
+  submissoes_desafios     submissoes_desafios[]
+}
+
+model gostos_comentario {
+  gosto_id               String                 @id
+  criador_id             String
+  comentario_id          String
+  comentarios_publicacao comentarios_publicacao @relation(fields: [comentario_id], references: [comentario_id], onDelete: NoAction, onUpdate: NoAction, map: "fkgostos_com592880")
+  users                  users                  @relation(fields: [criador_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkgostos_com262378")
+}
+
+model gostos_publicacao {
+  gosto_id      String      @id
+  publicacao_id String
+  criador_id    String
+  users         users       @relation(fields: [criador_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkgostos_pub861705")
+  publicacoes   publicacoes @relation(fields: [publicacao_id], references: [publicacao_id], onDelete: NoAction, onUpdate: NoAction, map: "fkgostos_pub330742")
+}
+
+model identificacoes_comentarios {
+  identificacao_id       String                 @id
+  comentario_id          String
+  usersuid               String
+  comentarios_publicacao comentarios_publicacao @relation(fields: [comentario_id], references: [comentario_id], onDelete: NoAction, onUpdate: NoAction, map: "fkidenticoment298313")
+  users                  users                  @relation(fields: [usersuid], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkidenticoment401249")
+}
+
+model identificacoes_publicacoes {
+  publicacao_id    String
+  usersuid         String
+  identificacao_id String      @id
+  publicacoes      publicacoes @relation(fields: [publicacao_id], references: [publicacao_id], onDelete: NoAction, onUpdate: NoAction, map: "fkidentifica298313")
+  users            users       @relation(fields: [usersuid], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkidentifica401248")
+}
+
+model imagens_publicacao {
+  imagem_id     String      @id
+  publicacao_id String
+  url           String      @db.VarChar(255)
+  publicacoes   publicacoes @relation(fields: [publicacao_id], references: [publicacao_id], onDelete: NoAction, onUpdate: NoAction, map: "fkimagens_pu788070")
+}
+
+model locais_medidas {
+  local_medida_id     String                @id
+  descricao           String                @db.VarChar(255)
+  unilado             Boolean
+  local_medidas_marca local_medidas_marca[]
+  medidas_avaliacao   medidas_avaliacao[]
+}
+
+model local_medidas_marca {
+  local_medida_id String
+  marca_id        String
+  locais_medidas  locais_medidas @relation(fields: [local_medida_id], references: [local_medida_id], onDelete: Cascade, onUpdate: NoAction, map: "fklocal_medi780121")
+  marcas          marcas         @relation(fields: [marca_id], references: [marca_id], onDelete: NoAction, onUpdate: NoAction, map: "fklocal_medi973208")
+
+  @@id([local_medida_id, marca_id])
+}
+
+model localidades {
+  localidade String    @db.VarChar(255)
+  rua        String?   @db.VarChar(255)
+  cp_ext     Int
+  cp_id      String    @id
+  cp         Int
+  ginasio    ginasio[]
+}
+
+model marcas {
+  marca_id            String                @id
+  dono_id             String
+  nome                String                @db.VarChar(255)
+  cor                 String                @db.VarChar(255)
+  logotipo            String                @db.VarChar(255)
+  mobilidade          Boolean
+  isDeleted           Boolean               @default(false)
+  users               users                 @relation(fields: [dono_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkmarcas260834")
+  alunos_marca        alunos_marca[]
+  ginasio             ginasio[]
+  local_medidas_marca local_medidas_marca[]
+  treinadores_marca   treinadores_marca[]
+}
+
+model medidas_avaliacao {
+  medidas_id      String         @id
+  avaliacao_id    String
+  medida          String         @db.VarChar(255)
+  unidade_medida  String         @db.VarChar(255)
+  local_medida_id String
+  avaliacoes      avaliacoes     @relation(fields: [avaliacao_id], references: [avaliacao_id], onDelete: NoAction, onUpdate: NoAction, map: "fkmedidas_av747581")
+  locais_medidas  locais_medidas @relation(fields: [local_medida_id], references: [local_medida_id], onDelete: NoAction, onUpdate: NoAction, map: "fkmedidas_av481994")
+}
+
+model modalidades_ginasio {
+  modalidade_id String          @id
+  ginasio_id    String
+  nome          String          @db.VarChar(255)
+  imagem_url    String          @db.VarChar(255)
+  isDeleted     Boolean         @default(false)
+  ginasio       ginasio         @relation(fields: [ginasio_id], references: [ginasio_id], onDelete: NoAction, onUpdate: NoAction, map: "fkmodalidade839982")
+  desafios      desafios[]
+  planos_treino planos_treino[]
+  treinos       treinos[]
+}
+
+model musculos {
+  musculo_id          String                @id
+  nome                String                @db.VarChar(255)
+  img_url             String                @db.VarChar(255)
+  exercicios_musculos exercicios_musculos[]
+}
+
+model notificacoes {
+  noti_id              String                 @id
+  origem_uid           String
+  conteudo             String                 @db.VarChar(255)
+  data                 DateTime
+  tipo                 Int
+  users                users                  @relation(fields: [origem_uid], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fknotificaco871945")
+  destinos_notificacao destinos_notificacao[]
+}
+
+model planos_treino {
+  plano_treino_id                         String              @id
+  aluno_id                                String
+  treinador_id                            String
+  data                                    DateTime            @db.Date
+  modalidade_id                           String
+  isDeleted                               Boolean             @default(false)
+  isRealizado                             Boolean             @default(false)
+  users_planos_treino_aluno_idTousers     users               @relation("planos_treino_aluno_idTousers", fields: [aluno_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkplanos_tre628891")
+  modalidades_ginasio                     modalidades_ginasio @relation(fields: [modalidade_id], references: [modalidade_id], onDelete: NoAction, onUpdate: NoAction, map: "fkplanos_tre425229")
+  users_planos_treino_treinador_idTousers users               @relation("planos_treino_treinador_idTousers", fields: [treinador_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkplanos_tre703756")
+  bloco_treino                            bloco_treino[]
+}
+
+model publicacoes {
+  publicacao_id              String                       @id
+  criador_id                 String?
+  data                       DateTime
+  descricao                  String                       @db.VarChar(255)
+  tipo                       Int
+  ginasio_id                 String?
+  isDeleted                  Boolean                      @default(false)
+  users                      users?                       @relation(fields: [criador_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fkpublicacoe457564")
+  ginasio                    ginasio?                     @relation(fields: [ginasio_id], references: [ginasio_id], onDelete: NoAction, onUpdate: NoAction, map: "fkpublicacoe178492")
+  comentarios_publicacao     comentarios_publicacao[]
+  gostos_publicacao          gostos_publicacao[]
+  identificacoes_publicacoes identificacoes_publicacoes[]
+  imagens_publicacao         imagens_publicacao[]
+}
+
+model regras_desafio {
+  regra_id   String   @id
+  desafio_id String
+  descricao  String   @db.VarChar(255)
+  desafios   desafios @relation(fields: [desafio_id], references: [desafio_id], onDelete: NoAction, onUpdate: NoAction, map: "fkregras_des827169")
+}
+
+model series_desafio {
+  serie_id             String             @id
+  exercicio_desafio_id String
+  n_ordem_serie        Int
+  valor                String?            @db.VarChar(255)
+  exercicios_desafio   exercicios_desafio @relation(fields: [exercicio_desafio_id], references: [exercicio_desafio_id], onDelete: NoAction, onUpdate: NoAction, map: "fkseries_des841548")
+}
+
+model series_exercicio {
+  serie_id            String           @id
+  exercicios_bloco_id String
+  n_ordem_serie       Int
+  valor               String?          @db.VarChar(255)
+  exercicios_bloco    exercicios_bloco @relation(fields: [exercicios_bloco_id], references: [exercicios_bloco_id], onDelete: Cascade, onUpdate: NoAction, map: "fkseries_exe489955")
+}
+
+model submissoes_desafios {
+  submissao_id                                  String   @id
+  uid                                           String
+  valor                                         String?  @db.VarChar(255)
+  desafio_id                                    String
+  treinador_id                                  String
+  ginasio_id                                    String
+  desafios                                      desafios @relation(fields: [desafio_id], references: [desafio_id], onDelete: NoAction, onUpdate: NoAction, map: "fksubmissoes619296")
+  ginasio                                       ginasio  @relation(fields: [ginasio_id], references: [ginasio_id], onDelete: NoAction, onUpdate: NoAction, map: "fksubmissoes101601")
+  users_submissoes_desafios_treinador_idTousers users    @relation("submissoes_desafios_treinador_idTousers", fields: [treinador_id], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fksubmissoes601393")
+  users_submissoes_desafios_uidTousers          users    @relation("submissoes_desafios_uidTousers", fields: [uid], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fksubmissoes837137")
+}
+
+model treinadores_marca {
+  treinador_uid String
+  marca_id      String
+  marcas        marcas @relation(fields: [marca_id], references: [marca_id], onDelete: NoAction, onUpdate: NoAction, map: "fktreinadore973268")
+  users         users  @relation(fields: [treinador_uid], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fktreinadore346953")
+
+  @@id([treinador_uid, marca_id])
+}
+
+model treinos {
+  treino_id           String               @id
+  uid                 String
+  atividade_id        String?
+  modalidade_id       String?
+  duracao             String               @db.VarChar(255)
+  calorias            Int?
+  distancia           Int?
+  data                DateTime
+  isDeleted           Boolean              @default(false)
+  atividades          atividades?          @relation(fields: [atividade_id], references: [atividade_id], onDelete: NoAction, onUpdate: NoAction, map: "fktreinos560349")
+  modalidades_ginasio modalidades_ginasio? @relation(fields: [modalidade_id], references: [modalidade_id], onDelete: NoAction, onUpdate: NoAction, map: "fktreinos7075")
+  users               users                @relation(fields: [uid], references: [uid], onDelete: NoAction, onUpdate: NoAction, map: "fktreinos709983")
+}
+
+model users {
+  uid                                                         String                       @id
+  email                                                       String                       @unique @db.VarChar(255)
+  nome                                                        String                       @db.VarChar(255)
+  password                                                    String                       @db.VarChar(255)
+  data_nasc                                                   DateTime                     @db.Date
+  hashtag                                                     String                       @unique @db.VarChar(255)
+  data_entrada                                                DateTime                     @db.Date
+  funcao_id                                                   String
+  refresh_token                                               String?                      @db.VarChar(255)
+  genero                                                      Int
+  pontos                                                      Int?                         @default(0)
+  descricao                                                   String?                      @db.VarChar(255)
+  imagem_url                                                  String?                      @db.VarChar(255)
+  isDeleted                                                   Boolean                      @default(false)
+  funcoes                                                     funcoes                      @relation(fields: [funcao_id], references: [funcao_id], onDelete: NoAction, onUpdate: NoAction, map: "fkusers982872")
+  agendamentos_avaliacoes                                     agendamentos_avaliacoes[]
+  agendamentos_desafios                                       agendamentos_desafios[]
+  aluno_ginasio                                               aluno_ginasio[]
+  alunos_marca                                                alunos_marca[]
+  avaliacoes_avaliacoes_aluno_idTousers                       avaliacoes[]                 @relation("avaliacoes_aluno_idTousers")
+  avaliacoes_avaliacoes_treinador_idTousers                   avaliacoes[]                 @relation("avaliacoes_treinador_idTousers")
+  black_list                                                  black_list[]
+  comentarios_publicacao                                      comentarios_publicacao[]
+  definicoes_user                                             definicoes_user?
+  desafios                                                    desafios[]
+  destinos_notificacao                                        destinos_notificacao[]
+  exercicios                                                  exercicios[]
+  gostos_comentario                                           gostos_comentario[]
+  gostos_publicacao                                           gostos_publicacao[]
+  identificacoes_comentarios                                  identificacoes_comentarios[]
+  identificacoes_publicacoes                                  identificacoes_publicacoes[]
+  marcas                                                      marcas[]
+  notificacoes                                                notificacoes[]
+  planos_treino_planos_treino_aluno_idTousers                 planos_treino[]              @relation("planos_treino_aluno_idTousers")
+  planos_treino_planos_treino_treinador_idTousers             planos_treino[]              @relation("planos_treino_treinador_idTousers")
+  publicacoes                                                 publicacoes[]
+  submissoes_desafios_submissoes_desafios_treinador_idTousers submissoes_desafios[]        @relation("submissoes_desafios_treinador_idTousers")
+  submissoes_desafios_submissoes_desafios_uidTousers          submissoes_desafios[]        @relation("submissoes_desafios_uidTousers")
+  treinadores_marca                                           treinadores_marca[]
+  treinos                                                     treinos[]
+}
