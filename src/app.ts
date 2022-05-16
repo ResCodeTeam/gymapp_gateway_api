@@ -3,7 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import { morganConfig } from "./config/morganConfig";
-import { testeRouter } from "./api/routes/teste";
+import { testeRouter } from "./routes/teste";
 
 
 
@@ -13,8 +13,6 @@ dotenv.config()
 
 app.use(cors({ credentials: true, origin: true }));
 app.use(express.json());
-app.use(testeRouter)
-
 
 morganConfig(app)
 
@@ -26,6 +24,7 @@ app.use((error: Error, request: Request, response: Response, next: NextFunction)
   })
 })
 
+app.use(testeRouter)
 
 app.get('/hello', (req, resp) => {
   return resp.send('HELLO WORLD!');
