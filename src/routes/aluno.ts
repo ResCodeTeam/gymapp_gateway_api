@@ -1,11 +1,4 @@
 import express from "express";
-import { apiAdapter } from "../apiAdapter";
-const  alunoRouter = express.Router();
-
-const BASE_URL = 'http://localhost:8000/api/v1';
-const gymapp_api = apiAdapter(BASE_URL);
-
-import express from "express";
 import { verificarAluno } from "../api/middlewares/verificarAluno";
 import { verificarAutenticacao } from "../api/middlewares/verificarAutenticacao";
 import { apiAdapter } from "../apiAdapter";

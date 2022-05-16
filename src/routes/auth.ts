@@ -1,5 +1,6 @@
 
 import express from "express";
+import { verificarAutenticacao } from "../api/middlewares/verificarAutenticacao";
 import { apiAdapter } from "../apiAdapter";
 const authRouter = express.Router();
 
@@ -15,7 +16,7 @@ authRouter.post('/auth/login', (req, res) => {
   })
 })
 
-authRouter.post('/auth/token', (req, res) => {
+authRouter.post('/auth/token', verificarAutenticacao, (req, res) => {
   const userId = res.locals.uid;
   gymapp_api.post(`/auth/${userId}/token`,
   ).then(resp => {
@@ -23,7 +24,7 @@ authRouter.post('/auth/token', (req, res) => {
   })
 })
 
-authRouter.delete('/auth/logout', (req, res) => {
+authRouter.delete('/auth/logout', verificarAutenticacao, (req, res) => {
   const userId = res.locals.uid;
   gymapp_api.delete(`/auth/logout`,
   ).then(resp => {
