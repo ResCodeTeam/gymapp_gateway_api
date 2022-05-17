@@ -1,6 +1,8 @@
 import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import swaggerUi from "swagger-ui-express"
+import swaggerDocs from "./swagger.json"
 
 import { morganConfig } from "./config/morganConfig";
 import { adminRouter } from "./routes/admin";
@@ -28,6 +30,7 @@ app.use((error: Error, request: Request, response: Response, next: NextFunction)
   })
 })
 
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 app.use(adminRouter)
 app.use(adminTreinadorRouter)
 app.use(allRouter)
