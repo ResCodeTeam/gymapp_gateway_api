@@ -10,7 +10,7 @@ const gymapp_api = apiAdapter(BASE_URL);
 
 adminRouter.post('/admin/marca', verificarAutenticacao, verificarAdmin, (req, res) => {
   const userId = res.locals.uid;
-  gymapp_api.post(`/${userId}/admin/marca/`, req.body
+  gymapp_api.post(`/admin/${userId}/marca/`, req.body
   ).then(resp => {
     res.send(resp.data)
   })
@@ -18,7 +18,7 @@ adminRouter.post('/admin/marca', verificarAutenticacao, verificarAdmin, (req, re
 
 adminRouter.get('/admin/marca', verificarAutenticacao, verificarAdmin, (req, res) => {
   const donoId = res.locals.uid;
-  gymapp_api.get(`/${donoId}/admin/marca/`,
+  gymapp_api.get(`/admin/${donoId}/marca/`,
   ).then(resp => {
     res.send(resp.data)
   })
@@ -29,7 +29,7 @@ adminRouter.put('/admin/ginasio/editar', verificarAutenticacao, verificarAdmin, 
   const ginasioId = req.body.ginasioId;
   let body = req.body;
   delete body['ginasioId'];
-  gymapp_api.put(`/${userId}/admin/ginasio/editar/${ginasioId}`, body
+  gymapp_api.put(`/admin/${userId}/ginasio/editar/${ginasioId}`, body
   ).then(resp => {
     res.send(resp.data)
   })
@@ -40,7 +40,7 @@ adminRouter.post('/admin/marca/ginasio', verificarAutenticacao, verificarAdmin, 
   const marcaId = req.body.marcaId;
   let body = req.body;
   delete body['marcaId'];
-  gymapp_api.post(`/${userId}/admin/marca/${marcaId}/ginasio/`, body
+  gymapp_api.post(`/admin/${userId}/marca/${marcaId}/ginasio/`, body
   ).then(resp => {
     res.send(resp.data)
   })
@@ -49,7 +49,7 @@ adminRouter.post('/admin/marca/ginasio', verificarAutenticacao, verificarAdmin, 
 adminRouter.get('/admin/marca/:marcaId/ginasio', verificarAutenticacao, verificarAdmin, (req, res) => {
   const userId = res.locals.uid;
   const marcaId = req.params.marcaId;
-  gymapp_api.get(`/${userId}/admin/marca/${marcaId}/ginasio/`,
+  gymapp_api.get(`/admin/${userId}/marca/${marcaId}/ginasio/`,
   ).then(resp => {
     res.send(resp.data)
   })
@@ -60,7 +60,7 @@ adminRouter.post('/admin/ginasio/modalidades', verificarAutenticacao, verificarA
   const adminId = res.locals.uid;
   let body = req.body;
   delete body['ginasioId'];
-  gymapp_api.post(`/${adminId}/admin/ginasio/${ginasioId}/modalidades`, body
+  gymapp_api.post(`/admin/${adminId}/ginasio/${ginasioId}/modalidades`, body
   ).then(resp => {
     res.send(resp.data)
   })
@@ -69,7 +69,7 @@ adminRouter.post('/admin/ginasio/modalidades', verificarAutenticacao, verificarA
 adminRouter.get('/admin/ginasio/:ginasioId/modalidades', verificarAutenticacao, verificarAdmin, (req, res) => {
   const ginasioId = req.params.ginasioId;
   const userId = res.locals.uid;
-  gymapp_api.get(`/${userId}/admin/ginasio/${ginasioId}/modalidades`,
+  gymapp_api.get(`/admin/${userId}/ginasio/${ginasioId}/modalidades`,
   ).then(resp => {
     res.send(resp.data)
   })
@@ -78,7 +78,7 @@ adminRouter.get('/admin/ginasio/:ginasioId/modalidades', verificarAutenticacao, 
 adminRouter.delete('/admin/aluno/remover/:uId', verificarAutenticacao, verificarAdmin, (req, res) => {
   const userId = res.locals.uid;
   const uId = req.params.uId;
-  gymapp_api.delete(`/${userId}/admin/aluno/remover/${uId}`,
+  gymapp_api.delete(`/admin/${userId}/aluno/remover/${uId}`,
   ).then(resp => {
     res.send(resp.data)
   })
@@ -88,7 +88,7 @@ adminRouter.delete('/admin/ginasio/:ginasioId/modalidades/:modalidadeId', verifi
   const userId = res.locals.uid;
   const ginasioId = req.params.ginasioId;
   const modalidadeId = req.params.modalidadeId;
-  gymapp_api.delete(`/${userId}/admin/ginasio/${ginasioId}/modalidades/${modalidadeId}`,
+  gymapp_api.delete(`/admin/${userId}/ginasio/${ginasioId}/modalidades/${modalidadeId}`,
   ).then(resp => {
     res.send(resp.data)
   })
@@ -101,7 +101,7 @@ adminRouter.put('/admin/ginasio/modalidades', verificarAutenticacao, verificarAd
   let body = req.body;
   delete body['ginasioId'];
   delete body['modalidadeId'];
-  gymapp_api.put(`/${userId}/admin/ginasio/${ginasioId}/modalidades/${modalidadeId}`, body
+  gymapp_api.put(`/admin/${userId}/ginasio/${ginasioId}/modalidades/${modalidadeId}`, body
   ).then(resp => {
     res.send(resp.data)
   })
@@ -110,7 +110,7 @@ adminRouter.put('/admin/ginasio/modalidades', verificarAutenticacao, verificarAd
 adminRouter.delete('/admin/treinador/:treinadorId', verificarAutenticacao, verificarAdmin, (req, res) => {
   const treinadorId = req.params.treinadorId;
   const userId = res.locals.uid;
-  gymapp_api.delete(`/${userId}/admin/treinador/${treinadorId}`,
+  gymapp_api.delete(`/admin/${userId}/treinador/${treinadorId}`,
   ).then(resp => {
     res.send(resp.data)
   })
@@ -119,7 +119,7 @@ adminRouter.delete('/admin/treinador/:treinadorId', verificarAutenticacao, verif
 adminRouter.delete('/admin/marca/:marcaId', verificarAutenticacao, verificarAdmin, (req, res) => {
   const marcaId = req.params.marcaId;
   const userId = res.locals.uid;
-  gymapp_api.delete(`/${userId}/admin/marca/${marcaId}`,
+  gymapp_api.delete(`/admin/${userId}/marca/${marcaId}`,
   ).then(resp => {
     res.send(resp.data)
   })
@@ -128,7 +128,7 @@ adminRouter.delete('/admin/marca/:marcaId', verificarAutenticacao, verificarAdmi
 adminRouter.get('/admin/marca/:marcaId', verificarAutenticacao, verificarAdmin, (req, res) => {
   const marcaId = req.params.marcaId;
   const userId = res.locals.uid;
-  gymapp_api.get(`/${userId}/admin/marca/${marcaId}`,
+  gymapp_api.get(`/admin/${userId}/marca/${marcaId}`,
   ).then(resp => {
     res.send(resp.data)
   })
@@ -139,7 +139,7 @@ adminRouter.put('/admin/marca/espf', verificarAutenticacao, verificarAdmin, (req
   const adminId = res.locals.uid;
   let body = req.body;
   delete body['marcaId'];
-  gymapp_api.put(`/${adminId}/admin/marca/${marcaId}`, body
+  gymapp_api.put(`/admin/${adminId}/marca/${marcaId}`, body
   ).then(resp => {
     res.send(resp.data)
   })
@@ -150,7 +150,7 @@ adminRouter.post('/admin/marca/treinadores', verificarAutenticacao, verificarAdm
   const adminId = res.locals.uid;
   let body = req.body;
   delete body['marcaId'];
-  gymapp_api.post(`/${adminId}/admin/marca/${marcaId}/treinadores`, body
+  gymapp_api.post(`/admin/${adminId}/marca/${marcaId}/treinadores`, body
   ).then(resp => {
     res.send(resp.data)
   })
@@ -161,7 +161,7 @@ adminRouter.post('/admin/notificacao/user', verificarAutenticacao, verificarAdmi
   const adminId = res.locals.uid;
   let body = req.body;
   delete body['destinoId'];
-  gymapp_api.post(`/${adminId}/admin/notificacao/user/${destinoId}`, body
+  gymapp_api.post(`/admin/${adminId}/notificacao/user/${destinoId}`, body
   ).then(resp => {
     res.send(resp.data)
   })
@@ -169,7 +169,7 @@ adminRouter.post('/admin/notificacao/user', verificarAutenticacao, verificarAdmi
 
 adminRouter.post('/admin/marca/alunos', verificarAutenticacao, verificarAdmin, (req, res) => {
   const userId = res.locals.uid;
-  gymapp_api.post(`/${userId}/admin/marca/alunos/`, req.body
+  gymapp_api.post(`/admin/${userId}/marca/alunos/`, req.body
   ).then(resp => {
     res.send(resp.data)
   })
@@ -178,7 +178,7 @@ adminRouter.post('/admin/marca/alunos', verificarAutenticacao, verificarAdmin, (
 adminRouter.delete('/admin/ginasio/:ginasioId', verificarAutenticacao, verificarAdmin, (req, res) => {
   const ginasioId = req.params.ginasioId;
   const userId = res.locals.uid;
-  gymapp_api.delete(`/${userId}/admin/ginasio/${ginasioId}/`,
+  gymapp_api.delete(`/admin/${userId}/ginasio/${ginasioId}/`,
   ).then(resp => {
     res.send(resp.data)
   })
@@ -187,7 +187,7 @@ adminRouter.delete('/admin/ginasio/:ginasioId', verificarAutenticacao, verificar
 adminRouter.get('/admin/ginasio/:ginasioId', verificarAutenticacao, verificarAdmin, (req, res) => {
   const ginasioId = req.params.ginasioId;
   const userId = res.locals.uid;
-  gymapp_api.get(`/${userId}/admin/ginasio/${ginasioId}/`,
+  gymapp_api.get(`/admin/${userId}/ginasio/${ginasioId}/`,
   ).then(resp => {
     res.send(resp.data)
   })
@@ -198,7 +198,7 @@ adminRouter.post('/admin/marca/localMedida', verificarAutenticacao, verificarAdm
   const adminId = res.locals.uid;
   let body = req.body;
   delete body['marcaId'];
-  gymapp_api.post(`/${adminId}/admin/marca/${marcaId}/localMedida`, body
+  gymapp_api.post(`/admin/${adminId}/marca/${marcaId}/localMedida`, body
   ).then(resp => {
     res.send(resp.data)
   })
@@ -208,7 +208,7 @@ adminRouter.delete('/admin/marca/:marcaId/localMedida/:localId', verificarAutent
   const marcaId = req.params.marcaId;
   const localId = req.params.localId;
   const userId = res.locals.uid;
-  gymapp_api.delete(`/${userId}/admin/marca/${marcaId}/localMedida/${localId}`,
+  gymapp_api.delete(`/admin/${userId}/marca/${marcaId}/localMedida/${localId}`,
   ).then(resp => {
     res.send(resp.data)
   })
@@ -219,7 +219,7 @@ adminRouter.post('/admin/notificacao/marca', verificarAutenticacao, verificarAdm
   const adminId = res.locals.uid;
   let body = req.body;
   delete body['marcaId'];
-  gymapp_api.post(`/${adminId}/admin/notificacao/marca/${marcaId}`, body
+  gymapp_api.post(`/admin/${adminId}/notificacao/marca/${marcaId}`, body
   ).then(resp => {
     res.send(resp.data)
   })
@@ -230,7 +230,7 @@ adminRouter.post('/admin/notificacao/ginasio', verificarAutenticacao, verificarA
   const adminId = res.locals.uid;
   let body = req.body;
   delete body['ginasioId'];
-  gymapp_api.post(`/${adminId}/admin/notificacao/ginasio/${ginasioId}`, body
+  gymapp_api.post(`/admin/${adminId}/notificacao/ginasio/${ginasioId}`, body
   ).then(resp => {
     res.send(resp.data)
   })
@@ -239,7 +239,7 @@ adminRouter.post('/admin/notificacao/ginasio', verificarAutenticacao, verificarA
 adminRouter.get('/admin/ginasio/treinador/ver/:marcaId', verificarAutenticacao, verificarAdmin, (req, res) => {
   const marcaId = req.params.ginasioId;
   const userId = res.locals.uid;
-  gymapp_api.get(`/${userId}/admin/ginasio/treinador/ver/${marcaId}`,
+  gymapp_api.get(`/admin/${userId}/ginasio/treinador/ver/${marcaId}`,
   ).then(resp => {
     res.send(resp.data)
   })

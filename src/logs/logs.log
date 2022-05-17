@@ -8,3 +8,4 @@
 ::1 - - [16/May/2022:12:31:39 +0000] "GET /hello HTTP/1.1" 304 - "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36"
 ::ffff:127.0.0.1 - - [16/May/2022:12:31:42 +0000] "GET /hello HTTP/1.1" 200 12 "-" "axios/0.27.2"
 ::1 - - [16/May/2022:12:31:42 +0000] "GET /teste HTTP/1.1" 304 - "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36"
+::1 - - [16/May/2022:23:05:37 +0000] "GET /favicon.ico HTTP/1.1" 404 150 "http://localhost:2400/teste" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36"

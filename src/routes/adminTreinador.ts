@@ -47,7 +47,7 @@ adminTreinadorRouter.put('/adminTreinador/desafio/editar', verificarAutenticacao
   const desafioId = req.body.desafioId;
   let body = req.body;
   delete body['desafioId'];
-  gymapp_api.put(`/${userId}/adminTreinador/desafio/${desafioId}/editar`,
+  gymapp_api.put(`/adminTreinador/${userId}/desafio/${desafioId}/editar`,
     body
   ).then(resp => {
     res.send(resp.data)
@@ -56,7 +56,7 @@ adminTreinadorRouter.put('/adminTreinador/desafio/editar', verificarAutenticacao
 
 adminTreinadorRouter.get('/adminTreinador/musculos/', verificarAutenticacao, verificarAdminTreinador, (req, res) => {
   const userId = res.locals.uid;
-  gymapp_api.get(`/${userId}/adminTreinador/musculos/`,
+  gymapp_api.get(`/adminTreinador/${userId}/musculos/`,
   ).then(resp => {
     res.send(resp.data)
   })

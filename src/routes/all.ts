@@ -69,9 +69,8 @@ allRouter.delete('/posts/:postId/comentario/:comentarioId', verificarAutenticaca
 })
 
 allRouter.get('/posts/:postId', verificarAutenticacao, (req, res) => {
-  const userId = res.locals.uid;
   const postId = req.params.postId;
-  gymapp_api.get(`/${userId}/posts/${postId}`,
+  gymapp_api.get(`/posts/${postId}`,
   ).then(resp => {
     res.send(resp.data)
   })
@@ -129,8 +128,8 @@ allRouter.get('/desafios/:desafioId', verificarAutenticacao, (req, res) => {
 })
 
 allRouter.get('/atividades', verificarAutenticacao, (req, res) => {
-  const userId = res.locals.uid;
-  gymapp_api.get(`/${userId}/atividades/`,
+
+  gymapp_api.get(`/atividades/`,
   ).then(resp => {
     res.send(resp.data)
   })
