@@ -8,8 +8,7 @@ const BASE_URL = 'http://localhost:8000/api/v1';
 const gymapp_api = apiAdapter(BASE_URL);
 
 authRouter.post('/auth/login', (req, res) => {
-  const userId = res.locals.uid;
-  gymapp_api.post(`/${userId}/auth/login`,
+  gymapp_api.post(`/auth/login`,
     req.body
   ).then(resp => {
     res.send(resp.data)
@@ -18,7 +17,7 @@ authRouter.post('/auth/login', (req, res) => {
 
 authRouter.post('/auth/token', verificarAutenticacao, (req, res) => {
   const userId = res.locals.uid;
-  gymapp_api.post(`/${userId}/auth/${userId}/token`,
+  gymapp_api.post(`/auth/${userId}/token`,
   ).then(resp => {
     res.send(resp.data)
   })
@@ -26,7 +25,7 @@ authRouter.post('/auth/token', verificarAutenticacao, (req, res) => {
 
 authRouter.delete('/auth/logout', verificarAutenticacao, (req, res) => {
   const userId = res.locals.uid;
-  gymapp_api.delete(`/${userId}/auth/logout`,
+  gymapp_api.delete(`/auth/${userId}/logout`,
   ).then(resp => {
     res.send(resp.data)
   })
