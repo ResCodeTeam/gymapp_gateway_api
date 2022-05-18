@@ -20,7 +20,6 @@ function verificarAutenticacao(request, response, next) {
             throw new Error("Token invalido");
         }
         const [, token] = auth.split(" ");
-        //verificar se o token é válido
         try {
             (0, jsonwebtoken_1.verify)(token, process.env.SECRET_KEY_TOKEN);
         }
