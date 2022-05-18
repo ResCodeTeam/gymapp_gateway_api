@@ -21,14 +21,14 @@ backendRouter.post('/backend/cp', (req, res) => {
 })
 
 backendRouter.post('/backend/registo', (req, res) => {
-  gymapp_api.post(`/backend/registo`,
+  gymapp_api.post(`/backend/registo`, req.body
   ).then(resp => {
     res.send(resp.data)
   })
 })
 
 backendRouter.post('/backend/atividades', (req, res) => {
-  gymapp_api.post(`/backend/atividades`,
+  gymapp_api.post(`/backend/atividades`, req.body
   ).then(resp => {
     res.send(resp.data)
   })
@@ -42,7 +42,7 @@ backendRouter.delete('/backend/atividades/:atividadeId', (req, res) => {
   })
 })
 
-backendRouter.put('/backend/atividades/', (req, res) => {
+backendRouter.put('/backend/atividades', (req, res) => {
   const atividadeId = req.body.atividadeId;
   let body = req.body;
   delete body['atividadeId'];
@@ -53,10 +53,10 @@ backendRouter.put('/backend/atividades/', (req, res) => {
   })
 })
 
-backendRouter.put('/backend/musculos/', (req, res) => {
+backendRouter.put('/backend/musculos', (req, res) => {
   const musculoId = req.body.musculoId;
   let body = req.body;
-  delete body['atividadeId'];
+  delete body['musculoId'];
   gymapp_api.put(`/backend/musculos/${musculoId}`,
     body
   ).then(resp => {

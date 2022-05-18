@@ -30,23 +30,30 @@ backendRouter.post('/backend/atividades', (req, res) => {
         res.send(resp.data);
     });
 });
-backendRouter.delete('/backend/atividades/{atividadeId}', (req, res) => {
-    gymapp_api.delete(`/backend/atividades/{atividadeId}`).then(resp => {
+backendRouter.delete('/backend/atividades/:atividadeId', (req, res) => {
+    const atividadeId = req.params.atividadeId;
+    gymapp_api.delete(`/backend/atividades/${atividadeId}`).then(resp => {
         res.send(resp.data);
     });
 });
-backendRouter.put('/backend/atividades/{atividadeId}', (req, res) => {
-    gymapp_api.put(`/backend/atividades/{atividadeId}`).then(resp => {
+backendRouter.put('/backend/atividades/', (req, res) => {
+    const atividadeId = req.body.atividadeId;
+    let body = req.body;
+    delete body['atividadeId'];
+    gymapp_api.put(`/backend/atividades/${atividadeId}`, body).then(resp => {
         res.send(resp.data);
     });
 });
-backendRouter.put('/backend/musculos/{musculoId}', (req, res) => {
-    gymapp_api.put(`/backend/musculos/{musculoId}`).then(resp => {
+backendRouter.put('/backend/musculos/', (req, res) => {
+    const musculoId = req.body.musculoId;
+    let body = req.body;
+    delete body['atividadeId'];
+    gymapp_api.put(`/backend/musculos/${musculoId}`, body).then(resp => {
         res.send(resp.data);
     });
 });
 backendRouter.post('/backend/musculos/', (req, res) => {
-    gymapp_api.post(`/backend/musculos/`).then(resp => {
+    gymapp_api.post(`/backend/musculos/`, req.body).then(resp => {
         res.send(resp.data);
     });
 });
