@@ -5,23 +5,26 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.authRouter = void 0;
 const express_1 = __importDefault(require("express"));
+const verificarAutenticacao_1 = require("../api/middlewares/verificarAutenticacao");
 const apiAdapter_1 = require("../apiAdapter");
 const authRouter = express_1.default.Router();
 exports.authRouter = authRouter;
 const BASE_URL = 'http://localhost:8000/api/v1';
 const gymapp_api = (0, apiAdapter_1.apiAdapter)(BASE_URL);
 authRouter.post('/auth/login', (req, res) => {
-    gymapp_api.post(`/auth/login`).then(resp => {
+    gymapp_api.post(`/auth/login`, req.body).then(resp => {
         res.send(resp.data);
     });
 });
-authRouter.post('/auth/{id}/token', (req, res) => {
-    gymapp_api.post(`/auth/{id}/token`).then(resp => {
+authRouter.post('/auth/token', verificarAutenticacao_1.verificarAutenticacao, (req, res) => {
+    const userId = res.locals.uid;
+    gymapp_api.post(`/auth/${userId}/token`).then(resp => {
         res.send(resp.data);
     });
 });
-authRouter.delete('/auth/logout', (req, res) => {
-    gymapp_api.delete(`/auth/logout`).then(resp => {
+authRouter.delete('/auth/logout', verificarAutenticacao_1.verificarAutenticacao, (req, res) => {
+    const userId = res.locals.uid;
+    gymapp_api.delete(`/auth/${userId}/logout`).then(resp => {
         res.send(resp.data);
     });
 });

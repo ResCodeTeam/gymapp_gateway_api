@@ -79,7 +79,7 @@ treinadorRouter.get('/treinador/exercicios/treinador', verificarAutenticacao, ve
   })
 })
 
-treinadorRouter.post('/treinador/exercicios', verificarAutenticacao, verificarTreinador, (req, res) => {
+treinadorRouter.post('/treinador/exercicios/', verificarAutenticacao, verificarTreinador, (req, res) => {
   const userId = res.locals.uid;
   gymapp_api.post(`/treinador/${userId}/exercicios/`,
     req.body
@@ -88,7 +88,7 @@ treinadorRouter.post('/treinador/exercicios', verificarAutenticacao, verificarTr
   })
 })
 
-treinadorRouter.get('/treinador/exercicios', verificarAutenticacao, verificarTreinador, (req, res) => {
+treinadorRouter.get('/treinador/exercicios/', verificarAutenticacao, verificarTreinador, (req, res) => {
   const userId = res.locals.uid;
   gymapp_api.get(`/treinador/${userId}/exercicios/`,
   ).then(resp => {
@@ -144,16 +144,14 @@ treinadorRouter.delete('/treinador/exercicios/:exercicioId/musculos/:musculoId',
 })
 
 treinadorRouter.get('/treinador/agenda/desafios', verificarAutenticacao, verificarTreinador, (req, res) => {
-  const userId = res.locals.uid;
-  gymapp_api.get(`/treinador/${userId}/agenda/desafios/`,
+  gymapp_api.get(`/treinador/agenda/desafios/`,
   ).then(resp => {
     res.send(resp.data)
   })
 })
 
 treinadorRouter.get('/treinador/agenda/avaliacoes', verificarAutenticacao, verificarTreinador, (req, res) => {
-  const userId = res.locals.uid;
-  gymapp_api.get(`/treinador/${userId}/agenda/avaliacoes/`,
+  gymapp_api.get(`/treinador/agenda/avaliacoes/`,
   ).then(resp => {
     res.send(resp.data)
   })
@@ -186,10 +184,7 @@ treinadorRouter.get('/treinador/plano/:uid/:startDate/:endDate', verificarAutent
 treinadorRouter.put('/treinador/agenda/avaliacao', verificarAutenticacao, verificarTreinador, (req, res) => {
   const userId = res.locals.uid;
   const agendamentoId = req.body.agendamentoId;
-  let body = req.body;
-  delete body['agendamentoId'];
   gymapp_api.put(`/treinador/${userId}/agenda/avaliacao/${agendamentoId}/`,
-    body
   ).then(resp => {
     res.send(resp.data)
   })
@@ -208,10 +203,7 @@ treinadorRouter.delete('/treinador/agenda/avaliacao/:agendamentoId', verificarAu
 treinadorRouter.put('/treinador/agenda/desafios', verificarAutenticacao, verificarTreinador, (req, res) => {
   const userId = res.locals.uid;
   const agendamentoId = req.body.agendamentoId;
-  let body = req.body;
-  delete body['agendamentoId'];
   gymapp_api.put(`/treinador/${userId}/agenda/desafios/${agendamentoId}/`,
-    body
   ).then(resp => {
     res.send(resp.data)
   })
@@ -258,8 +250,7 @@ treinadorRouter.put('/treinador/plano', verificarAutenticacao, verificarTreinado
 })
 
 treinadorRouter.get('/treinador/treinos', verificarAutenticacao, verificarTreinador, (req, res) => {
-  const userId = res.locals.uid;
-  gymapp_api.get(`/treinador/${userId}/treinos/`,
+  gymapp_api.get(`/treinador/treinos/`,
   ).then(resp => {
     res.send(resp.data)
   })

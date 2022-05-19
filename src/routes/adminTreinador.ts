@@ -14,7 +14,7 @@ adminTreinadorRouter.post('/adminTreinador/ginasio/desafio/', verificarAutentica
   let body = req.body;
   delete body['ginasioId'];
 
-  gymapp_api.post(`/${userId}/adminTreinador/ginasio/${ginasioId}/desafio/`,
+  gymapp_api.post(`/adminTreinador/${userId}/ginasio/${ginasioId}/desafio/`,
     body
   ).then(resp => {
     res.send(resp.data)
@@ -24,7 +24,7 @@ adminTreinadorRouter.post('/adminTreinador/ginasio/desafio/', verificarAutentica
 adminTreinadorRouter.delete('/adminTreinador/desafio/:desafioId', verificarAutenticacao, verificarAdminTreinador, (req, res) => {
   const userId = res.locals.uid;
   const desafioId = req.params.desafioId;
-  gymapp_api.delete(`/${userId}/adminTreinador/desafio/${desafioId}`,
+  gymapp_api.delete(`/adminTreinador/${userId}/desafio/${desafioId}`,
   ).then(resp => {
     res.send(resp.data)
   })
@@ -35,7 +35,7 @@ adminTreinadorRouter.put('/adminTreinador/desafio/', verificarAutenticacao, veri
   const desafioId = req.body.desafioId;
   let body = req.body;
   delete body['desafioId'];
-  gymapp_api.put(`/${userId}/adminTreinador/desafio/${desafioId}`,
+  gymapp_api.put(`/adminTreinador/${userId}/desafio/${desafioId}`,
     body
   ).then(resp => {
     res.send(resp.data)
