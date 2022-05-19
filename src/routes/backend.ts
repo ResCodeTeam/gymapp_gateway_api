@@ -8,6 +8,7 @@ const gymapp_api = apiAdapter(BASE_URL);
 
 backendRouter.post('/backend/funcoes', (req, res) => {
   gymapp_api.post(`/backend/funcoes`,
+    req.body
   ).then(resp => {
     res.send(resp.data)
   })
@@ -15,6 +16,7 @@ backendRouter.post('/backend/funcoes', (req, res) => {
 
 backendRouter.post('/backend/cp', (req, res) => {
   gymapp_api.post(`/backend/cp`,
+    req.body
   ).then(resp => {
     res.send(resp.data)
   })
