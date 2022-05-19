@@ -30,7 +30,7 @@ adminTreinadorRouter.delete('/adminTreinador/desafio/:desafioId', verificarAuten
   })
 })
 
-adminTreinadorRouter.put('/adminTreinador/desafio/', verificarAutenticacao, verificarAdminTreinador, (req, res) => {
+adminTreinadorRouter.put('/adminTreinador/desafio', verificarAutenticacao, verificarAdminTreinador, (req, res) => {
   const userId = res.locals.uid;
   const desafioId = req.body.desafioId;
   let body = req.body;

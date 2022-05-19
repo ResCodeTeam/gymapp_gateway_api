@@ -35,7 +35,7 @@ adminRouter.put('/admin/ginasio/editar', verificarAutenticacao, verificarAdmin, 
   })
 })
 
-adminRouter.post('/admin/marca/ginasio', verificarAutenticacao, verificarAdmin, (req, res) => {
+adminRouter.post('/admin/marca/ginasio/', verificarAutenticacao, verificarAdmin, (req, res) => {
   const userId = res.locals.uid;
   const marcaId = req.body.marcaId;
   let body = req.body;
