@@ -268,7 +268,7 @@
               "examples": {
                 "Editar ginasio": {
                   "value": {
-                    "ginasioId": "059f2ecf-cdcc-408c-a139-1ceb7df0742e", 
+                    "ginasioId": "059f2ecf-cdcc-408c-a139-1ceb7df0742e",
                     "nome": "Ginásio 4",
                     "rua": "Rua das Castanhas",
                     "descricao": "null",
@@ -427,7 +427,11 @@
               },
               "examples": {
                 "Inserir Modalidade": {
-                  "value": { "ginasioId": "059f2ecf-cdcc-408c-a139-1ceb7df0742e", "nome": "Caminhada", "imagemUrl": "teste" }
+                  "value": {
+                    "ginasioId": "059f2ecf-cdcc-408c-a139-1ceb7df0742e",
+                    "nome": "Caminhada",
+                    "imagemUrl": "teste"
+                  }
                 }
               }
             }
@@ -930,6 +934,7 @@
         "summary": "Editar Avaliação",
         "description": "Este pedido serve para atualizar uma avaliação",
         "tags": ["Avaliações"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1055,6 +1060,7 @@
         "summary": "Apagar Avaliação",
         "description": "Este pedido serve para apagar uma avaliação",
         "tags": ["Avaliações"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "avaliacao_id",
@@ -1086,6 +1092,7 @@
         "summary": "Criar Desafio",
         "description": "Este pedido serve para criar um desafio",
         "tags": ["Desafios"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1161,6 +1168,7 @@
         "summary": "Obter submissões de um Desafio",
         "description": "Este pedido serve para obter as submissões de um desafio pelo seu ID",
         "tags": ["Desafios"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "desafioId",
@@ -1206,6 +1214,7 @@
         "summary": "Obter alunos de um ginásio",
         "description": "Este pedido serve para obter os alunos de uma marca",
         "tags": ["Marca"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "ginasioId",
@@ -1227,6 +1236,7 @@
         "summary": "Ver avaliações",
         "description": "Esta rota vai apresentar todas as avaliações",
         "tags": ["Avaliações"],
+        "security": [{ "basicAuth": [] }],
         "responses": {
           "500": { "description": "ERROR" },
           "200": {
@@ -1307,6 +1317,7 @@
         "summary": "Ver todos os exercicios de um treinador",
         "description": "Esta rota vai apresentar todas as os exercicios de um treinador",
         "tags": ["Exercicios"],
+        "security": [{ "basicAuth": [] }],
         "responses": {
           "500": { "description": "ERROR" },
           "200": {
@@ -1369,6 +1380,7 @@
         "summary": "Criar comentário",
         "description": "Esta rota permite criar um comentário para uma publicação",
         "tags": ["Posts"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1429,6 +1441,7 @@
         "summary": "Criar gosto comentário",
         "description": "Esta rota permite criar gosto num comentário",
         "tags": ["Posts"],
+        "security": [{ "basicAuth": [] }],
         "responses": {
           "500": { "description": "ERROR" },
           "200": {
@@ -1463,6 +1476,7 @@
         "summary": "Remover gosto comentário",
         "description": "Esta rota permite remover gosto num comentário",
         "tags": ["Posts"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "id",
@@ -1505,6 +1519,7 @@
         "summary": "Remover comentário",
         "description": "Esta rota permite remover num comentário",
         "tags": ["Posts"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "id",
@@ -1549,6 +1564,7 @@
         "summary": "Ver toda a informação de um post",
         "description": "Esta rota vai apresentar todas as informações de um post",
         "tags": ["Posts"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "id",
@@ -1609,6 +1625,7 @@
         "summary": "Remover publicação",
         "description": "Esta rota vai permitir remover uma publicação",
         "tags": ["Posts"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "id",
@@ -1641,6 +1658,7 @@
         "summary": "Editar informação de uma publicação",
         "description": "Esta rota vai permitir editar as informações de um post",
         "tags": ["Posts"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1712,6 +1730,7 @@
         "summary": "Ver posts",
         "description": "Esta rota vai apresentar todos os posts",
         "tags": ["Posts"],
+        "security": [{ "basicAuth": [] }],
         "responses": {
           "500": { "description": "ERROR" },
           "200": {
@@ -1769,6 +1788,7 @@
         "summary": "Criar publicação",
         "description": "Esta rota vai permitir criar uma publicação",
         "tags": ["Posts"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1851,6 +1871,7 @@
         "summary": "Remover treinador",
         "description": "Esta rota vai remover um treinador",
         "tags": ["Marca"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "treinador_id",
@@ -1883,6 +1904,7 @@
         "summary": "Remover marca",
         "description": "Esta rota vai remover uma marca de um ginásio",
         "tags": ["Marca"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "marcaId",
@@ -1913,6 +1935,7 @@
         "summary": "Ver a informação de uma marca",
         "description": "Esta rota vai apresentar a informação de uma marca",
         "tags": ["Marca"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "marcaId",
@@ -1945,6 +1968,7 @@
         "summary": "Editar Marca",
         "description": "Esta rota vai editar uma Marca criada",
         "tags": ["Marca"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1995,6 +2019,7 @@
         "summary": "Registar Treinadores",
         "description": "Esta rota permite registar treinadores numa marca",
         "tags": ["Marca"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2068,6 +2093,7 @@
         "summary": "Adicionar gosto a uma publicação",
         "description": "Esta rota permite adicionar uma publicação ao gostos",
         "tags": ["Posts"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2115,6 +2141,7 @@
         "summary": "Remover gosto a uma publicação",
         "description": "Esta rota permite remover uma publicação ao gostos",
         "tags": ["Posts"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "id",
@@ -2152,6 +2179,7 @@
         "summary": "Criar um exercicio",
         "description": "Esta rota permite adicionar um exercicio à base de dados",
         "tags": ["Exercicios"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2237,6 +2265,7 @@
         "summary": "Ver todos os exercicios criados por treinadores",
         "description": "Esta rota permite ver todos os exercicios criados por treinadores",
         "tags": ["Exercicios"],
+        "security": [{ "basicAuth": [] }],
         "responses": {
           "500": { "description": "ERROR" },
           "200": {
@@ -2475,6 +2504,7 @@
         "summary": "Notificação para user",
         "description": "Esta rota permite enviar uma notificação para um user",
         "tags": ["Notificações"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2487,7 +2517,11 @@
               },
               "examples": {
                 "Criar Notificação": {
-                  "value": {"destinoId": "000d1e14-617e-423e-8a1a-f63d4fa5af6a", "conteudo": "Teste", "tipo": 0 }
+                  "value": {
+                    "destinoId": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                    "conteudo": "Teste",
+                    "tipo": 0
+                  }
                 }
               }
             }
@@ -2525,6 +2559,7 @@
         "summary": "Ver desafio",
         "description": "Esta rota vai apresentar os dados de um desafio",
         "tags": ["Desafios"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "desafioId",
@@ -2612,6 +2647,7 @@
         "summary": "remover desafio ",
         "description": "Esta rota vai remover base de dados os desafios criad",
         "tags": ["Desafios"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "desafioId",
@@ -2644,6 +2680,7 @@
         "summary": "Encerrar Desafio",
         "description": "Este pedido server para encerrar um desafio pelo seu ID",
         "tags": ["Desafios"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2699,6 +2736,7 @@
         "summary": "Registar um aluno",
         "description": "Esta rota permite efetuar o registo de um aluno numa marca ou ginasio",
         "tags": ["Marca"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2770,13 +2808,22 @@
         "summary": "Adicionar imagem a um exercicio",
         "description": "Esta rota permite adicionar uma imagem a um exercicio",
         "tags": ["Exercicios"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": { "properties": { "exercicioId": { "type": "string" }, "url": { "type": "string" } } },
+              "schema": {
+                "properties": {
+                  "exercicioId": { "type": "string" },
+                  "url": { "type": "string" }
+                }
+              },
               "examples": {
                 "Adicionar Imagem": {
-                  "value": { "exercicioId": "05bb0690-db08-4b46-97dc-3853eba58d51", "url": "https://urlimagem.com" }
+                  "value": {
+                    "exercicioId": "05bb0690-db08-4b46-97dc-3853eba58d51",
+                    "url": "https://urlimagem.com"
+                  }
                 }
               }
             }
@@ -2816,6 +2863,7 @@
         "summary": "Criar treino",
         "description": "Esta rota vai criar na base de dados os treinos",
         "tags": ["Treinos"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2866,6 +2914,7 @@
         "summary": "Editar treinos",
         "description": "Esta rota vai editar na base de dados um treino de um utilizador",
         "tags": ["Treinos"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2972,6 +3021,7 @@
         "summary": "Editar atividades",
         "description": "Esta rota vai editar na base de dados uma atividade",
         "tags": ["Atividades"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2984,7 +3034,11 @@
               },
               "examples": {
                 "Editar Atividade": {
-                  "value": { "atividadeId": "4b584fcf-f8ab-43aa-abba-0c32f48f0e1b", "descricao": "Teste123", "icon": "Teste456" }
+                  "value": {
+                    "atividadeId": "4b584fcf-f8ab-43aa-abba-0c32f48f0e1b",
+                    "descricao": "Teste123",
+                    "icon": "Teste456"
+                  }
                 }
               }
             }
@@ -3018,6 +3072,7 @@
         "summary": "Remover imagens de exercicio",
         "description": "Esta rota permite remover uma imagem a um exercicio",
         "tags": ["Exercicios"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "exercicioId",
@@ -3093,6 +3148,7 @@
         "summary": "Ver toda a informação das atividades",
         "description": "Esta rota vai apresentar todas as atividades existentes",
         "tags": ["Atividades"],
+        "security": [{ "basicAuth": [] }],
         "responses": {
           "500": { "description": "ERROR" },
           "200": {
@@ -3134,6 +3190,7 @@
         "summary": "Remover treino",
         "description": "Esta rota vai remover da base de dados os treinos criados",
         "tags": ["Treinos"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "treinoId",
@@ -3166,13 +3223,22 @@
         "summary": "Adicionar musculo a um exercicio",
         "description": "Esta rota permite adicionar um musculo a um exercicio",
         "tags": ["Exercicios"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": { "properties": { "exercicioId": { "type": "string" }, "musculoId": { "type": "string" } } },
+              "schema": {
+                "properties": {
+                  "exercicioId": { "type": "string" },
+                  "musculoId": { "type": "string" }
+                }
+              },
               "examples": {
                 "Adicionar Imagem": {
-                  "value": { "exercicioId": "05bb0690-db08-4b46-97dc-3853eba58d51", "musculoId": "13d6659f-b559-4545-b74d-8a7ba4896a3e" }
+                  "value": {
+                    "exercicioId": "05bb0690-db08-4b46-97dc-3853eba58d51",
+                    "musculoId": "13d6659f-b559-4545-b74d-8a7ba4896a3e"
+                  }
                 }
               }
             }
@@ -3207,6 +3273,7 @@
         "summary": "Remover musculo de um exercicio",
         "description": "Esta rota permite remover um musculo de um exercicio",
         "tags": ["Exercicios"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "exercicioId",
@@ -3262,7 +3329,12 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": { "properties": { "musculoId": { "type": "string" }, "nome": { "type": "string" } } },
+              "schema": {
+                "properties": {
+                  "musculoId": { "type": "string" },
+                  "nome": { "type": "string" }
+                }
+              },
               "examples": {
                 "Costas": {
                   "value": {
@@ -3347,6 +3419,7 @@
         "summary": "Remover agendamento de um desafio",
         "description": "Esta rota vai apagar na base de dados um agendamento de um desafio",
         "tags": ["Agenda"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "agendamentoId",
@@ -3383,6 +3456,7 @@
         "summary": "Remover agendamento de uma avaliação",
         "description": "Esta rota vai apagar na base de dados um agendamento de uma avaliação",
         "tags": ["Agenda"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "agendamentoId",
@@ -3419,6 +3493,7 @@
         "summary": "Ver todos os agendamentos de desafios",
         "description": "Esta rota vai obter todos os agendamentos de todos os desafios",
         "tags": ["Agenda"],
+        "security": [{ "basicAuth": [] }],
         "responses": {
           "500": { "description": "ERROR" },
           "200": {
@@ -3442,6 +3517,7 @@
         "summary": "Aceitar agendamento de um desafio",
         "description": "Esta rota vai editar na base de dados um agendamento de um desafio",
         "tags": ["Agenda"],
+        "security": [{ "basicAuth": [] }],
         "responses": {
           "500": { "description": "ERROR" },
           "200": {
@@ -3467,6 +3543,7 @@
         "summary": "Ver todos os agendamentos de avaliacoes",
         "description": "Esta rota vai obter todos os agendamentos de avaliações",
         "tags": ["Agenda"],
+        "security": [{ "basicAuth": [] }],
         "responses": {
           "500": { "description": "ERROR" },
           "200": {
@@ -3492,6 +3569,7 @@
         "summary": "Obter definições do user",
         "description": "Esta rota permite obter todas as definições do utilizador",
         "tags": ["Definições"],
+        "security": [{ "basicAuth": [] }],
         "responses": {
           "500": { "description": "ERROR" },
           "200": {
@@ -3524,6 +3602,7 @@
         "summary": "Submeter o resultado de um aluno",
         "description": "Esta rota permite submeter o resultado do desafio de um aluno",
         "tags": ["Desafios"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -3584,6 +3663,7 @@
         "summary": "Alterar visto",
         "description": "Esta rota vai alterar o visto",
         "tags": ["Notificações"],
+        "security": [{ "basicAuth": [] }],
         "responses": {
           "500": { "description": "ERROR" },
           "200": { "description": "OK" }
@@ -3595,6 +3675,7 @@
         "summary": "Editar perfil",
         "description": "Esta rota vai editar perfil",
         "tags": ["Perfil"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -3664,6 +3745,7 @@
         "summary": "Obter o perfil do user autenticado",
         "description": "Esta rota permite obter o perfil do user autenticado",
         "tags": ["Perfil"],
+        "security": [{ "basicAuth": [] }],
         "responses": {
           "500": { "description": "ERROR" },
           "200": {
@@ -3739,6 +3821,7 @@
         "summary": "Obter o perfil do utilizador",
         "description": "Esta rota permite obter o perfil de um utilizador",
         "tags": ["Perfil"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "uId",
@@ -3823,6 +3906,7 @@
         "summary": "Login do user",
         "description": "Esta rota permite realizar o login e autenticação do user",
         "tags": ["Autenticação"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -3886,6 +3970,7 @@
         "summary": "Ver todos os treinos de um aluno",
         "description": "Esta rota vai obter todos os treinos de um aluno",
         "tags": ["Treinos"],
+        "security": [{ "basicAuth": [] }],
         "responses": {
           "500": { "description": "ERROR" },
           "200": {
@@ -3932,6 +4017,7 @@
         "summary": "Gerar novo token de sessão",
         "description": "Esta rota permite gerar um nove token de sessão para um utilizador",
         "tags": ["Autenticação"],
+        "security": [{ "basicAuth": [] }],
         "responses": {
           "500": { "description": "ERROR" },
           "200": {
@@ -3960,6 +4046,7 @@
         "summary": "Realizar o logout",
         "description": "Esta rota permite gerar um novo token de sessão para um utilizador",
         "tags": ["Autenticação"],
+        "security": [{ "basicAuth": [] }],
         "responses": {
           "500": { "description": "ERROR" },
           "200": {
@@ -3986,6 +4073,7 @@
         "summary": "Alterar as identificacoes",
         "description": "Esta rota permite alterar a permissão de identificacoes do utilizador",
         "tags": ["Definições"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -4030,6 +4118,7 @@
         "summary": "Alterar as menções",
         "description": "Esta rota permite alterar a permissão de menções do utilizador",
         "tags": ["Definições"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -4070,6 +4159,7 @@
         "summary": "Obter plano de treino semanal",
         "description": "Esta rota vai permitir obter plano de treino de uma semana dano o intervalo de tempo",
         "tags": ["Plano Treino"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "startDate",
@@ -4169,6 +4259,7 @@
         "summary": "Obter plano de treino semanal de um aluno",
         "description": "Esta rota vai permitir obter plano de treino de uma semana de um aluno dando o intervalo de tempo",
         "tags": ["Plano Treino"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "uid",
@@ -4278,6 +4369,7 @@
         "summary": "Aceitar agendamento de uma avaliação",
         "description": "Esta rota vai editar na base de dados um agendamento de uma avaliação",
         "tags": ["Agenda"],
+        "security": [{ "basicAuth": [] }],
         "responses": {
           "500": { "description": "ERROR" },
           "200": {
@@ -4303,6 +4395,7 @@
         "summary": "Remover a aceitação de um agendamento de uma avaliação",
         "description": "Esta rota vai remover da base de dados as aceitações dos agendamentos de avaliações",
         "tags": ["Agenda"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "agendamentoId",
@@ -4337,6 +4430,7 @@
         "summary": "Remover a aceitação de um agendamento de um desafio",
         "description": "Esta rota vai remover da base de dados as aceitações dos agendamentos de desafios",
         "tags": ["Agenda"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "agendamentoId",
@@ -4371,6 +4465,7 @@
         "summary": "Ver todos os pedidos de agendamento de avaliação de um aluno",
         "description": "Esta rota vai obter todos os pedidos de agendamento de avaliação de um aluno",
         "tags": ["Agenda"],
+        "security": [{ "basicAuth": [] }],
         "responses": {
           "500": { "description": "ERROR" },
           "200": {
@@ -4396,6 +4491,7 @@
         "summary": "Ver todos os pedidos de agendamento de desafios de um aluno",
         "description": "Esta rota vai obter todos os pedidos de agendamento de desafios de um aluno",
         "tags": ["Agenda"],
+        "security": [{ "basicAuth": [] }],
         "responses": {
           "500": { "description": "ERROR" },
           "200": {
@@ -4421,6 +4517,7 @@
         "summary": "Meter o perfil privado",
         "description": "Esta rota vai editar na base de dados o estado do perfil",
         "tags": ["Definições"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -4462,6 +4559,7 @@
         "summary": "Criar Plano de Treino",
         "description": "Esta rota vai criar um plano de treino",
         "tags": ["Plano Treino"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -4584,6 +4682,7 @@
         "summary": "Colocar um plano de treino como realizado",
         "description": "Esta rota vai editar na base de dados o estado da realização de um plano de treino",
         "tags": ["Plano Treino"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -4593,10 +4692,10 @@
                   "value": {
                     "planoId": "06622c79-e84e-4c64-8e69-dfaf8570c392"
                   }
-                  }
                 }
               }
             }
+          }
         },
         "responses": {
           "500": { "description": "ERROR" },
@@ -4629,6 +4728,7 @@
         "summary": "Remover o estado realizado de um plano de treino",
         "description": "Esta rota vai remover na base de dados o estado da realização de um plano de treino",
         "tags": ["Plano Treino"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "planoId",
@@ -4663,6 +4763,7 @@
         "summary": "Remover um plano de treino",
         "description": "Esta rota vai remover na base de dados um plano de treino",
         "tags": ["Plano Treino"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "planoId",
@@ -4697,6 +4798,7 @@
         "summary": "Editar Plano de Treino",
         "description": "Esta rota vai editar um plano de treino",
         "tags": ["Plano Treino"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -4821,6 +4923,7 @@
         "summary": "Remover ginásio",
         "description": "Esta rota vai remover da base de dados os ginasios",
         "tags": ["Marca"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "ginasioId",
@@ -4851,6 +4954,7 @@
         "summary": "Ver a informação de um ginásio",
         "description": "Esta rota vai apresentar a informação de um ginásio",
         "tags": ["Marca"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "ginasioId",
@@ -4883,6 +4987,7 @@
         "summary": "Ver todas os desafios de um ginásio",
         "description": "Esta rota vai apresentar todas os desafios de um ginásio",
         "tags": ["Desafios"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "ginasioId",
@@ -4958,6 +5063,7 @@
         "summary": "Ver todos os desafios disponiveis de um ginásio",
         "description": "Esta rota vai apresentar todas os desafios disponiveis de um ginásio",
         "tags": ["Desafios"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "ginasioId",
@@ -5033,6 +5139,7 @@
         "summary": "Editar desafio",
         "description": "Esta rota vai editar o desafio",
         "tags": ["Desafios"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -5146,6 +5253,7 @@
         "summary": "Ver treinos",
         "description": "Esta rota vai apresentar todos os treinos",
         "tags": ["Treinos"],
+        "security": [{ "basicAuth": [] }],
         "responses": {
           "500": { "description": "ERROR" },
           "200": {
@@ -5254,6 +5362,7 @@
         "summary": "Ver todas os músculos",
         "description": "Esta rota vai apresentar todos músculos existentes",
         "tags": ["Musculos"],
+        "security": [{ "basicAuth": [] }],
         "responses": {
           "500": { "description": "ERROR" },
           "200": {
@@ -5277,6 +5386,7 @@
         "summary": "Ver todas as notificacões do utilizador",
         "description": "Esta rota vai apresentar todas as notificações do utilizador",
         "tags": ["Notificações"],
+        "security": [{ "basicAuth": [] }],
         "responses": {
           "500": { "description": "ERROR" },
           "200": {
@@ -5327,6 +5437,7 @@
         "summary": "Ver os locais de medida de uma marca",
         "description": "Esta rota vai apresentar todas os locais de medida de uma marca",
         "tags": ["Locais de Medida"],
+        "security": [{ "basicAuth": [] }],
         "responses": {
           "500": { "description": "ERROR" },
           "200": {
@@ -5361,6 +5472,7 @@
         "summary": "Criar local de medida",
         "description": "Esta rota vai criar um local de medida",
         "tags": ["Locais de Medida"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -5373,7 +5485,11 @@
               },
               "examples": {
                 "Desafio": {
-                  "value": { "marcaId":"2c4fc500-7373-44ed-a665-270f19da455c", "descricao": "Peito", "unilado": false }
+                  "value": {
+                    "marcaId": "2c4fc500-7373-44ed-a665-270f19da455c",
+                    "descricao": "Peito",
+                    "unilado": false
+                  }
                 }
               }
             }
@@ -5402,6 +5518,7 @@
         "summary": "Remover locais de medida",
         "description": "Esta rota vai remover da base de dados um local de medida de uma marca",
         "tags": ["Locais de Medida"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "marcaId",
@@ -5447,6 +5564,7 @@
         "summary": "Criar notificação para todos os users da marca",
         "description": "Esta rota vai criar uma notificação para todos os users de uma marca",
         "tags": ["Notificações"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -5459,7 +5577,11 @@
               },
               "examples": {
                 "Notificação": {
-                  "value": { "marcaId": "f34fdd41-8670-4b50-9311-ebdb0ad993c4", "conteudo": "Teste de notificação", "tipo": 0 }
+                  "value": {
+                    "marcaId": "f34fdd41-8670-4b50-9311-ebdb0ad993c4",
+                    "conteudo": "Teste de notificação",
+                    "tipo": 0
+                  }
                 }
               }
             }
@@ -5528,6 +5650,7 @@
         "summary": "Criar notificação para todos os users de um ginasio",
         "description": "Esta rota vai criar uma notificação para todos os users de um ginasio",
         "tags": ["Notificações"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -5540,7 +5663,11 @@
               },
               "examples": {
                 "Notificação": {
-                  "value": { "ginasioId": "dc8acc46-89eb-4d0f-a14a-2388b21c90a0", "conteudo": "Teste de notificação", "tipo": 0 }
+                  "value": {
+                    "ginasioId": "dc8acc46-89eb-4d0f-a14a-2388b21c90a0",
+                    "conteudo": "Teste de notificação",
+                    "tipo": 0
+                  }
                 }
               }
             }
@@ -5588,6 +5715,7 @@
         "summary": "Remover submissão de um desafio",
         "description": "Esta rota vai remover da base de dados uma submissão de um desafio",
         "tags": ["Desafios"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "submissaoId",
@@ -5627,6 +5755,7 @@
         "summary": "Ver todos os treinadores de um ginásio",
         "description": "Esta rota vai obter todos os treinadores de um ginásio",
         "tags": ["Marca"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "marcaId",
