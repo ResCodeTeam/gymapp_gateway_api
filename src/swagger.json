@@ -95,6 +95,7 @@
         "summary": "Registo de pedidos de agendamentos de avaliação",
         "description": "Esta rota vai registar na base de dados um agendamento de avaliações",
         "tags": ["Agenda"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -138,12 +139,12 @@
         "summary": "Registo de pedidos de agendamentos de desafios",
         "description": "Esta rota vai registar na base de dados um agendamento de desafios",
         "tags": ["Agenda"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
                 "properties": {
-                  "desafioId": { "type": "string" },
                   "ginasioId": { "type": "string" },
                   "dataAgendamento": { "type": "string" }
                 }
@@ -151,7 +152,6 @@
               "examples": {
                 "Inserir Agendamento de Desafios": {
                   "value": {
-                    "desafioId": "05e05f72-face-4180-8289-b0707684e667",
                     "ginasioId": "531316a4-b454-42ec-bc01-7358a8c3bc48",
                     "dataAgendamento": "2022-05-03T13:24:10.574Z"
                   }
@@ -183,6 +183,7 @@
         "summary": "Registo de marcas",
         "description": "Esta rota vai registar na base de dados uma marca associada a um admin",
         "tags": ["Marca"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -228,6 +229,7 @@
         "summary": "Ver todas as marcas de um admin",
         "description": "Esta rota vai apresentar todas as marcas de um admin",
         "tags": ["Marca"],
+        "security": [{ "basicAuth": [] }],
         "responses": {
           "500": { "description": "ERROR" },
           "200": {
@@ -251,12 +253,12 @@
         "summary": "Editar ginasio",
         "description": "Esta rota vai editar um ginasio criado",
         "tags": ["Marca"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
                 "properties": {
-                  "ginasioId": { "type": "string" },
                   "nome": { "type": "string" },
                   "rua": { "type": "string" },
                   "descricao": { "type": "string" },
@@ -268,7 +270,6 @@
               "examples": {
                 "Editar ginasio": {
                   "value": {
-                    "ginasioId": "059f2ecf-cdcc-408c-a139-1ceb7df0742e",
                     "nome": "Ginásio 4",
                     "rua": "Rua das Castanhas",
                     "descricao": "null",
@@ -316,12 +317,12 @@
         "summary": "Registo de ginasios",
         "description": "Esta rota vai registar na base de dados um ginasio que esta associado a uma marca",
         "tags": ["Marca"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
                 "properties": {
-                  "marcaId": { "type": "string" },
                   "nome": { "type": "string" },
                   "rua": { "type": "string" },
                   "cp": { "type": "number" },
@@ -334,7 +335,6 @@
               "examples": {
                 "Inserir Registo de Ginásios": {
                   "value": {
-                    "marcaId": "2c4fc500-7373-44ed-a665-270f19da455c",
                     "nome": "Ginásio 4",
                     "rua": "Rua das Castanhas",
                     "cp": 3850,
@@ -383,6 +383,7 @@
         "summary": "Ver todos os ginásios de uma marca",
         "description": "Esta rota vai apresentar todos os ginásios de uma marca",
         "tags": ["Marca"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "marcaId",
@@ -415,23 +416,19 @@
         "summary": "Registo das modalidades do ginásio",
         "description": "Esta rota vai registar na base de dados uma modalidade de um ginásio em específico",
         "tags": ["Modalidades"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
                 "properties": {
-                  "ginasioId": { "type": "string" },
                   "nome": { "type": "string" },
                   "imagemUrl": { "type": "string" }
                 }
               },
               "examples": {
                 "Inserir Modalidade": {
-                  "value": {
-                    "ginasioId": "059f2ecf-cdcc-408c-a139-1ceb7df0742e",
-                    "nome": "Caminhada",
-                    "imagemUrl": "teste"
-                  }
+                  "value": { "nome": "Caminhada", "imagemUrl": "teste" }
                 }
               }
             }
@@ -464,6 +461,7 @@
         "summary": "Editar modalidades",
         "description": "Esta rota vai editar uma modalidade de um ginásio em específico",
         "tags": ["Modalidades"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -508,6 +506,7 @@
         "summary": "Ver todas as modalidades de um ginásio",
         "description": "Esta rota vai apresentar todas as modalidades de um ginásio",
         "tags": ["Modalidades"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "ginasioId",
@@ -545,6 +544,7 @@
         "summary": "Remover aluno",
         "description": "Esta rota vai remover um aluno",
         "tags": ["Marca"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "uId",
@@ -572,6 +572,7 @@
         "summary": "Remover modalidades",
         "description": "Esta rota vai apagar na base de dados uma modalidade de um ginásio em específico",
         "tags": ["Modalidades"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "modalidadeId",
@@ -617,6 +618,7 @@
         "summary": "Remover exercicios",
         "description": "Esta rota vai apagar na base de dados um exercicio",
         "tags": ["Exercicios"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "exercicioId",
@@ -649,12 +651,12 @@
         "summary": "Editar exercicios",
         "description": "Esta rota vai editar na base de dados um exercicio",
         "tags": ["Exercicios"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
                 "properties": {
-                  "exercicioId": { "type": "string" },
                   "nome": { "type": "string" },
                   "descricao": { "type": "string" },
                   "isTempo": { "type": "boolean" }
@@ -663,7 +665,6 @@
               "examples": {
                 "Editar Exercicio": {
                   "value": {
-                    "exercicioId": "05bb0690-db08-4b46-97dc-3853eba58d51",
                     "nome": "Teste1",
                     "descricao": "Teste2",
                     "isTempo": true
@@ -703,6 +704,7 @@
         "summary": "Obter Avaliações do aluno",
         "description": "Este pedido serve para obter as avaliações do aluno",
         "tags": ["Avaliações"],
+        "security": [{ "basicAuth": [] }],
         "parameters": [
           {
             "name": "aluno_id",
@@ -811,6 +813,7 @@
         "summary": "Registo de avaliacao",
         "description": "Esta rota vai registar na base de dados avaliacao",
         "tags": ["Avaliações"],
+        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -844,7 +847,6 @@
               "examples": {
                 "Avaliacao": {
                   "value": {
-                    "aluno_id": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
                     "peso": 55,
                     "unidadePeso": "Kg",
                     "musculo": 80,
@@ -888,7 +890,6 @@
                 "examples": {
                   "Criar avaliacao": {
                     "value": {
-                      "aluno_id": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
                       "avaliacao_id": "89bb2521-b35e-42ac-beb7-bf0485a415d7",
                       "data": "2022-04-18T15:14:52.695Z",
                       "peso": 55,
@@ -940,8 +941,7 @@
             "application/json": {
               "schema": {
                 "properties": {
-                  "avaliacaoId": { "type": "string" },
-                  "aluno_id": { "type": "string" },
+                  "alunoId": { "type": "string" },
                   "peso": { "type": "number" },
                   "unidadePeso": { "type": "string" },
                   "treinadorId": { "type": "string" },
@@ -969,7 +969,6 @@
               "examples": {
                 "Avaliacao": {
                   "value": {
-                    "avaliacaoId": "36590607-51c2-4edc-843e-564051f59887",
                     "peso": 55,
                     "unidade_peso": "kg",
                     "musculo": 80,
@@ -1012,7 +1011,6 @@
                 "examples": {
                   "Editar Avaliação": {
                     "value": {
-                      "aluno_id": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
                       "avaliacao_id": "89bb2521-b35e-42ac-beb7-bf0485a415d7",
                       "data": "2022-04-18T15:14:52.695Z",
                       "peso": 55,
@@ -1098,7 +1096,6 @@
             "application/json": {
               "schema": {
                 "properties": {
-                  "ginasioId": { "type": "string" },
                   "nome": { "type": "string" },
                   "modalidadeId": { "type": "string" },
                   "dataInicio": { "type": "string" },
@@ -1119,7 +1116,6 @@
               "examples": {
                 "Desafio": {
                   "value": {
-                    "ginasioId": "059f2ecf-cdcc-408c-a139-1ceb7df0742e",
                     "nome": "Crossfit2",
                     "modalidadeId": "047ea26d-bc43-4463-a3d1-8ea726a27b9f",
                     "dataInicio": "2022-03-23T15:51:45.663Z",
@@ -1386,7 +1382,6 @@
             "application/json": {
               "schema": {
                 "properties": {
-                  "postId": { "type": "string" },
                   "comentario": { "type": "string" },
                   "identificacao": {
                     "type": "array",
@@ -1397,7 +1392,6 @@
               "examples": {
                 "Criar Comentário": {
                   "value": {
-                    "postId": "07199b7e-578a-46fe-8fbf-b5ca2b5bf5c8",
                     "comentario": "Estou a comentar uma publicação",
                     "identificacao": [
                       "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
@@ -1664,14 +1658,13 @@
             "application/json": {
               "schema": {
                 "properties": {
-                  "postId": { "type": "string" },
+                  "publicacaoId": { "type": "string" },
                   "descricao": { "type": "string" }
                 }
               },
               "examples": {
                 "Editar Treino": {
                   "value": {
-                    "postId": "333f741a-a13d-4cd0-9528-5ae4c085d516",
                     "descricao": "Proteína da PROZIS #PROZIS #VACACIONES #VIDA"
                   }
                 }
@@ -1963,7 +1956,7 @@
         }
       }
     },
-    "/admin/marca/espf": {
+    "/admin/marca": {
       "put": {
         "summary": "Editar Marca",
         "description": "Esta rota vai editar uma Marca criada",
@@ -1974,7 +1967,6 @@
             "application/json": {
               "schema": {
                 "properties": {
-                  "marcaId": { "type": "string" },
                   "nome": { "type": "string" },
                   "cor": { "type": "string" },
                   "logotipo": { "type": "string" },
@@ -1985,7 +1977,6 @@
               "examples": {
                 "Editar Marca": {
                   "value": {
-                    "marcaId": "2c4fc500-7373-44ed-a665-270f19da455c",
                     "nome": "Galo",
                     "cor": "vermelho",
                     "logotipo": "teste1",
@@ -2025,7 +2016,6 @@
             "application/json": {
               "schema": {
                 "properties": {
-                  "marcaId": { "type": "string" },
                   "email": { "type": "string" },
                   "nome": { "type": "string" },
                   "password": { "type": "string" },
@@ -2037,7 +2027,6 @@
               "examples": {
                 "Registar Treinador": {
                   "value": {
-                    "marcaId": "2c4fc500-7373-44ed-a665-270f19da455c",
                     "email": "treinador@treinador.pt",
                     "nome": "treinador",
                     "password": "treinador",
@@ -2094,24 +2083,6 @@
         "description": "Esta rota permite adicionar uma publicação ao gostos",
         "tags": ["Posts"],
         "security": [{ "basicAuth": [] }],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "properties": {
-                  "postId": { "type": "string" }
-                }
-              },
-              "examples": {
-                "Registar Treinador": {
-                  "value": {
-                    "postId": "919dc8c8-9853-4b13-b0e7-9b88fe587137"
-                  }
-                }
-              }
-            }
-          }
-        },
         "responses": {
           "500": { "description": "ERROR" },
           "200": {
@@ -2510,18 +2481,13 @@
             "application/json": {
               "schema": {
                 "properties": {
-                  "destinoId": { "type": "string" },
                   "conteudo": { "type": "string" },
                   "tipo": { "type": "number" }
                 }
               },
               "examples": {
                 "Criar Notificação": {
-                  "value": {
-                    "destinoId": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
-                    "conteudo": "Teste",
-                    "tipo": 0
-                  }
+                  "value": { "conteudo": "Teste", "tipo": 0 }
                 }
               }
             }
@@ -2812,18 +2778,10 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "properties": {
-                  "exercicioId": { "type": "string" },
-                  "url": { "type": "string" }
-                }
-              },
+              "schema": { "properties": { "url": { "type": "string" } } },
               "examples": {
                 "Adicionar Imagem": {
-                  "value": {
-                    "exercicioId": "05bb0690-db08-4b46-97dc-3853eba58d51",
-                    "url": "https://urlimagem.com"
-                  }
+                  "value": { "url": "https://urlimagem.com" }
                 }
               }
             }
@@ -2920,7 +2878,6 @@
             "application/json": {
               "schema": {
                 "properties": {
-                  "treinoId": { "type": "string" },
                   "atividadeId": { "type": "string", "nullable": true },
                   "modalidadeId": { "type": "string", "nullable": true },
                   "duracao": { "type": "string" },
@@ -2932,7 +2889,6 @@
               "examples": {
                 "Editar Treino": {
                   "value": {
-                    "treinoId": "bdf6a96c-89ae-4857-9db2-849bf66f6ed7",
                     "atividadeId": "7c98d84f-10d4-44f6-aafa-ddfaa0bee695",
                     "modalidadeId": null,
                     "duracao": "50",
@@ -3021,24 +2977,18 @@
         "summary": "Editar atividades",
         "description": "Esta rota vai editar na base de dados uma atividade",
         "tags": ["Atividades"],
-        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
                 "properties": {
-                  "atividadeId": { "type": "string" },
                   "descricao": { "type": "string" },
                   "icon": { "type": "string" }
                 }
               },
               "examples": {
                 "Editar Atividade": {
-                  "value": {
-                    "atividadeId": "4b584fcf-f8ab-43aa-abba-0c32f48f0e1b",
-                    "descricao": "Teste123",
-                    "icon": "Teste456"
-                  }
+                  "value": { "descricao": "Teste123", "icon": "Teste456" }
                 }
               }
             }
@@ -3224,26 +3174,6 @@
         "description": "Esta rota permite adicionar um musculo a um exercicio",
         "tags": ["Exercicios"],
         "security": [{ "basicAuth": [] }],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "properties": {
-                  "exercicioId": { "type": "string" },
-                  "musculoId": { "type": "string" }
-                }
-              },
-              "examples": {
-                "Adicionar Imagem": {
-                  "value": {
-                    "exercicioId": "05bb0690-db08-4b46-97dc-3853eba58d51",
-                    "musculoId": "13d6659f-b559-4545-b74d-8a7ba4896a3e"
-                  }
-                }
-              }
-            }
-          }
-        },
         "responses": {
           "500": { "description": "ERROR" },
           "200": {
@@ -3329,16 +3259,10 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "properties": {
-                  "musculoId": { "type": "string" },
-                  "nome": { "type": "string" }
-                }
-              },
+              "schema": { "properties": { "nome": { "type": "string" } } },
               "examples": {
                 "Costas": {
                   "value": {
-                    "musculoId": "29e65948-6e09-441c-a6f3-422ec625acad",
                     "nome": "abdominal",
                     "imagem": "http://imagem/abdominal"
                   }
@@ -3608,7 +3532,6 @@
             "application/json": {
               "schema": {
                 "properties": {
-                  "desafioId": { "type": "string" },
                   "uid": { "type": "string" },
                   "valor": { "type": "string" },
                   "treinador_id": { "type": "string" },
@@ -3618,7 +3541,6 @@
               "examples": {
                 "Submissao desafio": {
                   "value": {
-                    "desafioId": "05e05f72-face-4180-8289-b0707684e667",
                     "uid": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
                     "valor": "teste submissao",
                     "ginasioId": "dc8acc46-89eb-4d0f-a14a-2388b21c90a0"
@@ -4683,20 +4605,6 @@
         "description": "Esta rota vai editar na base de dados o estado da realização de um plano de treino",
         "tags": ["Plano Treino"],
         "security": [{ "basicAuth": [] }],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": { "properties": { "planoId": { "type": "string" } } },
-              "examples": {
-                "Editar Treino": {
-                  "value": {
-                    "planoId": "06622c79-e84e-4c64-8e69-dfaf8570c392"
-                  }
-                }
-              }
-            }
-          }
-        },
         "responses": {
           "500": { "description": "ERROR" },
           "200": {
@@ -4804,7 +4712,6 @@
             "application/json": {
               "schema": {
                 "properties": {
-                  "planoId": { "type": "string" },
                   "atividadeId": { "type": "string", "nullable": true },
                   "modalidadeId": { "type": "string", "nullable": true },
                   "duracao": { "type": "string" },
@@ -4816,7 +4723,6 @@
               "examples": {
                 "Editar Treino": {
                   "value": {
-                    "planoId": "06622c79-e84e-4c64-8e69-dfaf8570c392",
                     "alunoId": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
                     "modalidadeId": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
                     "blocos": [
@@ -5145,7 +5051,6 @@
             "application/json": {
               "schema": {
                 "properties": {
-                  "desafioId": { "type": "string" },
                   "nome": { "type": "string" },
                   "modalidade": { "type": "string" },
                   "data_inicio": { "type": "string" },
@@ -5158,7 +5063,6 @@
               "examples": {
                 "Desafio": {
                   "value": {
-                    "desafioId": "05e05f72-face-4180-8289-b0707684e667",
                     "nome": "Caminhar",
                     "modalidade": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
                     "dataInicio": "2022-03-23T15:51:45.663Z",
@@ -5478,18 +5382,13 @@
             "application/json": {
               "schema": {
                 "properties": {
-                  "marcaId": { "type": "string" },
                   "descricao": { "type": "string" },
                   "unilado": { "type": "boolean" }
                 }
               },
               "examples": {
                 "Desafio": {
-                  "value": {
-                    "marcaId": "2c4fc500-7373-44ed-a665-270f19da455c",
-                    "descricao": "Peito",
-                    "unilado": false
-                  }
+                  "value": { "descricao": "Peito", "unilado": false }
                 }
               }
             }
@@ -5570,18 +5469,13 @@
             "application/json": {
               "schema": {
                 "properties": {
-                  "marcaId": { "type": "string" },
                   "conteudo": { "type": "string" },
                   "tipo": { "type": "number" }
                 }
               },
               "examples": {
                 "Notificação": {
-                  "value": {
-                    "marcaId": "f34fdd41-8670-4b50-9311-ebdb0ad993c4",
-                    "conteudo": "Teste de notificação",
-                    "tipo": 0
-                  }
+                  "value": { "conteudo": "Teste de notificação", "tipo": 0 }
                 }
               }
             }
@@ -5656,18 +5550,13 @@
             "application/json": {
               "schema": {
                 "properties": {
-                  "ginasioId": { "type": "string" },
                   "conteudo": { "type": "string" },
                   "tipo": { "type": "number" }
                 }
               },
               "examples": {
                 "Notificação": {
-                  "value": {
-                    "ginasioId": "dc8acc46-89eb-4d0f-a14a-2388b21c90a0",
-                    "conteudo": "Teste de notificação",
-                    "tipo": 0
-                  }
+                  "value": { "conteudo": "Teste de notificação", "tipo": 0 }
                 }
               }
             }
