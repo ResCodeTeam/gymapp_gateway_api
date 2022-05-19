@@ -3828,7 +3828,6 @@
         "summary": "Login do user",
         "description": "Esta rota permite realizar o login e autenticação do user",
         "tags": ["Autenticação"],
-        "security": [{ "basicAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
