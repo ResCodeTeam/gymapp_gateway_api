@@ -37,7 +37,7 @@ function verificarAutenticacao(request, response, next) {
         //verificar se o user existe
         const user = yield (0, dbHelpers_1.getUserByID)(uid);
         if (!user) {
-            throw new Error("User inexistente");
+            response.json({ 'msg': 'User inexistente' }).status(401);
         }
         const refreshToken = user.refresh_token;
         if (!refreshToken) {

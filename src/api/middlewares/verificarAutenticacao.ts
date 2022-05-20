@@ -6,7 +6,7 @@ import { verify, decode } from 'jsonwebtoken';
 export async function verificarAutenticacao(request: Request, response: Response, next: NextFunction) {
     const auth = request.headers.authorization;
     if (!auth) {
-        throw new Error("Token invalido")
+        return response.json({ 'msg': 'Token invalido' }).status(401)
     }
 
     const [, token] = auth.split(" ");
@@ -15,12 +15,12 @@ export async function verificarAutenticacao(request: Request, response: Response
     try {
         verify(token, process.env.SECRET_KEY_TOKEN);
     } catch (e) {
-        throw new Error("Token invalido")
+        return response.json({ 'msg': 'Token invalido' }).status(401)
     }
 
     const inBlackList = await checkInBlackList(token);
     if (inBlackList) {
-        throw new Error("Token invalido")
+        response.json({ 'msg': 'Token invalido' }).status(401)
     }
 
     //obter id do user
@@ -31,18 +31,21 @@ export async function verificarAutenticacao(request: Request, response: Response
     //verificar se o user existe
     const user = await getUserByID(uid)
     if (!user) {
-        throw new Error("User inexistente")
+        response.json({ 'msg': 'User inexistente' }).status(401)
+
     }
 
     const refreshToken = user.refresh_token
     if (!refreshToken) {
-        throw new Error("Sessão invalida")
+        response.json({ 'msg': 'Sessão invalida' }).status(401)
+
     }
 
     try {
         verify(refreshToken, process.env.SECRET_KEY_REFRESH_TOKEN);
     } catch (e) {
-        throw new Error("Sessão invalida")
+        response.json({ 'msg': 'Sessão invalida' }).status(401)
+
     }
 
 

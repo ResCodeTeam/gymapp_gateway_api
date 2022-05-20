@@ -16,7 +16,7 @@ function verificarAluno(request, response, next) {
         const uid = response.locals.uid;
         const user = (0, dbHelpers_1.checkUserIdExists)(uid);
         if (!user) {
-            throw new Error("User inexistente");
+            response.json({ 'msg': 'User inexistente' }).status(401);
         }
         const funcao_id = yield (0, dbHelpers_1.getUserFuncao)(uid);
         const aluno_id = yield (0, dbHelpers_1.getFuncaoId)("Aluno");
@@ -24,7 +24,7 @@ function verificarAluno(request, response, next) {
             next();
         }
         else {
-            throw new Error("Não possui autorização");
+            response.json({ 'msg': 'Não possui autorização' }).status(401);
         }
     });
 }

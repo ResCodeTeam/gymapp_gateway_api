@@ -14,6 +14,9 @@ treinadorRouter.delete('/treinador/exercicios/:exercicioId', verificarAutenticac
   gymapp_api.delete(`/treinador/${userId}/exercicios/${exercicioId}`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -26,6 +29,9 @@ treinadorRouter.put('/treinador/exercicios', verificarAutenticacao, verificarTre
     body
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -35,6 +41,9 @@ treinadorRouter.get('/treinador/avaliacoes/:aluno_id', verificarAutenticacao, ve
   gymapp_api.get(`/treinador/${userId}/avaliacoes/${aluno_id}`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -47,6 +56,9 @@ treinadorRouter.post('/treinador/avaliacoes', verificarAutenticacao, verificarTr
     body
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -59,6 +71,9 @@ treinadorRouter.put('/treinador/avaliacoes', verificarAutenticacao, verificarTre
     body
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -68,6 +83,9 @@ treinadorRouter.delete('/treinador/avaliacoes/:avaliacao_id', verificarAutentica
   gymapp_api.delete(`/treinador/${userId}/avaliacoes/${avaliacao_id}`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -76,6 +94,9 @@ treinadorRouter.get('/treinador/exercicios/treinador', verificarAutenticacao, ve
   gymapp_api.get(`/treinador/${userId}/exercicios/treinador`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -85,6 +106,9 @@ treinadorRouter.post('/treinador/exercicios/', verificarAutenticacao, verificarT
     req.body
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -93,6 +117,9 @@ treinadorRouter.get('/treinador/exercicios/', verificarAutenticacao, verificarTr
   gymapp_api.get(`/treinador/${userId}/exercicios/`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -105,6 +132,9 @@ treinadorRouter.post('/treinador/exercicios/imagens', verificarAutenticacao, ver
     body
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -116,6 +146,9 @@ treinadorRouter.delete('/treinador/exercicios/:exercicioId/imagens/:imagemId', v
   gymapp_api.delete(`/treinador/${userId}/exercicios/${exercicioId}/imagens/${imagemId}`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -130,6 +163,9 @@ treinadorRouter.post('/treinador/exercicios/musculos', verificarAutenticacao, ve
     body
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -140,6 +176,9 @@ treinadorRouter.delete('/treinador/exercicios/:exercicioId/musculos/:musculoId',
   gymapp_api.delete(`/treinador/${userId}/exercicios/${exercicioId}/musculos/${musculoId}`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -147,6 +186,9 @@ treinadorRouter.get('/treinador/agenda/desafios', verificarAutenticacao, verific
   gymapp_api.get(`/treinador/agenda/desafios/`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -154,6 +196,9 @@ treinadorRouter.get('/treinador/agenda/avaliacoes', verificarAutenticacao, verif
   gymapp_api.get(`/treinador/agenda/avaliacoes/`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -166,6 +211,9 @@ treinadorRouter.post('/treinador/desafio/submissoes', verificarAutenticacao, ver
     body
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -178,6 +226,9 @@ treinadorRouter.get('/treinador/plano/:uid/:startDate/:endDate', verificarAutent
   gymapp_api.get(`/treinador/${userId}/plano/${uid}/${startDate}/${endDate}`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -187,6 +238,9 @@ treinadorRouter.put('/treinador/agenda/avaliacao', verificarAutenticacao, verifi
   gymapp_api.put(`/treinador/${userId}/agenda/avaliacao/${agendamentoId}/`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -197,6 +251,9 @@ treinadorRouter.delete('/treinador/agenda/avaliacao/:agendamentoId', verificarAu
   gymapp_api.delete(`/treinador/${userId}/agenda/avaliacao/${agendamentoId}/`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -206,6 +263,9 @@ treinadorRouter.put('/treinador/agenda/desafios', verificarAutenticacao, verific
   gymapp_api.put(`/treinador/${userId}/agenda/desafios/${agendamentoId}/`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -215,6 +275,9 @@ treinadorRouter.delete('/treinador/agenda/desafios/:agendamentoId', verificarAut
   gymapp_api.delete(`/treinador/${userId}/agenda/desafios/${agendamentoId}/`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -224,6 +287,9 @@ treinadorRouter.post('/treinador/planoTreino', verificarAutenticacao, verificarT
     req.body
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -233,6 +299,9 @@ treinadorRouter.delete('/treinador/plano/:planoId', verificarAutenticacao, verif
   gymapp_api.delete(`/treinador/${userId}/plano/${planoId}/`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -246,13 +315,20 @@ treinadorRouter.put('/treinador/plano', verificarAutenticacao, verificarTreinado
     body
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
 treinadorRouter.get('/treinador/treinos', verificarAutenticacao, verificarTreinador, (req, res) => {
-  gymapp_api.get(`/treinador/treinos/`,
+  const userId = res.locals.uid;
+  gymapp_api.get(`/treinador/${userId}/treinos/`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -261,6 +337,9 @@ treinadorRouter.get('/treinador/locaisMedida', verificarAutenticacao, verificarT
   gymapp_api.get(`/treinador/${userId}/locaisMedida/`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -271,6 +350,9 @@ treinadorRouter.delete('/treinador/desafio/:desafioId/submissoes/:submissaoId', 
   gymapp_api.delete(`/treinador/${userId}/desafio/${desafioId}/submissoes/${submissaoId}`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
