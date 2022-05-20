@@ -13,6 +13,9 @@ adminRouter.post('/admin/marca', verificarAutenticacao, verificarAdmin, (req, re
   gymapp_api.post(`/admin/${userId}/marca/`, req.body
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -21,6 +24,9 @@ adminRouter.get('/admin/marca', verificarAutenticacao, verificarAdmin, (req, res
   gymapp_api.get(`/admin/${donoId}/marca/`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -32,6 +38,9 @@ adminRouter.put('/admin/ginasio/editar', verificarAutenticacao, verificarAdmin, 
   gymapp_api.put(`/admin/${userId}/ginasio/editar/${ginasioId}`, body
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -43,6 +52,9 @@ adminRouter.post('/admin/marca/ginasio/', verificarAutenticacao, verificarAdmin,
   gymapp_api.post(`/admin/${userId}/marca/${marcaId}/ginasio/`, body
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -52,6 +64,9 @@ adminRouter.get('/admin/marca/:marcaId/ginasio', verificarAutenticacao, verifica
   gymapp_api.get(`/admin/${userId}/marca/${marcaId}/ginasio/`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -63,6 +78,9 @@ adminRouter.post('/admin/ginasio/modalidades', verificarAutenticacao, verificarA
   gymapp_api.post(`/admin/${adminId}/ginasio/${ginasioId}/modalidades`, body
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -72,6 +90,9 @@ adminRouter.get('/admin/ginasio/:ginasioId/modalidades', verificarAutenticacao, 
   gymapp_api.get(`/admin/${userId}/ginasio/${ginasioId}/modalidades`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -81,6 +102,9 @@ adminRouter.delete('/admin/aluno/remover/:uId', verificarAutenticacao, verificar
   gymapp_api.delete(`/admin/${userId}/aluno/remover/${uId}`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -91,6 +115,9 @@ adminRouter.delete('/admin/ginasio/:ginasioId/modalidades/:modalidadeId', verifi
   gymapp_api.delete(`/admin/${userId}/ginasio/${ginasioId}/modalidades/${modalidadeId}`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -104,6 +131,9 @@ adminRouter.put('/admin/ginasio/modalidades', verificarAutenticacao, verificarAd
   gymapp_api.put(`/admin/${userId}/ginasio/${ginasioId}/modalidades/${modalidadeId}`, body
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -113,6 +143,9 @@ adminRouter.delete('/admin/treinador/:treinadorId', verificarAutenticacao, verif
   gymapp_api.delete(`/admin/${userId}/treinador/${treinadorId}`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -122,6 +155,9 @@ adminRouter.delete('/admin/marca/:marcaId', verificarAutenticacao, verificarAdmi
   gymapp_api.delete(`/admin/${userId}/marca/${marcaId}`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -131,6 +167,9 @@ adminRouter.get('/admin/marca/:marcaId', verificarAutenticacao, verificarAdmin, 
   gymapp_api.get(`/admin/${userId}/marca/${marcaId}`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -142,17 +181,23 @@ adminRouter.put('/admin/marca/espf', verificarAutenticacao, verificarAdmin, (req
   gymapp_api.put(`/admin/${adminId}/marca/${marcaId}`, body
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
 adminRouter.post('/admin/marca/treinadores', verificarAutenticacao, verificarAdmin, (req, res) => {
-  const marcaId = req.body.marca_id;
+  const marcaId = req.body.marcaId;
   const adminId = res.locals.uid;
   let body = req.body;
   delete body['marcaId'];
   gymapp_api.post(`/admin/${adminId}/marca/${marcaId}/treinadores`, body
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -164,6 +209,9 @@ adminRouter.post('/admin/notificacao/user', verificarAutenticacao, verificarAdmi
   gymapp_api.post(`/admin/${adminId}/notificacao/user/${destinoId}`, body
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -172,6 +220,9 @@ adminRouter.post('/admin/marca/alunos', verificarAutenticacao, verificarAdmin, (
   gymapp_api.post(`/admin/${userId}/marca/alunos/`, req.body
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -181,6 +232,9 @@ adminRouter.delete('/admin/ginasio/:ginasioId', verificarAutenticacao, verificar
   gymapp_api.delete(`/admin/${userId}/ginasio/${ginasioId}/`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -190,6 +244,9 @@ adminRouter.get('/admin/ginasio/:ginasioId', verificarAutenticacao, verificarAdm
   gymapp_api.get(`/admin/${userId}/ginasio/${ginasioId}/`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -201,6 +258,9 @@ adminRouter.post('/admin/marca/localMedida', verificarAutenticacao, verificarAdm
   gymapp_api.post(`/admin/${adminId}/marca/${marcaId}/localMedida`, body
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -211,6 +271,9 @@ adminRouter.delete('/admin/marca/:marcaId/localMedida/:localId', verificarAutent
   gymapp_api.delete(`/admin/${userId}/marca/${marcaId}/localMedida/${localId}`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -222,6 +285,9 @@ adminRouter.post('/admin/notificacao/marca', verificarAutenticacao, verificarAdm
   gymapp_api.post(`/admin/${adminId}/notificacao/marca/${marcaId}`, body
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -233,6 +299,9 @@ adminRouter.post('/admin/notificacao/ginasio', verificarAutenticacao, verificarA
   gymapp_api.post(`/admin/${adminId}/notificacao/ginasio/${ginasioId}`, body
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -242,6 +311,9 @@ adminRouter.get('/admin/ginasio/treinador/ver/:marcaId', verificarAutenticacao, 
   gymapp_api.get(`/admin/${userId}/ginasio/treinador/ver/${marcaId}`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 

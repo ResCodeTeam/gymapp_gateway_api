@@ -12,6 +12,9 @@ authRouter.post('/auth/login', (req, res) => {
     req.body
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -20,6 +23,9 @@ authRouter.post('/auth/token', verificarAutenticacao, (req, res) => {
   gymapp_api.post(`/auth/${userId}/token`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -28,6 +34,9 @@ authRouter.delete('/auth/logout', verificarAutenticacao, (req, res) => {
   gymapp_api.delete(`/auth/${userId}/logout`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
