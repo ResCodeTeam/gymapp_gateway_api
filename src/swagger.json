@@ -3507,6 +3507,18 @@
         "description": "Esta rota vai editar na base de dados um agendamento de um desafio",
         "tags": ["Agenda"],
         "security": [{ "basicAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": { "agendamentoId": { "type": "string" } }
+              },
+              "examples": {
+                "Privado true": { "value": { "agendamentoId": true } }
+              }
+            }
+          }
+        },
         "responses": {
           "500": { "description": "ERROR" },
           "200": {
@@ -4418,6 +4430,7 @@
         "description": "Esta rota vai remover da base de dados as aceitações dos agendamentos de desafios",
         "tags": ["Agenda"],
         "security": [{ "basicAuth": [] }],
+
         "parameters": [
           {
             "name": "agendamentoId",

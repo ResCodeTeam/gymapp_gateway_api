@@ -18,6 +18,9 @@ adminTreinadorRouter.post('/adminTreinador/ginasio/desafio/', verificarAutentica
     body
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -27,6 +30,9 @@ adminTreinadorRouter.delete('/adminTreinador/desafio/:desafioId', verificarAuten
   gymapp_api.delete(`/adminTreinador/${userId}/desafio/${desafioId}`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -39,6 +45,9 @@ adminTreinadorRouter.put('/adminTreinador/desafio', verificarAutenticacao, verif
     body
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -51,6 +60,9 @@ adminTreinadorRouter.put('/adminTreinador/desafio/editar', verificarAutenticacao
     body
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -59,6 +71,9 @@ adminTreinadorRouter.get('/adminTreinador/musculos/', verificarAutenticacao, ver
   gymapp_api.get(`/adminTreinador/${userId}/musculos/`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 

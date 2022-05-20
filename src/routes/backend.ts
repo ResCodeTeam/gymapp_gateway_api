@@ -11,6 +11,9 @@ backendRouter.post('/backend/funcoes', (req, res) => {
     req.body
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -19,6 +22,9 @@ backendRouter.post('/backend/cp', (req, res) => {
     req.body
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -26,6 +32,9 @@ backendRouter.post('/backend/registo', (req, res) => {
   gymapp_api.post(`/backend/registo`, req.body
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -33,6 +42,9 @@ backendRouter.post('/backend/atividades', (req, res) => {
   gymapp_api.post(`/backend/atividades`, req.body
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -41,6 +53,9 @@ backendRouter.delete('/backend/atividades/:atividadeId', (req, res) => {
   gymapp_api.delete(`/backend/atividades/${atividadeId}`,
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -52,6 +67,9 @@ backendRouter.put('/backend/atividades', (req, res) => {
     body
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -63,6 +81,9 @@ backendRouter.put('/backend/musculos', (req, res) => {
     body
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 
@@ -71,6 +92,9 @@ backendRouter.post('/backend/musculos/', (req, res) => {
     req.body
   ).then(resp => {
     res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
   })
 })
 

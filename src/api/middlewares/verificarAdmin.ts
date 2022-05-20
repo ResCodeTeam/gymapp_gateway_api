@@ -6,7 +6,7 @@ export async function verificarAdmin(request: Request, response: Response, next:
     const user = checkUserIdExists(uid)
 
     if (!user) {
-        throw new Error("User inexistente")
+        return response.json({ 'msg': 'User inexistente' }).status(401)
     }
 
     const funcao_id = await getUserFuncao(uid);
@@ -16,7 +16,8 @@ export async function verificarAdmin(request: Request, response: Response, next:
         next();
     }
     else {
-        throw new Error("Não possui autorização")
+
+        return response.json({ 'msg': 'Não possui autorização' }).status(401)
     }
 
 }
