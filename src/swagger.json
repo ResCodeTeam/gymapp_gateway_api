@@ -2924,6 +2924,7 @@
             "application/json": {
               "schema": {
                 "properties": {
+                  "treinoId": { "type": "string" },
                   "atividadeId": { "type": "string", "nullable": true },
                   "modalidadeId": { "type": "string", "nullable": true },
                   "duracao": { "type": "string" },
@@ -2935,6 +2936,7 @@
               "examples": {
                 "Editar Treino": {
                   "value": {
+                    "treinoId": "48474843-d48b-4786-9678-fe69248923dc",
                     "atividadeId": "7c98d84f-10d4-44f6-aafa-ddfaa0bee695",
                     "modalidadeId": null,
                     "duracao": "50",
