@@ -36,7 +36,7 @@ alunoRouter.post('/aluno/agenda/desafios', verificarAutenticacao, verificarAluno
 
 alunoRouter.get('/aluno/avaliacoes', verificarAutenticacao, verificarAluno, (req, res) => {
   const userId = res.locals.uid;
-  gymapp_api.get(`/aluno/${userId}/avaliacoes/`,
+  gymapp_api.get(`/aluno/${userId}/avaliacoes/${userId}`,
   ).then(resp => {
     res.send(resp.data)
   }).catch(err => {

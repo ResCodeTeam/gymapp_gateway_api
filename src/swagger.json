@@ -435,7 +435,11 @@
               },
               "examples": {
                 "Inserir Modalidade": {
-                  "value": { "ginasioId": "059f2ecf-cdcc-408c-a139-1ceb7df0742e","nome": "Caminhada", "imagemUrl": "teste" }
+                  "value": {
+                    "ginasioId": "059f2ecf-cdcc-408c-a139-1ceb7df0742e",
+                    "nome": "Caminhada",
+                    "imagemUrl": "teste"
+                  }
                 }
               }
             }
@@ -712,7 +716,7 @@
         }
       }
     },
-    "/treinador/avaliacoes/{aluno_id}": {
+    "/treinador/{treinadorId}/avaliacoes/{aluno_id}": {
       "get": {
         "summary": "Obter Avaliações do aluno",
         "description": "Este pedido serve para obter as avaliações do aluno",
@@ -2531,7 +2535,11 @@
               },
               "examples": {
                 "Criar Notificação": {
-                  "value": { "destinoId": "000d1e14-617e-423e-8a1a-f63d4fa5af6a", "conteudo": "Teste", "tipo": 0 }
+                  "value": {
+                    "destinoId": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                    "conteudo": "Teste",
+                    "tipo": 0
+                  }
                 }
               }
             }
@@ -2715,7 +2723,14 @@
                   "regras": { "type": "array", "items": { "type": "string" } }
                 }
               },
-              "examples": { "Avaliacao": { "value": { "isEncerrado": true , "desafioId":"098a8100-2ca9-400a-bb3a-cbd87692fd4b"} } }
+              "examples": {
+                "Avaliacao": {
+                  "value": {
+                    "isEncerrado": true,
+                    "desafioId": "098a8100-2ca9-400a-bb3a-cbd87692fd4b"
+                  }
+                }
+              }
             }
           }
         },
@@ -2822,10 +2837,18 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": { "properties": { "exercicioId": { "type": "string" },"url": { "type": "string" } } },
+              "schema": {
+                "properties": {
+                  "exercicioId": { "type": "string" },
+                  "url": { "type": "string" }
+                }
+              },
               "examples": {
                 "Adicionar Imagem": {
-                  "value": { "exercicioId":"05bb0690-db08-4b46-97dc-3853eba58d51", "url": "https://urlimagem.com" }
+                  "value": {
+                    "exercicioId": "05bb0690-db08-4b46-97dc-3853eba58d51",
+                    "url": "https://urlimagem.com"
+                  }
                 }
               }
             }
@@ -2992,7 +3015,11 @@
               },
               "examples": {
                 "Criar Atividade": {
-                  "value": { "atividadeId": "66780189-0415-4639-8bd2-60f6bf5277e1","descricao": "Teste", "icon": "Teste1" }
+                  "value": {
+                    "atividadeId": "66780189-0415-4639-8bd2-60f6bf5277e1",
+                    "descricao": "Teste",
+                    "icon": "Teste1"
+                  }
                 }
               }
             }
@@ -3232,7 +3259,10 @@
               },
               "examples": {
                 "Editar Atividade": {
-                  "value": { "exercicioId": "5ebe32db-1b03-4754-9305-d9f0645778e0", "musculoId": "1b1dd226-454a-4bb6-a126-1870411646e4" }
+                  "value": {
+                    "exercicioId": "5ebe32db-1b03-4754-9305-d9f0645778e0",
+                    "musculoId": "1b1dd226-454a-4bb6-a126-1870411646e4"
+                  }
                 }
               }
             }
@@ -5489,7 +5519,11 @@
               },
               "examples": {
                 "Desafio": {
-                  "value": { "marcaId": "2c4fc500-7373-44ed-a665-270f19da455c", "descricao": "Peito", "unilado": false }
+                  "value": {
+                    "marcaId": "2c4fc500-7373-44ed-a665-270f19da455c",
+                    "descricao": "Peito",
+                    "unilado": false
+                  }
                 }
               }
             }
@@ -5570,14 +5604,18 @@
             "application/json": {
               "schema": {
                 "properties": {
-                  "marcaId": {"type":"string"},
+                  "marcaId": { "type": "string" },
                   "conteudo": { "type": "string" },
                   "tipo": { "type": "number" }
                 }
               },
               "examples": {
                 "Notificação": {
-                  "value": { "marcaId": "2c4fc500-7373-44ed-a665-270f19da455c", "conteudo": "Teste de notificação", "tipo": 0 }
+                  "value": {
+                    "marcaId": "2c4fc500-7373-44ed-a665-270f19da455c",
+                    "conteudo": "Teste de notificação",
+                    "tipo": 0
+                  }
                 }
               }
             }
@@ -5659,7 +5697,11 @@
               },
               "examples": {
                 "Notificação": {
-                  "value": { "ginasioId": "059f2ecf-cdcc-408c-a139-1ceb7df0742e", "conteudo": "Teste de notificação", "tipo": 0 }
+                  "value": {
+                    "ginasioId": "059f2ecf-cdcc-408c-a139-1ceb7df0742e",
+                    "conteudo": "Teste de notificação",
+                    "tipo": 0
+                  }
                 }
               }
             }
