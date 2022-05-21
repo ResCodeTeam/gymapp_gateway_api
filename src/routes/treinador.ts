@@ -43,6 +43,7 @@ treinadorRouter.get('/treinador/avaliacoes/:aluno_id', verificarAutenticacao, ve
     res.send(resp.data)
   }).catch(err => {
     const resp = err.response
+    console.log(resp.status)
     res.send(resp.data).status(resp.status)
   })
 })
@@ -58,6 +59,7 @@ treinadorRouter.post('/treinador/avaliacoes', verificarAutenticacao, verificarTr
     res.send(resp.data)
   }).catch(err => {
     const resp = err.response
+
     res.send(resp.data).status(resp.status)
   })
 })
@@ -328,6 +330,7 @@ treinadorRouter.get('/treinador/treinos', verificarAutenticacao, verificarTreina
     res.send(resp.data)
   }).catch(err => {
     const resp = err.response
+
     res.send(resp.data).status(resp.status)
   })
 })
@@ -339,6 +342,7 @@ treinadorRouter.get('/treinador/locaisMedida', verificarAutenticacao, verificarT
     res.send(resp.data)
   }).catch(err => {
     const resp = err.response
+
     res.send(resp.data).status(resp.status)
   })
 })
