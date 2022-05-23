@@ -34,7 +34,10 @@ describe("Teste criar notificação ginasio", () => {
     it("Deve retornar erro de authToken invalido", () => {
       return chai
         .request(server)
-        .post("/admin/notificacao/ginasio/" + ginasioaId)
+        .post("/admin/notificacao/ginasio")
+        .send({
+          "ginasioId": ginasioaId
+        })
         .then((res) => {
           res.should.have.status(401);
           chai.expect(res.body).to.be.an("object");
@@ -46,7 +49,10 @@ describe("Teste criar notificação ginasio", () => {
     it("Deve retornar erro de authToken invalido", () => {
       return chai
         .request(server)
-        .post("/admin/notificacao/ginasio/" + ginasioaId)
+        .post("/admin/notificacao/ginasio")
+        .send({
+          "ginasioId": ginasioaId
+        })
         .set("Authorization", tokenInvalido)
         .then((res) => {
           res.should.have.status(401);
@@ -59,10 +65,13 @@ describe("Teste criar notificação ginasio", () => {
     it("Deve retornar erro de body incompleto", () => {
       return chai
         .request(server)
-        .post("/admin/notificacao/ginasio/" + ginasioaId)
+        .post("/admin/notificacao/ginasio")
+        .send({
+          "ginasioId": ginasioaId
+        })
         .set("Authorization", token)
         .then((res) => {
-          res.should.have.status(401);
+          res.should.have.status(500);
           chai.expect(res.body).to.be.an("object");
         });
     });
@@ -72,9 +81,10 @@ describe("Teste criar notificação ginasio", () => {
     it("Deve retornar criar notificação ginasio com sucesso", () => {
       return chai
         .request(server)
-        .post("/admin/notificacao/ginasio/" + ginasioaId)
+        .post("/admin/notificacao/ginasio")
         .set("Authorization", token)
         .send({
+          "ginasioId": ginasioaId,
           conteudo: "Teste de notificação",
           tipo: 0,
         })

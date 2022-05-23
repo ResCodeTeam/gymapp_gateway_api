@@ -32,7 +32,10 @@ describe("Teste criar notificação users", () => {
     it("Deve retornar erro de authToken invalido", () => {
       return chai
         .request(server)
-        .post("/admin/notificacao/user/" + destinoId)
+        .post("/admin/notificacao/user")
+        .send({
+          "destinoId": destinoId
+        })
         .then((res) => {
           res.should.have.status(401);
           chai.expect(res.body).to.be.an("object");
@@ -44,7 +47,10 @@ describe("Teste criar notificação users", () => {
     it("Deve retornar erro de authToken invalido", () => {
       return chai
         .request(server)
-        .post("/admin/notificacao/user/" + destinoId)
+        .post("/admin/notificacao/user")
+        .send({
+          "destinoId": destinoId
+        })
         .set("Authorization", tokenInvalido)
         .then((res) => {
           res.should.have.status(401);
@@ -57,10 +63,13 @@ describe("Teste criar notificação users", () => {
     it("Deve retornar erro de body incompleto", () => {
       return chai
         .request(server)
-        .post("/admin/notificacao/user/" + destinoId)
+        .post("/admin/notificacao/user")
+        .send({
+          "destinoId": destinoId
+        })
         .set("Authorization", token)
         .then((res) => {
-          res.should.have.status(401);
+          res.should.have.status(500);
           chai.expect(res.body).to.be.an("object");
         });
     });
@@ -70,9 +79,10 @@ describe("Teste criar notificação users", () => {
     it("Deve retornar criar notificação users com sucesso", () => {
       return chai
         .request(server)
-        .post("/admin/notificacao/user/" + destinoId)
+        .post("/admin/notificacao/user")
         .set("Authorization", token)
         .send({
+          "destinoId": destinoId,
           conteudo: "O seu agendamento foi aceite",
           tipo: 1,
         })

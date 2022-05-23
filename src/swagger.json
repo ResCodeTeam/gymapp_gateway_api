@@ -3696,6 +3696,24 @@
         "description": "Esta rota vai alterar o visto",
         "tags": ["Notificações"],
         "security": [{ "basicAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "notiId": { "type": "string" }
+                }
+              },
+              "examples": {
+                "Submissao desafio": {
+                  "value": {
+                    "notiId": "017ba015-689f-4f2e-b280-0a53204fc862"
+                  }
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "500": { "description": "ERROR" },
           "200": { "description": "OK" }
@@ -4402,6 +4420,603 @@
                             ]
                           }
                         ]
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/treinador/planosTreinoAlunos/{startDate}/{endDate}": {
+      "get": {
+        "summary": "Obter os planos de treino semanais",
+        "description": "Esta rota vai permitir obter os planos de treino de uma semana  dando o intervalo de tempo",
+        "tags": ["Plano Treino"],
+        "security": [{ "basicAuth": [] }],
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "path",
+            "description": "Id do aluno",
+            "required": true,
+            "schema": { "properties": { "uid": { "type": "string" } } },
+            "examples": {
+              "uid": { "value": "000d1e14-617e-423e-8a1a-f63d4fa5af6a" }
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "path",
+            "description": "data de inicio",
+            "required": true,
+            "schema": { "properties": { "startDate": { "type": "string" } } },
+            "examples": { "startDate": { "value": "2022-04-11" } }
+          },
+          {
+            "name": "endDate",
+            "in": "path",
+            "description": "data de fim",
+            "required": true,
+            "schema": { "properties": { "endDate": { "type": "string" } } },
+            "examples": { "endDate": { "value": "2022-04-17" } }
+          }
+        ],
+        "responses": {
+          "500": { "description": "ERROR" },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "properties": { "msg": { "type": "string" } } },
+                "examples": {
+                  "Obter Treino": {
+                    "value": [
+                      {
+                        "data": "2022-04-14T00:00:00.000Z",
+                        "isRealizado": false,
+                        "treinador": {
+                          "nome": "treinador teste",
+                          "email": "treinador@treinador.com",
+                          "imagem_url": null
+                        },
+                        "modalidade": { "nome": "Crossfit" },
+                        "bloco_treino": [
+                          {
+                            "nome": "Aquecimento",
+                            "descricao": "5 Rondas",
+                            "exercicios_bloco": [
+                              {
+                                "n_ordem_exercicio": 0,
+                                "series_exercicio": [
+                                  { "valor": "12", "n_ordem_serie": 0 },
+                                  { "valor": "12", "n_ordem_serie": 1 },
+                                  { "valor": "12", "n_ordem_serie": 2 },
+                                  { "valor": "12", "n_ordem_serie": 3 }
+                                ],
+                                "exercicio": {
+                                  "nome": "Teste1",
+                                  "descricao": "Teste2",
+                                  "imagens": [
+                                    { "url": "url1" },
+                                    { "url": "url2" },
+                                    { "url": "url3" },
+                                    { "url": "url4" }
+                                  ],
+                                  "musculos": [
+                                    {
+                                      "musculos": {
+                                        "nome": "Bicep",
+                                        "img_url": "http://imagem/bicep"
+                                      }
+                                    },
+                                    {
+                                      "musculos": {
+                                        "nome": "Tricep",
+                                        "img_url": "http://imagem/tricep"
+                                      }
+                                    },
+                                    {
+                                      "musculos": {
+                                        "nome": "Costas",
+                                        "img_url": "http://imagem/costas"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/treinador/planosTreinoAlunos": {
+      "get": {
+        "summary": "Obter plano de treino dos alunos",
+        "description": "Esta rota vai permitir obter plano de treino dos alunos",
+        "tags": ["Plano Treino"],
+        "security": [{ "basicAuth": [] }],
+        "responses": {
+          "500": { "description": "ERROR" },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "properties": { "msg": { "type": "string" } } },
+                "examples": {
+                  "Obter Treino": {
+                    "value": [
+                      {
+                        "data": "2022-04-14T00:00:00.000Z",
+                        "isRealizado": false,
+                        "treinador": {
+                          "nome": "treinador teste",
+                          "email": "treinador@treinador.com",
+                          "imagem_url": null
+                        },
+                        "modalidade": { "nome": "Crossfit" },
+                        "bloco_treino": [
+                          {
+                            "nome": "Aquecimento",
+                            "descricao": "5 Rondas",
+                            "exercicios_bloco": [
+                              {
+                                "n_ordem_exercicio": 0,
+                                "series_exercicio": [
+                                  { "valor": "12", "n_ordem_serie": 0 },
+                                  { "valor": "12", "n_ordem_serie": 1 },
+                                  { "valor": "12", "n_ordem_serie": 2 },
+                                  { "valor": "12", "n_ordem_serie": 3 }
+                                ],
+                                "exercicio": {
+                                  "nome": "Teste1",
+                                  "descricao": "Teste2",
+                                  "imagens": [
+                                    { "url": "url1" },
+                                    { "url": "url2" },
+                                    { "url": "url3" },
+                                    { "url": "url4" }
+                                  ],
+                                  "musculos": [
+                                    {
+                                      "musculos": {
+                                        "nome": "Bicep",
+                                        "img_url": "http://imagem/bicep"
+                                      }
+                                    },
+                                    {
+                                      "musculos": {
+                                        "nome": "Tricep",
+                                        "img_url": "http://imagem/tricep"
+                                      }
+                                    },
+                                    {
+                                      "musculos": {
+                                        "nome": "Costas",
+                                        "img_url": "http://imagem/costas"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/treinador/desafiosMarca": {
+      "get": {
+        "summary": "Obter desafios da marca",
+        "description": "Esta rota vai permitir obter todos os desafios da marca",
+        "tags": ["Desafios"],
+        "security": [{ "basicAuth": [] }],
+        "responses": {
+          "500": { "description": "ERROR" },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "properties": { "msg": { "type": "string" } } },
+                "examples": {
+                  "Obter Treino": {
+                    "value": [
+                      {
+                        "desafio_id": "605a44da-4790-4730-8167-ab0843ee3be1",
+                        "criador_id": "332b256d-d646-4877-8a4f-f5538472e0d4",
+                        "nome": "Crossfit2",
+                        "modalidade_id": "047ea26d-bc43-4463-a3d1-8ea726a27b9f",
+                        "data_inicio": "2022-05-23T15:51:45.663Z",
+                        "data_fim": "2022-05-24T20:00:00.000Z",
+                        "recompensa": 100,
+                        "isEncerrado": false,
+                        "ginasio_id": "a70e117f-4b53-447f-b67d-6b1c93bd501d",
+                        "descricao": "2",
+                        "isDeleted": false
+                      },
+                      {
+                        "desafio_id": "75bef177-6581-4603-b96a-eca28b677d66",
+                        "criador_id": "332b256d-d646-4877-8a4f-f5538472e0d4",
+                        "nome": "Crossfit2",
+                        "modalidade_id": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
+                        "data_inicio": "2022-05-23T15:51:45.663Z",
+                        "data_fim": "2022-05-24T20:00:00.000Z",
+                        "recompensa": 100,
+                        "isEncerrado": false,
+                        "ginasio_id": "a70e117f-4b53-447f-b67d-6b1c93bd501d",
+                        "descricao": "2",
+                        "isDeleted": false
+                      },
+                      {
+                        "desafio_id": "faabe89b-72c8-4967-b3b1-b8f8d501a895",
+                        "criador_id": "332b256d-d646-4877-8a4f-f5538472e0d4",
+                        "nome": "Crossfit2",
+                        "modalidade_id": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
+                        "data_inicio": "2022-05-23T15:51:45.663Z",
+                        "data_fim": "2022-05-24T20:00:00.000Z",
+                        "recompensa": 100,
+                        "isEncerrado": false,
+                        "ginasio_id": "a70e117f-4b53-447f-b67d-6b1c93bd501d",
+                        "descricao": "2",
+                        "isDeleted": false
+                      },
+                      {
+                        "desafio_id": "098a8100-2ca9-400a-bb3a-cbd87692fd4b",
+                        "criador_id": "332b256d-d646-4877-8a4f-f5538472e0d4",
+                        "nome": "Crossfit2",
+                        "modalidade_id": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
+                        "data_inicio": "2022-05-23T15:51:45.663Z",
+                        "data_fim": "2022-05-24T20:00:00.000Z",
+                        "recompensa": 100,
+                        "isEncerrado": false,
+                        "ginasio_id": "a70e117f-4b53-447f-b67d-6b1c93bd501d",
+                        "descricao": "100",
+                        "isDeleted": false
+                      },
+                      {
+                        "desafio_id": "c1794188-b070-4215-bd87-3ff2b3cfb695",
+                        "criador_id": "332b256d-d646-4877-8a4f-f5538472e0d4",
+                        "nome": "Crossfit2",
+                        "modalidade_id": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
+                        "data_inicio": "2022-05-23T15:51:45.663Z",
+                        "data_fim": "2022-05-24T20:00:00.000Z",
+                        "recompensa": 100,
+                        "isEncerrado": false,
+                        "ginasio_id": "a70e117f-4b53-447f-b67d-6b1c93bd501d",
+                        "descricao": "2",
+                        "isDeleted": false
+                      },
+                      {
+                        "desafio_id": "81606616-3b45-4865-a9f8-4d8f3a10f9ab",
+                        "criador_id": "332b256d-d646-4877-8a4f-f5538472e0d4",
+                        "nome": "Crossfit2",
+                        "modalidade_id": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
+                        "data_inicio": "2022-05-23T15:51:45.663Z",
+                        "data_fim": "2022-05-24T20:00:00.000Z",
+                        "recompensa": 100,
+                        "isEncerrado": false,
+                        "ginasio_id": "a70e117f-4b53-447f-b67d-6b1c93bd501d",
+                        "descricao": "2",
+                        "isDeleted": false
+                      },
+                      {
+                        "desafio_id": "a18343a7-42b7-4448-bbde-75c797ac545a",
+                        "criador_id": "332b256d-d646-4877-8a4f-f5538472e0d4",
+                        "nome": "Crossfit2",
+                        "modalidade_id": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
+                        "data_inicio": "2022-05-23T15:51:45.663Z",
+                        "data_fim": "2022-05-24T20:00:00.000Z",
+                        "recompensa": 100,
+                        "isEncerrado": false,
+                        "ginasio_id": "a70e117f-4b53-447f-b67d-6b1c93bd501d",
+                        "descricao": "2",
+                        "isDeleted": false
+                      },
+                      {
+                        "desafio_id": "c5f60452-99cd-46b4-afdd-f112528b6108",
+                        "criador_id": "332b256d-d646-4877-8a4f-f5538472e0d4",
+                        "nome": "Crossfit2",
+                        "modalidade_id": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
+                        "data_inicio": "2022-05-23T15:51:45.663Z",
+                        "data_fim": "2022-05-24T20:00:00.000Z",
+                        "recompensa": 100,
+                        "isEncerrado": false,
+                        "ginasio_id": "a70e117f-4b53-447f-b67d-6b1c93bd501d",
+                        "descricao": "2",
+                        "isDeleted": false
+                      },
+                      {
+                        "desafio_id": "8fba8fa9-fa90-484c-b4b2-c437997bfab7",
+                        "criador_id": "332b256d-d646-4877-8a4f-f5538472e0d4",
+                        "nome": "Crossfit2",
+                        "modalidade_id": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
+                        "data_inicio": "2022-05-23T15:51:45.663Z",
+                        "data_fim": "2022-05-24T20:00:00.000Z",
+                        "recompensa": 100,
+                        "isEncerrado": false,
+                        "ginasio_id": "a70e117f-4b53-447f-b67d-6b1c93bd501d",
+                        "descricao": "2",
+                        "isDeleted": false
+                      },
+                      {
+                        "desafio_id": "cb0b1996-708f-44a5-bc4d-a28f0e122253",
+                        "criador_id": "332b256d-d646-4877-8a4f-f5538472e0d4",
+                        "nome": "Crossfit2",
+                        "modalidade_id": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
+                        "data_inicio": "2022-05-23T15:51:45.663Z",
+                        "data_fim": "2022-05-24T20:00:00.000Z",
+                        "recompensa": 100,
+                        "isEncerrado": false,
+                        "ginasio_id": "a70e117f-4b53-447f-b67d-6b1c93bd501d",
+                        "descricao": "2",
+                        "isDeleted": false
+                      },
+                      {
+                        "desafio_id": "0ae01dc5-4c6f-424d-bd29-c5edb4a88ee8",
+                        "criador_id": "332b256d-d646-4877-8a4f-f5538472e0d4",
+                        "nome": "Crossfit2",
+                        "modalidade_id": "2edd3679-382b-40a6-abb3-3f674ec5be9b",
+                        "data_inicio": "2022-05-23T15:51:45.663Z",
+                        "data_fim": "2022-05-24T20:00:00.000Z",
+                        "recompensa": 100,
+                        "isEncerrado": false,
+                        "ginasio_id": "059f2ecf-cdcc-408c-a139-1ceb7df0742e",
+                        "descricao": "2",
+                        "isDeleted": false
+                      },
+                      {
+                        "desafio_id": "4cd6d254-30e8-491e-b4dd-698356c3fe1d",
+                        "criador_id": "332b256d-d646-4877-8a4f-f5538472e0d4",
+                        "nome": "Crossfit2",
+                        "modalidade_id": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
+                        "data_inicio": "2022-05-23T15:51:45.663Z",
+                        "data_fim": "2022-05-24T20:00:00.000Z",
+                        "recompensa": 100,
+                        "isEncerrado": false,
+                        "ginasio_id": "a70e117f-4b53-447f-b67d-6b1c93bd501d",
+                        "descricao": "2",
+                        "isDeleted": false
+                      },
+                      {
+                        "desafio_id": "59eae81f-a665-45cd-ae1f-97f7e1e114d5",
+                        "criador_id": "a46c90e0-ef8a-49a1-b763-13fa0e6d7ef3",
+                        "nome": "Crossfit2",
+                        "modalidade_id": "047ea26d-bc43-4463-a3d1-8ea726a27b9f",
+                        "data_inicio": "2022-05-23T15:51:45.663Z",
+                        "data_fim": "2022-05-24T20:00:00.000Z",
+                        "recompensa": 100,
+                        "isEncerrado": false,
+                        "ginasio_id": "a97e6887-31dc-4186-ad27-09e0fb7d645e",
+                        "descricao": "2",
+                        "isDeleted": false
+                      },
+                      {
+                        "desafio_id": "75ef1ef9-44a2-4974-a713-54df6ff9c995",
+                        "criador_id": "332b256d-d646-4877-8a4f-f5538472e0d4",
+                        "nome": "Crossfit2",
+                        "modalidade_id": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
+                        "data_inicio": "2022-05-23T15:51:45.663Z",
+                        "data_fim": "2022-05-24T20:00:00.000Z",
+                        "recompensa": 100,
+                        "isEncerrado": false,
+                        "ginasio_id": "a70e117f-4b53-447f-b67d-6b1c93bd501d",
+                        "descricao": "2",
+                        "isDeleted": false
+                      },
+                      {
+                        "desafio_id": "bfe4ca96-ca2e-44f6-9b8e-0b76bb58457a",
+                        "criador_id": "332b256d-d646-4877-8a4f-f5538472e0d4",
+                        "nome": "Crossfit2",
+                        "modalidade_id": "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
+                        "data_inicio": "2022-05-23T15:51:45.663Z",
+                        "data_fim": "2022-05-24T20:00:00.000Z",
+                        "recompensa": 100,
+                        "isEncerrado": false,
+                        "ginasio_id": "a70e117f-4b53-447f-b67d-6b1c93bd501d",
+                        "descricao": "2",
+                        "isDeleted": false
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/treinador/top10": {
+      "get": {
+        "summary": "Obter top 10 da amrca",
+        "description": "Esta rota vai permitir obter o top 10 da marca",
+        "tags": ["Desafios"],
+        "security": [{ "basicAuth": [] }],
+        "responses": {
+          "500": { "description": "ERROR" },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "properties": { "msg": { "type": "string" } } },
+                "examples": {
+                  "Obter Treino": {
+                    "value": [
+                      {
+                        "uid": "4d2e8875-ca2b-43c7-98e9-3d9ce163c59e",
+                        "email": "luigiviana@gmail.com",
+                        "nome": "Luigi Viana",
+                        "password": "$2b$08$irRPaW5OsxkzK19ZTbNXfuMXt8x2vAB71Sq5Hk6N4xM7x5AmUjMpy",
+                        "data_nasc": "1959-05-15T00:00:00.000Z",
+                        "hashtag": "LV_01",
+                        "data_entrada": "2022-03-23T00:00:00.000Z",
+                        "funcao_id": "544f007c-c2e7-4719-a7b4-0c829d467a92",
+                        "refresh_token": null,
+                        "genero": 1,
+                        "pontos": 305,
+                        "descricao": null,
+                        "imagem_url": null,
+                        "isDeleted": false
+                      },
+                      {
+                        "uid": "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
+                        "email": "biancasilva@gmail.com",
+                        "nome": "Bianca Silva",
+                        "password": "$2b$08$.oajQsUYv7Rpe5rH7DN8/e/qtoMPP5XuHctLEU6dQneh1YTTi/T9m",
+                        "data_nasc": "1975-11-19T00:00:00.000Z",
+                        "hashtag": "BS_02",
+                        "data_entrada": "2022-03-23T00:00:00.000Z",
+                        "funcao_id": "544f007c-c2e7-4719-a7b4-0c829d467a92",
+                        "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTMzMDc1NDYsImV4cCI6MTY4NDg2NTE0Niwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.1h0XOsrD4yo3G77nKRw2yFYE8ipCk5rKEZ4Sl9tPbLc",
+                        "genero": 0,
+                        "pontos": 200,
+                        "descricao": null,
+                        "imagem_url": null,
+                        "isDeleted": false
+                      },
+                      {
+                        "uid": "17a314a2-2faa-43c6-8418-c95cb323580e",
+                        "email": "luizhenriquecorreia@gmail.com",
+                        "nome": "Luiz Henrique Correia",
+                        "password": "$2b$08$j2AM7in7AsTg5si3EZKLTO.mNQHdgVT4CU91GFpINfoJc0BfztOrS",
+                        "data_nasc": "1996-03-21T00:00:00.000Z",
+                        "hashtag": "LHC_01",
+                        "data_entrada": "2022-03-23T00:00:00.000Z",
+                        "funcao_id": "544f007c-c2e7-4719-a7b4-0c829d467a92",
+                        "refresh_token": null,
+                        "genero": 1,
+                        "pontos": 100,
+                        "descricao": null,
+                        "imagem_url": null,
+                        "isDeleted": false
+                      },
+                      {
+                        "uid": "2cdcc90f-2b44-414f-a502-350b732dcc97",
+                        "email": "sarahgoncalves@gmail.com",
+                        "nome": "Sarah Gonçalves",
+                        "password": "$2b$08$RR88xy31MgJ3UvRtynknxeP44m8ScnE5t5RnxgCreLUWCvfT6FQDu",
+                        "data_nasc": "1989-01-12T00:00:00.000Z",
+                        "hashtag": "SG_01",
+                        "data_entrada": "2022-03-23T00:00:00.000Z",
+                        "funcao_id": "544f007c-c2e7-4719-a7b4-0c829d467a92",
+                        "refresh_token": null,
+                        "genero": 0,
+                        "pontos": 90,
+                        "descricao": null,
+                        "imagem_url": null,
+                        "isDeleted": false
+                      },
+                      {
+                        "uid": "272687cb-a700-4f0f-b450-9836897413c6",
+                        "email": "julialopes@gmail.com",
+                        "nome": "Júlia Lopes",
+                        "password": "$2b$08$cZuy3WKhjOK2nQG3jat9guQRZfBI0G/U6GwyjMpmUyLzh.Nz70lPa",
+                        "data_nasc": "2010-08-31T00:00:00.000Z",
+                        "hashtag": "JL_02",
+                        "data_entrada": "2022-03-23T00:00:00.000Z",
+                        "funcao_id": "544f007c-c2e7-4719-a7b4-0c829d467a92",
+                        "refresh_token": null,
+                        "genero": 0,
+                        "pontos": 55,
+                        "descricao": null,
+                        "imagem_url": null,
+                        "isDeleted": false
+                      },
+                      {
+                        "uid": "09e0470c-8051-420b-9414-2c51b9c271db",
+                        "email": "nicolebarros@gmail.com",
+                        "nome": "Nicole Barros",
+                        "password": "$2b$08$HbK7TaBHHCdmkLb0GUB5AeeA5J29tGX8kFvtmPEmT75ux7xvEDeRK",
+                        "data_nasc": "2006-04-07T00:00:00.000Z",
+                        "hashtag": "NB_01",
+                        "data_entrada": "2022-03-23T00:00:00.000Z",
+                        "funcao_id": "544f007c-c2e7-4719-a7b4-0c829d467a92",
+                        "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTI5NzEzOTUsImV4cCI6MTY4NDUyODk5NSwic3ViIjoiMDllMDQ3MGMtODA1MS00MjBiLTk0MTQtMmM1MWI5YzI3MWRiIn0.1wySGdbEqPMnyydj1j5AixuPB-AE1-r1D43xH2_K6qY",
+                        "genero": 0,
+                        "pontos": 30,
+                        "descricao": null,
+                        "imagem_url": null,
+                        "isDeleted": false
+                      },
+                      {
+                        "uid": "03d8129e-44e2-41a9-8961-e0d92dbc3c8d",
+                        "email": "milenamelo@gmail.com",
+                        "nome": "Milena Melo",
+                        "password": "$2b$08$tvdnGQ21K1qEWvGWZDE5ruiZUSf/Hz0lLqFupJghiYru4.F5dGaVS",
+                        "data_nasc": "1969-10-27T00:00:00.000Z",
+                        "hashtag": "MM_02",
+                        "data_entrada": "2022-03-23T00:00:00.000Z",
+                        "funcao_id": "544f007c-c2e7-4719-a7b4-0c829d467a92",
+                        "refresh_token": null,
+                        "genero": 0,
+                        "pontos": 20,
+                        "descricao": null,
+                        "imagem_url": null,
+                        "isDeleted": false
+                      },
+                      {
+                        "uid": "3b114c21-f90a-4727-b383-73b18d2972cb",
+                        "email": "laurabarbosa@gmail.com",
+                        "nome": "Laura Barbosa",
+                        "password": "$2b$08$3oz8W.9FfjsDWWr6nP9Squ2Q64cVHboKemWA5aH4nvWG6j429m6xe",
+                        "data_nasc": "1994-02-02T00:00:00.000Z",
+                        "hashtag": "LB_01",
+                        "data_entrada": "2022-03-23T00:00:00.000Z",
+                        "funcao_id": "544f007c-c2e7-4719-a7b4-0c829d467a92",
+                        "refresh_token": null,
+                        "genero": 0,
+                        "pontos": 11,
+                        "descricao": null,
+                        "imagem_url": null,
+                        "isDeleted": false
+                      },
+                      {
+                        "uid": "0e3025e1-1449-4805-921d-95b86830bd30",
+                        "email": "claramoreira@gmail.com",
+                        "nome": "Clara Moreira",
+                        "password": "$2b$08$K0QY9LHK5mIlhA2gndMDcOtcVoxp7clJeIs6vOoR07Ztel55Hj0T2",
+                        "data_nasc": "1944-08-31T00:00:00.000Z",
+                        "hashtag": "CM_01",
+                        "data_entrada": "2022-03-23T00:00:00.000Z",
+                        "funcao_id": "544f007c-c2e7-4719-a7b4-0c829d467a92",
+                        "refresh_token": null,
+                        "genero": 0,
+                        "pontos": 10,
+                        "descricao": null,
+                        "imagem_url": null,
+                        "isDeleted": false
+                      },
+                      {
+                        "uid": "12f1f26b-cc77-4436-a599-99e04042607c",
+                        "email": "thomasdapaz@gmail.com",
+                        "nome": "Thomas da Paz",
+                        "password": "$2b$08$cexQsuoO4XyAFUiuzXOsS.5HQbWnj.OmqMO6vG62Zc0H0.xcTWmcq",
+                        "data_nasc": "1955-04-12T00:00:00.000Z",
+                        "hashtag": "TdP_01",
+                        "data_entrada": "2022-03-23T00:00:00.000Z",
+                        "funcao_id": "544f007c-c2e7-4719-a7b4-0c829d467a92",
+                        "refresh_token": null,
+                        "genero": 1,
+                        "pontos": 5,
+                        "descricao": null,
+                        "imagem_url": null,
+                        "isDeleted": false
                       }
                     ]
                   }

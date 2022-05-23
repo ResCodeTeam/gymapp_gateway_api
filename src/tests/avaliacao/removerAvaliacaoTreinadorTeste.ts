@@ -63,6 +63,7 @@ describe("Teste remover avaliacao treinador", () => {
 
         .then((res) => {
           res.should.have.status(200);
+          chai.expect(res.body).to.be.an("object");
         });
     });
   });

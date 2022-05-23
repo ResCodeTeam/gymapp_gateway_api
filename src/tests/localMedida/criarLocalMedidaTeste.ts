@@ -30,8 +30,9 @@ describe("Teste criar local de medida:", () => {
     it("Deve retornar erro de authToken invalido", () => {
       return chai
         .request(server)
-        .post("/admin/marca/" + idMarca + "/localMedida")
+        .post("/admin/marca/localMedida")
         .send({
+          "marcaId": idMarca,
           descricao: "dorsal",
           unilado: false,
         })
@@ -46,10 +47,10 @@ describe("Teste criar local de medida:", () => {
     it("Deve retornar aluno criado", () => {
       return chai
         .request(server)
-        .post("/admin/marca/" + idMarca + "/localMedida")
+        .post("/admin/marca/localMedida")
         .set("Authorization", token)
-
         .send({
+          "marcaId": idMarca,
           descricao: "dorsal",
           unilado: false,
         })

@@ -31,10 +31,11 @@ describe("Teste registar treinadores numa marca:", () => {
     it("Deve retornar erro de authToken invalido", () => {
       return chai
         .request(server)
-        .post("/admin/marca/" + idMarca + "/treinadores/")
+        .post("/admin/marca/treinadores")
         .send({
-          email: "treinador10@treinador.pt",
-          nome: "treinador Berto",
+          "marcaId": idMarca,
+          email: "treinador13@treinador.pt",
+          nome: "treinador Castro",
           password: "treinador",
           dataNasc: "1999-04-09",
           dataEntrada: "2022-03-24",
@@ -51,12 +52,12 @@ describe("Teste registar treinadores numa marca:", () => {
     it("Deve retornar aluno criado", () => {
       return chai
         .request(server)
-        .post("/admin/marca/" + idMarca + "/treinadores/")
+        .post("/admin/marca/treinadores")
         .set("Authorization", token)
-
         .send({
-          email: "treinador10@treinador.pt",
-          nome: "treinador Berto",
+          "marcaId": idMarca,
+          email: "treinador13@treinador.pt",
+          nome: "treinador Castro",
           password: "treinador",
           dataNasc: "1999-04-09",
           dataEntrada: "2022-03-24",
