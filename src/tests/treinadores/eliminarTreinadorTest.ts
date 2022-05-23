@@ -62,15 +62,8 @@ describe("Teste Remover treinador:", () => {
         .set("Authorization", token)
         .then((res) => {
           res.should.have.status(200);
-
+          
           chai.expect(res.body).to.be.an("object");
-
-          //verificar se é um objeto
-          //verificar se as propriedades todas existem
-
-          chai.expect(res.body).to.have.property("msg");
-
-          chai.expect(res.body["msg"]).to.be.a("string");
         });
     });
   });
