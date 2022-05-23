@@ -6,7 +6,7 @@ export async function verificarAdminTreinador(request: Request, response: Respon
 
     const user = checkUserIdExists(uid)
     if (!user) {
-        response.json({ 'msg': 'User inexistente' }).status(401)
+        response.status(401).json({ 'msg': 'User inexistente' })
     }
 
     const funcao_id = await getUserFuncao(uid);
@@ -17,7 +17,7 @@ export async function verificarAdminTreinador(request: Request, response: Respon
         next();
     }
     else {
-        response.json({ 'msg': 'Não possui autorização' }).status(401)
+        response.status(401).json({ 'msg': 'Não possui autorização' })
     }
 
 }
