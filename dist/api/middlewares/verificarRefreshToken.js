@@ -9,35 +9,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.verificarAutenticacao = void 0;
-const dbHelpers_1 = require("../helpers/dbHelpers");
+exports.verificarRefreshToken = void 0;
 require('dotenv').config({ path: __dirname + '/.env' });
 const jsonwebtoken_1 = require("jsonwebtoken");
-function verificarAutenticacao(request, response, next) {
+const client_1 = require("../prisma/client");
+function verificarRefreshToken(request, response, next) {
     return __awaiter(this, void 0, void 0, function* () {
-        const auth = request.headers.authorization;
-        if (!auth || auth === undefined || auth === null) {
-            response.status(401).json({ 'msg': 'Token invalido' });
-        }
-        const [, token] = auth.split(" ");
-        try {
-            (0, jsonwebtoken_1.verify)(token, process.env.SECRET_KEY_TOKEN);
-        }
-        catch (e) {
-            response.status(401).json({ 'msg': 'Token invalido' });
-        }
-        const inBlackList = yield (0, dbHelpers_1.checkInBlackList)(token);
-        if (inBlackList) {
+        if (request.body.refresh_token === undefined) {
             response.json({ 'msg': 'Token invalido' }).status(401);
         }
-        let uid = (0, jsonwebtoken_1.decode)(token)['sub'].toString();
-        response.locals.uid = uid;
-        response.locals.token = token;
-        //verificar se o user existe
-        const user = yield (0, dbHelpers_1.getUserByID)(uid);
-        if (!user) {
-            response.json({ 'msg': 'User inexistente' }).status(401);
-        }
+        const user = yield client_1.client.users.findFirst({
+            where: {
+                refresh_token: request.body.refresh_token
+            }
+        });
         const refreshToken = user.refresh_token;
         if (!refreshToken) {
             response.json({ 'msg': 'Sessão invalida' }).status(401);
@@ -51,5 +36,5 @@ function verificarAutenticacao(request, response, next) {
         next();
     });
 }
-exports.verificarAutenticacao = verificarAutenticacao;
-//# sourceMappingURL=verificarAutenticacao.js.map
+exports.verificarRefreshToken = verificarRefreshToken;
+//# sourceMappingURL=verificarRefreshToken.js.map

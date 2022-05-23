@@ -16,6 +16,9 @@ allRouter.get('/desafios/:desafioId/submissoes', verificarAutenticacao_1.verific
     const desafioId = req.params.desafioId;
     gymapp_api.get(`/${userId}/desafios/${desafioId}/submissoes`).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 allRouter.get('/alunos/ginasio/:ginasioId', verificarAutenticacao_1.verificarAutenticacao, (req, res) => {
@@ -23,6 +26,9 @@ allRouter.get('/alunos/ginasio/:ginasioId', verificarAutenticacao_1.verificarAut
     const ginasioId = req.params.ginasioId;
     gymapp_api.get(`/${userId}/alunos/ginasio/${ginasioId}`).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 allRouter.post('/posts/comentarios', verificarAutenticacao_1.verificarAutenticacao, (req, res) => {
@@ -32,6 +38,9 @@ allRouter.post('/posts/comentarios', verificarAutenticacao_1.verificarAutenticac
     delete body['postId'];
     gymapp_api.post(`/${userId}/posts/${postId}/comentarios`, body).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 allRouter.post('/posts/comentario/gosto', verificarAutenticacao_1.verificarAutenticacao, (req, res) => {
@@ -40,6 +49,9 @@ allRouter.post('/posts/comentario/gosto', verificarAutenticacao_1.verificarAuten
     const comentarioId = req.body.comentarioId;
     gymapp_api.post(`/${userId}/posts/${postId}/comentario/${comentarioId}/gosto`).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 allRouter.delete('/posts/:postId/comentario/:comentarioId/gosto', verificarAutenticacao_1.verificarAutenticacao, (req, res) => {
@@ -48,6 +60,9 @@ allRouter.delete('/posts/:postId/comentario/:comentarioId/gosto', verificarAuten
     const comentarioId = req.params.comentarioId;
     gymapp_api.delete(`/${userId}/posts/${postId}/comentario/${comentarioId}/gosto`).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 allRouter.delete('/posts/:postId/comentario/:comentarioId', verificarAutenticacao_1.verificarAutenticacao, (req, res) => {
@@ -56,12 +71,18 @@ allRouter.delete('/posts/:postId/comentario/:comentarioId', verificarAutenticaca
     const comentarioId = req.params.comentarioId;
     gymapp_api.delete(`/${userId}/posts/${postId}/comentario/${comentarioId}`).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 allRouter.get('/posts/:postId', verificarAutenticacao_1.verificarAutenticacao, (req, res) => {
     const postId = req.params.postId;
     gymapp_api.get(`/posts/${postId}`).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 allRouter.delete('/posts/:postId', verificarAutenticacao_1.verificarAutenticacao, (req, res) => {
@@ -69,6 +90,9 @@ allRouter.delete('/posts/:postId', verificarAutenticacao_1.verificarAutenticacao
     const postId = req.params.postId;
     gymapp_api.delete(`/${userId}/posts/${postId}`).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 allRouter.put('/posts', verificarAutenticacao_1.verificarAutenticacao, (req, res) => {
@@ -78,6 +102,9 @@ allRouter.put('/posts', verificarAutenticacao_1.verificarAutenticacao, (req, res
     delete body['postId'];
     gymapp_api.put(`/${userId}/posts/${postId}`, body).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 allRouter.post('/posts/gostos', verificarAutenticacao_1.verificarAutenticacao, (req, res) => {
@@ -87,6 +114,9 @@ allRouter.post('/posts/gostos', verificarAutenticacao_1.verificarAutenticacao, (
     delete body['postId'];
     gymapp_api.post(`/${userId}/posts/${postId}/gostos`, body).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 allRouter.delete('/posts/:postId/gostos', verificarAutenticacao_1.verificarAutenticacao, (req, res) => {
@@ -94,6 +124,9 @@ allRouter.delete('/posts/:postId/gostos', verificarAutenticacao_1.verificarAuten
     const postId = req.params.postId;
     gymapp_api.delete(`/${userId}/posts/${postId}/gostos`).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 allRouter.get('/desafios/:desafioId', verificarAutenticacao_1.verificarAutenticacao, (req, res) => {
@@ -101,17 +134,26 @@ allRouter.get('/desafios/:desafioId', verificarAutenticacao_1.verificarAutentica
     const desafioId = req.params.desafioId;
     gymapp_api.get(`/${userId}/desafios/${desafioId}`).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 allRouter.get('/atividades', verificarAutenticacao_1.verificarAutenticacao, (req, res) => {
     gymapp_api.get(`/atividades/`).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 allRouter.get('/definicoes', verificarAutenticacao_1.verificarAutenticacao, (req, res) => {
     const userId = res.locals.uid;
     gymapp_api.get(`/${userId}/definicoes`).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 allRouter.put('/destinosNotificacao/notificacao', verificarAutenticacao_1.verificarAutenticacao, (req, res) => {
@@ -119,18 +161,27 @@ allRouter.put('/destinosNotificacao/notificacao', verificarAutenticacao_1.verifi
     const notiId = req.body.notiId;
     gymapp_api.put(`/${userId}/destinosNotificacao/notificacao/${notiId}`).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 allRouter.put('/perfil', verificarAutenticacao_1.verificarAutenticacao, (req, res) => {
     const userId = res.locals.uid;
     gymapp_api.put(`/${userId}/perfil`, req.body).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 allRouter.get('/perfil', verificarAutenticacao_1.verificarAutenticacao, (req, res) => {
     const userId = res.locals.uid;
     gymapp_api.get(`/${userId}/perfil`).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 allRouter.get('/user/:uId', verificarAutenticacao_1.verificarAutenticacao, (req, res) => {
@@ -138,36 +189,57 @@ allRouter.get('/user/:uId', verificarAutenticacao_1.verificarAutenticacao, (req,
     const uId = req.params.uId;
     gymapp_api.get(`/${userId}/user/${uId}`).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 allRouter.put('/definicoes/identificacao', verificarAutenticacao_1.verificarAutenticacao, (req, res) => {
     const userId = res.locals.uid;
     gymapp_api.put(`/${userId}/definicoes/identificacao/`, req.body).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 allRouter.put('/definicoes/mencoes', verificarAutenticacao_1.verificarAutenticacao, (req, res) => {
     const userId = res.locals.uid;
     gymapp_api.put(`/${userId}/definicoes/mencoes`, req.body).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 allRouter.get('/posts', verificarAutenticacao_1.verificarAutenticacao, (req, res) => {
     const userId = res.locals.uid;
     gymapp_api.get(`/${userId}/posts`).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 allRouter.post('/posts', verificarAutenticacao_1.verificarAutenticacao, (req, res) => {
     const userId = res.locals.uid;
     gymapp_api.post(`/${userId}/posts`, req.body).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 allRouter.put('/definicoes/perfil/privado', verificarAutenticacao_1.verificarAutenticacao, (req, res) => {
     const userId = res.locals.uid;
     gymapp_api.put(`/${userId}/definicoes/perfil/privado/`, req.body).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 allRouter.get('/ginasio/:ginasioId/desafios', verificarAutenticacao_1.verificarAutenticacao, (req, res) => {
@@ -175,6 +247,9 @@ allRouter.get('/ginasio/:ginasioId/desafios', verificarAutenticacao_1.verificarA
     const ginasioId = req.params.ginasioId;
     gymapp_api.get(`/${userId}/ginasio/${ginasioId}/desafios/`).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 allRouter.get('/ginasio/:ginasioId/desafios/disponiveis', verificarAutenticacao_1.verificarAutenticacao, (req, res) => {
@@ -182,12 +257,18 @@ allRouter.get('/ginasio/:ginasioId/desafios/disponiveis', verificarAutenticacao_
     const ginasioId = req.params.ginasioId;
     gymapp_api.get(`/${userId}/ginasio/${ginasioId}/desafios/disponiveis`).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 allRouter.get('/notificacoes', verificarAutenticacao_1.verificarAutenticacao, (req, res) => {
     const userId = res.locals.uid;
     gymapp_api.get(`/${userId}/notificacoes`).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 //# sourceMappingURL=all.js.map

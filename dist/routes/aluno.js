@@ -16,6 +16,9 @@ alunoRouter.post('/aluno/agenda/avaliacao', verificarAutenticacao_1.verificarAut
     const userId = res.locals.uid;
     gymapp_api.post(`/aluno/${userId}/agenda/avaliacao/`, req.body).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 alunoRouter.post('/aluno/agenda/desafios', verificarAutenticacao_1.verificarAutenticacao, verificarAluno_1.verificarAluno, (req, res) => {
@@ -25,18 +28,27 @@ alunoRouter.post('/aluno/agenda/desafios', verificarAutenticacao_1.verificarAute
     delete body['desafioId'];
     gymapp_api.post(`/aluno/${userId}/agenda/desafios/${desafioId}`, body).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 alunoRouter.get('/aluno/avaliacoes', verificarAutenticacao_1.verificarAutenticacao, verificarAluno_1.verificarAluno, (req, res) => {
     const userId = res.locals.uid;
-    gymapp_api.get(`/aluno/${userId}/avaliacoes/`).then(resp => {
+    gymapp_api.get(`/aluno/${userId}/avaliacoes/${userId}`).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 alunoRouter.post('/aluno/treinos', verificarAutenticacao_1.verificarAutenticacao, verificarAluno_1.verificarAluno, (req, res) => {
     const userId = res.locals.uid;
     gymapp_api.post(`/aluno/${userId}/treinos`, req.body).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 alunoRouter.delete('/aluno/treino/:treinoId', verificarAutenticacao_1.verificarAutenticacao, verificarAluno_1.verificarAluno, (req, res) => {
@@ -44,6 +56,9 @@ alunoRouter.delete('/aluno/treino/:treinoId', verificarAutenticacao_1.verificarA
     const treinoId = req.params.treinoId;
     gymapp_api.delete(`/aluno/${userId}/treino/${treinoId}/`).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 alunoRouter.delete('/aluno/agenda/desafios/:agendamentoId/agendamento', verificarAutenticacao_1.verificarAutenticacao, verificarAluno_1.verificarAluno, (req, res) => {
@@ -51,6 +66,9 @@ alunoRouter.delete('/aluno/agenda/desafios/:agendamentoId/agendamento', verifica
     const agendamentoId = req.params.agendamentoId;
     gymapp_api.delete(`/aluno/${userId}/agenda/desafios/${agendamentoId}/agendamento/`).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 alunoRouter.delete('/aluno/agenda/avaliacao/:agendamentoId/agendamento', verificarAutenticacao_1.verificarAutenticacao, verificarAluno_1.verificarAluno, (req, res) => {
@@ -58,12 +76,18 @@ alunoRouter.delete('/aluno/agenda/avaliacao/:agendamentoId/agendamento', verific
     const agendamentoId = req.params.agendamentoId;
     gymapp_api.delete(`/aluno/${userId}/agenda/avaliacao/${agendamentoId}/agendamento/`).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 alunoRouter.get('/aluno/treinos', verificarAutenticacao_1.verificarAutenticacao, verificarAluno_1.verificarAluno, (req, res) => {
     const userId = res.locals.uid;
     gymapp_api.get(`/aluno/${userId}/treinos/`).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 alunoRouter.put('/aluno/treinos', verificarAutenticacao_1.verificarAutenticacao, verificarAluno_1.verificarAluno, (req, res) => {
@@ -73,6 +97,9 @@ alunoRouter.put('/aluno/treinos', verificarAutenticacao_1.verificarAutenticacao,
     delete body['treinoId'];
     gymapp_api.put(`/aluno/${userId}/treinos/${treinoId}`, body).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 alunoRouter.get('/aluno/planoTreino/:startDate/:endDate', verificarAutenticacao_1.verificarAutenticacao, verificarAluno_1.verificarAluno, (req, res) => {
@@ -81,18 +108,27 @@ alunoRouter.get('/aluno/planoTreino/:startDate/:endDate', verificarAutenticacao_
     const endDate = req.params.endDate;
     gymapp_api.get(`/aluno/${userId}/planoTreino/${startDate}/${endDate}`).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 alunoRouter.get('/aluno/agenda/avaliacoes', verificarAutenticacao_1.verificarAutenticacao, verificarAluno_1.verificarAluno, (req, res) => {
     const userId = res.locals.uid;
     gymapp_api.get(`/aluno/${userId}/agenda/avaliacoes/`).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 alunoRouter.get('/aluno/agenda/desafios', verificarAutenticacao_1.verificarAutenticacao, verificarAluno_1.verificarAluno, (req, res) => {
     const userId = res.locals.uid;
     gymapp_api.get(`/aluno/${userId}/agenda/desafios/`).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 alunoRouter.put('/aluno/plano/realizado', verificarAutenticacao_1.verificarAutenticacao, verificarAluno_1.verificarAluno, (req, res) => {
@@ -102,6 +138,9 @@ alunoRouter.put('/aluno/plano/realizado', verificarAutenticacao_1.verificarAuten
     delete body['planoId'];
     gymapp_api.put(`/aluno/${userId}/plano/${planoId}/realizado/`, body).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 alunoRouter.delete('/aluno/plano/:planoId/realizado', verificarAutenticacao_1.verificarAutenticacao, verificarAluno_1.verificarAluno, (req, res) => {
@@ -109,6 +148,9 @@ alunoRouter.delete('/aluno/plano/:planoId/realizado', verificarAutenticacao_1.ve
     const planoId = req.params.planoId;
     gymapp_api.delete(`/aluno/${userId}/plano/${planoId}/realizado/`).then(resp => {
         res.send(resp.data);
+    }).catch(err => {
+        const resp = err.response;
+        res.send(resp.data).status(resp.status);
     });
 });
 //# sourceMappingURL=aluno.js.map
