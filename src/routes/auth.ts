@@ -1,6 +1,7 @@
 
 import express from "express";
 import { verificarAutenticacao } from "../api/middlewares/verificarAutenticacao";
+import { verificarRefreshToken } from "../api/middlewares/verificarRefreshToken";
 import { apiAdapter } from "../apiAdapter";
 const authRouter = express.Router();
 
@@ -18,9 +19,9 @@ authRouter.post('/auth/login', (req, res) => {
   })
 })
 
-authRouter.post('/auth/token', verificarAutenticacao, (req, res) => {
-  const userId = res.locals.uid;
-  gymapp_api.post(`/auth/${userId}/token`,
+authRouter.post('/auth/token', verificarRefreshToken, (req, res) => {
+  gymapp_api.post(`/auth/token`,
+    req.body
   ).then(resp => {
     res.send(resp.data)
   }).catch(err => {

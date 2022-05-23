@@ -4046,7 +4046,24 @@
         "summary": "Gerar novo token de sessão",
         "description": "Esta rota permite gerar um nove token de sessão para um utilizador",
         "tags": ["Autenticação"],
-        "security": [{ "basicAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "refresh_token": { "type": "string" }
+                }
+              },
+              "examples": {
+                "RefreshToken": {
+                  "value": {
+                    "refresh_token": "token"
+                  }
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "500": { "description": "ERROR" },
           "200": {
