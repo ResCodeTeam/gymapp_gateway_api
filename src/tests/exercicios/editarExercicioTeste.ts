@@ -83,7 +83,7 @@ describe("Teste editar exercicio", () => {
         .put("/treinador/exercicios")
         .set("Authorization", token)
         .send({
-          "exercicioId": exercicioId
+          "exercicioId": exercicioId,
           nome: "Teste1",
           descricao: "Teste2",
           isTempo: true,
