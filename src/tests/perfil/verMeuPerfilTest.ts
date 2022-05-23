@@ -16,7 +16,7 @@ describe("Teste Obter Perfil do utilizador logado", () => {
   beforeEach((done) => {
     chai
       .request(server)
-      .post(baseUrl + "/auth/login")
+      .post("/auth/login")
       .send({
         email: "biancasilva@gmail.com",
         password: "passwd",
@@ -31,11 +31,10 @@ describe("Teste Obter Perfil do utilizador logado", () => {
     it("Deve retornar erro de token invalido", () => {
       return chai
         .request(server)
-        .get(baseUrl + "/perfil")
+        .get("/perfil")
         .then((res) => {
-          res.should.have.status(500);
-          chai.expect(res.body).to.have.property("status");
-          chai.expect(res.body).to.have.property("message");
+          res.should.have.status(401);
+          chai.expect(res.body).to.be.an("object");
         });
     });
   });
@@ -44,7 +43,7 @@ describe("Teste Obter Perfil do utilizador logado", () => {
     it("Deve retornar erro de token invalido", () => {
       return chai
         .request(server)
-        .get(baseUrl + "/perfil")
+        .get("/perfil")
         .set("Authorization", tokenInvalido)
         .then((res) => {
           res.should.have.status(401);
@@ -57,13 +56,13 @@ describe("Teste Obter Perfil do utilizador logado", () => {
     it("Deve retornar um perfil", () => {
       return chai
         .request(server)
-        .get(baseUrl + "/perfil")
+        .get("/perfil")
         .set("Authorization", token)
         .then((res) => {
           res.should.have.status(200);
           // verificar se é um object
           chai.expect(res.body).to.be.an("object");
-          console.log(res.body);
+
 
           chai.expect(res.body).to.have.property("perfil");
           chai.expect(res.body).to.have.property("posts");

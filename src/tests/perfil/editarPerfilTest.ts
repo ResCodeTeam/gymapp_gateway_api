@@ -59,7 +59,7 @@ describe("Teste editar perfil", () => {
         .put("/perfil")
         .set("Authorization", token)
         .then((res) => {
-          res.should.have.status(401);
+          res.should.have.status(500);
           chai.expect(res.body).to.be.an("object");
         });
     });
