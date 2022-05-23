@@ -49,9 +49,9 @@ describe("Teste remover ginásio modalidade", () => {
         .delete("/admin/ginasio/" + idGinasio + "/modalidades/" + modalidadeId)
         .set("Authorization", tokenInvalido)
         .then((res) => {
-          res.should.have.status(500);
-          chai.expect(res.body).to.have.property("status");
-          chai.expect(res.body).to.have.property("message");
+          res.should.have.status(401);
+          res.should.have.status(401);
+          chai.expect(res.body).to.be.an("object");
         });
     });
   });

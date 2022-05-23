@@ -34,7 +34,11 @@ describe("Teste editar ginásio modalidade", () => {
     it("Deve retornar erro de authToken invalido", () => {
       return chai
         .request(server)
-        .put("/admin/ginasio/" + idGinasio + "/modalidades/" + modalidadeId)
+        .put("/admin/ginasio/modalidades")
+        .send({
+          "ginasioId": idGinasio,
+          "modalidadeId": modalidadeId
+        })
         .then((res) => {
           res.should.have.status(401);
           chai.expect(res.body).to.be.an("object");
@@ -46,7 +50,11 @@ describe("Teste editar ginásio modalidade", () => {
     it("Deve retornar erro de authToken invalido", () => {
       return chai
         .request(server)
-        .put("/admin/ginasio/" + idGinasio + "/modalidades/" + modalidadeId)
+        .put("/admin/ginasio/modalidades")
+        .send({
+          "ginasioId": idGinasio,
+          "modalidadeId": modalidadeId
+        })
         .set("Authorization", tokenInvalido)
         .then((res) => {
           res.should.have.status(401);
@@ -59,9 +67,12 @@ describe("Teste editar ginásio modalidade", () => {
     it("Deve retornar editar ginásio modalidade com sucesso", () => {
       return chai
         .request(server)
-        .put("/admin/ginasio/" + idGinasio + "/modalidades/" + modalidadeId)
+        .put("/admin/ginasio/modalidades")
+
         .set("Authorization", token)
         .send({
+          "ginasioId": idGinasio,
+          "modalidadeId": modalidadeId,
           nome: "Bicicleta",
           imagemUrl:
             "https://www.worten.pt/i/cad388e000d6ca935b2ad49b2b0e28f874b3257a",

@@ -15,41 +15,48 @@ require('dotenv').config({ path: __dirname + '/.env' });
 const jsonwebtoken_1 = require("jsonwebtoken");
 function verificarAutenticacao(request, response, next) {
     return __awaiter(this, void 0, void 0, function* () {
-        const auth = request.headers.authorization;
-        if (!auth) {
-            throw new Error("Token invalido");
-        }
-        const [, token] = auth.split(" ");
         try {
-            (0, jsonwebtoken_1.verify)(token, process.env.SECRET_KEY_TOKEN);
+            const auth = request.headers.authorization;
+            if (!auth || auth === undefined || auth === null) {
+                throw new Error('Token invalido');
+            }
+            const [, token] = auth.split(" ");
+            try {
+                (0, jsonwebtoken_1.verify)(token, process.env.SECRET_KEY_TOKEN);
+            }
+            catch (e) {
+                throw new Error('Token invalido');
+            }
+            const inBlackList = yield (0, dbHelpers_1.checkInBlackList)(token);
+            if (inBlackList) {
+                throw new Error('Token invalido');
+            }
+            if (!(0, jsonwebtoken_1.decode)(token)) {
+                throw new Error('Token invalido');
+            }
+            let uid = (0, jsonwebtoken_1.decode)(token)['sub'].toString();
+            response.locals.uid = uid;
+            response.locals.token = token;
+            //verificar se o user existe
+            const user = yield (0, dbHelpers_1.getUserByID)(uid);
+            if (!user) {
+                throw new Error('User inexistente');
+            }
+            const refreshToken = user.refresh_token;
+            if (!refreshToken) {
+                throw new Error('Sessão invalida');
+            }
+            try {
+                (0, jsonwebtoken_1.verify)(refreshToken, process.env.SECRET_KEY_REFRESH_TOKEN);
+            }
+            catch (e) {
+                throw new Error('Sessão invalida');
+            }
+            next();
         }
         catch (e) {
-            throw new Error("Token invalido");
+            response.status(401).json({ 'msg': e.message });
         }
-        const inBlackList = yield (0, dbHelpers_1.checkInBlackList)(token);
-        if (inBlackList) {
-            throw new Error("Token invalido");
-        }
-        //obter id do user
-        let uid = (0, jsonwebtoken_1.decode)(token)['sub'].toString();
-        response.locals.uid = uid;
-        response.locals.token = token;
-        //verificar se o user existe
-        const user = yield (0, dbHelpers_1.getUserByID)(uid);
-        if (!user) {
-            response.json({ 'msg': 'User inexistente' }).status(401);
-        }
-        const refreshToken = user.refresh_token;
-        if (!refreshToken) {
-            throw new Error("Sessão invalida");
-        }
-        try {
-            (0, jsonwebtoken_1.verify)(refreshToken, process.env.SECRET_KEY_REFRESH_TOKEN);
-        }
-        catch (e) {
-            throw new Error("Sessão invalida");
-        }
-        next();
     });
 }
 exports.verificarAutenticacao = verificarAutenticacao;
