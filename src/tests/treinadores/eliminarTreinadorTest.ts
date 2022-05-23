@@ -9,7 +9,7 @@ const baseUrl = "/api/v1";
 const server = "localhost:2900";
 const tokenInvalido =
   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTAwMjQ1MzgsImV4cCI6MTY1MDAyNTQzOCwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.b0U-__cRpH8YBsAtZEtClr0fAj4t9IOwDAcI2R3j-qk";
-const idTreinador = "579cdcd1-321e-4b3b-b223-6cc1c38b45a9";
+const idTreinador = "a256d531-f90a-4326-92a2-1233218a0487";
 
 let token = "";
 

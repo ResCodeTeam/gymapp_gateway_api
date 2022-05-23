@@ -34,7 +34,10 @@ describe("Teste alterar visto", () => {
     it("Deve retornar erro de authToken invalido", () => {
       return chai
         .request(server)
-        .put("/destinosNotificacao/notificacao/" + idNoti)
+        .put("/destinosNotificacao/notificacao")
+        .send({
+          "notiId": idNoti
+        })
         .then((res) => {
           res.should.have.status(401);
           chai.expect(res.body).to.be.an("object");
@@ -46,7 +49,10 @@ describe("Teste alterar visto", () => {
     it("Deve retornar erro de authToken invalido", () => {
       return chai
         .request(server)
-        .put("/destinosNotificacao/notificacao/" + idNoti)
+        .put("/destinosNotificacao/notificacao")
+        .send({
+          "notiId": idNoti
+        })
         .set("Authorization", tokenInvalido)
         .then((res) => {
           res.should.have.status(401);
@@ -59,10 +65,13 @@ describe("Teste alterar visto", () => {
     it("Deve retornar erro", () => {
       return chai
         .request(server)
-        .put("/destinosNotificacao/notificacao/" + idNoti2)
+        .put("/destinosNotificacao/notificacao")
+        .send({
+          "notiId": idNoti2
+        })
         .set("Authorization", token)
         .then((res) => {
-          res.should.have.status(401);
+          res.should.have.status(500);
           chai.expect(res.body).to.be.an("object");
         });
     });

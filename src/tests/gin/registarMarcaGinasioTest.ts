@@ -33,9 +33,10 @@ describe("Teste registar um ginásio:", () => {
     it("Deve retornar erro de authToken invalido", () => {
       return chai
         .request(server)
-        .post("/admin/marca/" + idMarca + "/ginasio/")
+        .post("/admin/marca/ginasio/")
         .send({
-          nome: "Ginasio Tester",
+          "marcaId": idMarca,
+          nome: "Ginasio Teste 2",
           rua: "Rua dos combatentes",
           cp: 3850,
           imagemUrl: "imagem",
@@ -55,10 +56,11 @@ describe("Teste registar um ginásio:", () => {
     it("Deve retornar erro de authToken invalido", () => {
       return chai
         .request(server)
-        .post("/admin/marca/" + idMarca + "/ginasio/")
+        .post("/admin/marca/ginasio/")
         .set("Authorization", tokenInvalido)
         .send({
-          nome: "Ginasio Tester",
+          "marcaId": idMarca,
+          nome: "Ginasio Teste 2",
           rua: "Rua dos combatentes",
           cp: 3850,
           imagemUrl: "imagem",
@@ -78,10 +80,11 @@ describe("Teste registar um ginásio:", () => {
     it("Deve retornar ginasio criado", () => {
       return chai
         .request(server)
-        .post("/admin/marca/" + idMarca + "/ginasio/")
+        .post("/admin/marca/ginasio/")
         .set("Authorization", token)
         .send({
-          nome: "Ginasio Tester",
+          "marcaId": idMarca,
+          nome: "Ginasio Teste 2",
           rua: "Rua dos combatentes",
           cp: 3850,
           imagemUrl: "imagem",

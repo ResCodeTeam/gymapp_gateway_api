@@ -33,7 +33,10 @@ describe("Teste editar ginasio", () => {
     it("Deve retornar erro de authToken invalido", () => {
       return chai
         .request(server)
-        .put("/admin/ginasio/editar/" + idGinasio)
+        .put("/admin/ginasio/editar")
+        .send({
+          "ginasioId": idGinasio
+        })
         .then((res) => {
           res.should.have.status(401);
           chai.expect(res.body).to.be.an("object");
@@ -45,8 +48,11 @@ describe("Teste editar ginasio", () => {
     it("Deve retornar erro de authToken invalido", () => {
       return chai
         .request(server)
-        .put("/admin/ginasio/editar/" + idGinasio)
+        .put("/admin/ginasio/editar")
         .set("Authorization", tokenInvalido)
+        .send({
+          "ginasioId": idGinasio
+        })
         .then((res) => {
           res.should.have.status(401);
           chai.expect(res.body).to.be.an("object");
@@ -58,10 +64,13 @@ describe("Teste editar ginasio", () => {
     it("Deve retornar erro de body incompleto", () => {
       return chai
         .request(server)
-        .put("/admin/ginasio/editar/" + idGinasio)
+        .put("/admin/ginasio/editar")
         .set("Authorization", token)
+        .send({
+          "ginasioId": idGinasio
+        })
         .then((res) => {
-          res.should.have.status(401);
+          res.should.have.status(500);
           chai.expect(res.body).to.be.an("object");
         });
     });
@@ -71,9 +80,10 @@ describe("Teste editar ginasio", () => {
     it("Deve retornar ginasio editada com sucesso", () => {
       return chai
         .request(server)
-        .put("/admin/ginasio/editar/" + idGinasio)
+        .put("/admin/ginasio/editar")
         .set("Authorization", token)
         .send({
+          "ginasioId": idGinasio,
           nome: "Ginásio da Prozis #VSKI",
           rua: "Rua das Castanhas",
           descricao: "null",

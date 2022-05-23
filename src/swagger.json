@@ -3696,6 +3696,24 @@
         "description": "Esta rota vai alterar o visto",
         "tags": ["Notificações"],
         "security": [{ "basicAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "notiId": { "type": "string" }
+                }
+              },
+              "examples": {
+                "Submissao desafio": {
+                  "value": {
+                    "notiId": "017ba015-689f-4f2e-b280-0a53204fc862"
+                  }
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "500": { "description": "ERROR" },
           "200": { "description": "OK" }

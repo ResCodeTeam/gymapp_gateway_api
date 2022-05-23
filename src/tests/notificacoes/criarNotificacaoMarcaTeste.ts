@@ -32,7 +32,10 @@ describe("Teste criar notificação marca", () => {
     it("Deve retornar erro de authToken invalido", () => {
       return chai
         .request(server)
-        .post("/admin/notificacao/marca/" + marcaId)
+        .post("/admin/notificacao/marca")
+        .send({
+          "marcaId": marcaId
+        })
         .then((res) => {
           res.should.have.status(401);
           chai.expect(res.body).to.be.an("object");
@@ -44,7 +47,10 @@ describe("Teste criar notificação marca", () => {
     it("Deve retornar erro de authToken invalido", () => {
       return chai
         .request(server)
-        .post("/admin/notificacao/marca/" + marcaId)
+        .post("/admin/notificacao/marca")
+        .send({
+          "marcaId": marcaId
+        })
         .set("Authorization", tokenInvalido)
         .then((res) => {
           res.should.have.status(401);
@@ -57,10 +63,13 @@ describe("Teste criar notificação marca", () => {
     it("Deve retornar erro de body incompleto", () => {
       return chai
         .request(server)
-        .post("/admin/notificacao/marca/" + marcaId)
+        .post("/admin/notificacao/marca")
+        .send({
+          "marcaId": marcaId
+        })
         .set("Authorization", token)
         .then((res) => {
-          res.should.have.status(401);
+          res.should.have.status(500);
           chai.expect(res.body).to.be.an("object");
         });
     });
@@ -70,9 +79,10 @@ describe("Teste criar notificação marca", () => {
     it("Deve retornar criar notificação marca com sucesso", () => {
       return chai
         .request(server)
-        .post("/admin/notificacao/marca/" + marcaId)
+        .post("/admin/notificacao/marca")
         .set("Authorization", token)
         .send({
+          "marcaId": marcaId,
           conteudo: "Teste de notificação",
           tipo: 0,
         })
