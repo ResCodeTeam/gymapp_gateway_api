@@ -5,8 +5,7 @@ import 'mocha';
 chai.use(chaiHttp);
 const expect = chai.expect;
 const should = chai.should();
-const baseUrl = "/api/v1"
-const server = "localhost:8000"
+const server = "localhost:2900"
 const tokenInvalido = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTAwMjQ1MzgsImV4cCI6MTY1MDAyNTQzOCwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.b0U-__cRpH8YBsAtZEtClr0fAj4t9IOwDAcI2R3j-qk'
 
 let token = ''
@@ -15,7 +14,7 @@ describe("Teste ver avaliação aluno", () => {
     beforeEach((done) => {
         chai
             .request(server)
-            .post(baseUrl + "/auth/login")
+            .post("/auth/login")
             .send({
                 email: "biancasilva@gmail.com",
                 password: "passwd",
@@ -28,7 +27,7 @@ describe("Teste ver avaliação aluno", () => {
     });
     describe('- Sem token', () => {
         it('Deve retornar erro de authToken invalido', () => {
-            return chai.request(server).get(baseUrl + '/aluno/avaliacoes/')
+            return chai.request(server).get('/aluno/avaliacoes')
                 .then(res => {
                     res.should.have.status(500)
                     chai.expect(res.body).to.have.property("status")
@@ -41,7 +40,7 @@ describe("Teste ver avaliação aluno", () => {
         it('Deve retornar erro de authToken invalido', () => {
             return chai
                 .request(server)
-                .get(baseUrl + '/aluno/avaliacoes/')
+                .get('/aluno/avaliacoes')
                 .set("Authorization", tokenInvalido)
                 .then(res => {
                     res.should.have.status(500)
@@ -55,7 +54,7 @@ describe("Teste ver avaliação aluno", () => {
         it('Deve obter avaliação do aluno corretamente', () => {
             return chai
                 .request(server)
-                .get(baseUrl + '/aluno/avaliacoes/')
+                .get('/aluno/avaliacoes')
                 .set("Authorization", token)
                 .then(res => {
                     res.should.have.status(200)

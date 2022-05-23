@@ -6,7 +6,7 @@ chai.use(chaiHttp);
 const expect = chai.expect;
 const should = chai.should();
 const baseUrl = "/api/v1"
-const server = "localhost:8000"
+const server = "localhost:2900"
 const tokenInvalido = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTAwMjQ1MzgsImV4cCI6MTY1MDAyNTQzOCwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.b0U-__cRpH8YBsAtZEtClr0fAj4t9IOwDAcI2R3j-qk'
 const idExercicio = "10ab5b75-c3e3-4222-86ca-ef7a8d131800"
 
@@ -16,7 +16,7 @@ describe("Teste adicionar imagem ao exercicio:", () => {
   beforeEach((done) => {
     chai
       .request(server)
-      .post(baseUrl + "/auth/login")
+      .post("/auth/login")
       .send({
         email: "treinador@treinador.com",
         password: "treinador",
@@ -34,7 +34,7 @@ describe("Teste adicionar imagem ao exercicio:", () => {
 
       return chai
         .request(server)
-        .post(baseUrl + '/treinador/exercicios/' + idExercicio + '/imagens')
+        .post('/treinador/exercicios/' + idExercicio + '/imagens')
         .send({
           imagem_id: "7e23788c-ba54-454f-9690-db0ae379ca7f",
           exercicio_id: "10ab5b75-c3e3-4222-86ca-ef7a8d131800",
@@ -53,7 +53,7 @@ describe("Teste adicionar imagem ao exercicio:", () => {
     it('Deve retornar erro de authToken invalido', () => {
       return chai
         .request(server)
-        .post(baseUrl + '/treinador/exercicios/' + idExercicio + '/imagens')
+        .post('/treinador/exercicios/' + idExercicio + '/imagens')
         .set("Authorization", tokenInvalido)
         .send({
             imagem_id: "7e23788c-ba54-454f-9690-db0ae379ca7f",
@@ -73,7 +73,7 @@ describe("Teste adicionar imagem ao exercicio:", () => {
     it('Deve retornar uma imagem no exercicio', () => {
       return chai
         .request(server)
-        .post(baseUrl + '/treinador/exercicios/' + idExercicio + '/imagens')
+        .post('/treinador/exercicios/' + idExercicio + '/imagens')
         .set("Authorization", token)
         .send({
             imagem_id: "7e23788c-ba54-454f-9690-db0ae379ca7f",

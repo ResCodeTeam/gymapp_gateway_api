@@ -6,7 +6,7 @@ chai.use(chaiHttp);
 const expect = chai.expect;
 const should = chai.should();
 const baseUrl = "/api/v1"
-const server = "localhost:8000"
+const server = "localhost:2900"
 const desafioId = 'fefa26e4-90ea-4a5e-8878-c051faffeb29'
 const tokenInvalido = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTAwMjQ1MzgsImV4cCI6MTY1MDAyNTQzOCwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.b0U-__cRpH8YBsAtZEtClr0fAj4t9IOwDAcI2R3j-qk'
 
@@ -17,7 +17,7 @@ describe("Teste obter sumissoes do desafio", () => {
     beforeEach((done) => {
         chai
             .request(server)
-            .post(baseUrl + "/auth/login")
+            .post("/auth/login")
             .send({
                 email: "admin2@admin.com",
                 password: "admin"
@@ -34,7 +34,7 @@ describe("Teste obter sumissoes do desafio", () => {
         it('Deve retornar erro de authToken invalido', () => {
             return chai
                 .request(server)
-                .get(baseUrl + '/desafios/'+desafioId+'/submissoes')
+                .get('/desafios/'+desafioId+'/submissoes')
                 .then(res => {
                     res.should.have.status(500)
                     chai.expect(res.body).to.have.property("status")
@@ -47,7 +47,7 @@ describe("Teste obter sumissoes do desafio", () => {
         it('Deve retornar erro de authToken invalido', () => {
             return chai
                 .request(server)
-                .get(baseUrl + '/desafios/'+desafioId+'/submissoes')
+                .get('/desafios/'+desafioId+'/submissoes')
                 .set("Authorization", tokenInvalido)
                 .then(res => {
                     res.should.have.status(500)
@@ -62,7 +62,7 @@ describe("Teste obter sumissoes do desafio", () => {
         it('Deve sumissoes do desafio', () => {
           return chai
           .request(server)
-          .get(baseUrl + '/desafios/'+desafioId+'/submissoes')
+          .get('/desafios/'+desafioId+'/submissoes')
           .set("Authorization", token)
           .then(res => {
             res.should.have.status(200)

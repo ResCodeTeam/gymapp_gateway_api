@@ -6,7 +6,7 @@ chai.use(chaiHttp);
 const expect = chai.expect;
 const should = chai.should();
 const baseUrl = "/api/v1"
-const server = "localhost:8000"
+const server = "localhost:2900"
 const idPost = '60b07b4b-bc6b-4b6d-9e12-9170f1419818'
 const tokenInvalido = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTAwMjQ1MzgsImV4cCI6MTY1MDAyNTQzOCwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.b0U-__cRpH8YBsAtZEtClr0fAj4t9IOwDAcI2R3j-qk'
 
@@ -16,7 +16,7 @@ describe("Teste criar comentario post", () => {
     beforeEach((done) => {
         chai
             .request(server)
-            .post(baseUrl + "/auth/login")
+            .post("/auth/login")
             .send({
                 email: "admin2@admin.com",
                 password: "admin"
@@ -33,7 +33,7 @@ describe("Teste criar comentario post", () => {
         it('Deve retornar erro de authToken invalido', () => {
             return chai
                 .request(server)
-                .post(baseUrl + '/posts/' + idPost + '/comentarios')
+                .post('/posts/' + idPost + '/comentarios')
                 .then(res => {
                     res.should.have.status(500)
                     chai.expect(res.body).to.have.property("status")
@@ -46,7 +46,7 @@ describe("Teste criar comentario post", () => {
         it('Deve retornar erro de authToken invalido', () => {
             return chai
                 .request(server)
-                .post(baseUrl + '/posts/' + idPost + '/comentarios')
+                .post('/posts/' + idPost + '/comentarios')
                 .set("Authorization", tokenInvalido)
                 .then(res => {
                     res.should.have.status(500)
@@ -60,7 +60,7 @@ describe("Teste criar comentario post", () => {
         it('Deve retornar erro de body incompleto', () => {
             return chai
                 .request(server)
-                .post(baseUrl + '/posts/' + idPost + '/comentarios')
+                .post('/posts/' + idPost + '/comentarios')
                 .set("Authorization", token)
                 .then(res => {
                     res.should.have.status(500)
@@ -74,7 +74,7 @@ describe("Teste criar comentario post", () => {
         it('Deve retornar criar comentario post com sucesso', () => {
             return chai
                 .request(server)
-                .post(baseUrl + '/posts/' + idPost + '/comentarios')
+                .post('/posts/' + idPost + '/comentarios')
                 .set("Authorization", token)
                 .send({
                     comentario: "Estou a comentar uma publicação",

@@ -6,7 +6,7 @@ chai.use(chaiHttp);
 const expect = chai.expect;
 const should = chai.should();
 const baseUrl = "/api/v1"
-const server = "localhost:8000"
+const server = "localhost:2900"
 const idGinasio = '69a12d9f-654b-4496-9200-348c9bbe9db5'
 const tokenInvalido = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTAwMjQ1MzgsImV4cCI6MTY1MDAyNTQzOCwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.b0U-__cRpH8YBsAtZEtClr0fAj4t9IOwDAcI2R3j-qk'
 
@@ -16,7 +16,7 @@ describe("Teste editar ginasio", () => {
     beforeEach((done) => {
         chai
             .request(server)
-            .post(baseUrl + "/auth/login")
+            .post("/auth/login")
             .send({
                 email: "admin2@admin.com",
                 password: "admin"
@@ -33,7 +33,7 @@ describe("Teste editar ginasio", () => {
         it('Deve retornar erro de authToken invalido', () => {
             return chai
                 .request(server)
-                .put(baseUrl + '/admin/ginasio/editar/' + idGinasio)
+                .put('/admin/ginasio/editar/' + idGinasio)
                 .then(res => {
                     res.should.have.status(500)
                     chai.expect(res.body).to.have.property("status")
@@ -46,7 +46,7 @@ describe("Teste editar ginasio", () => {
         it('Deve retornar erro de authToken invalido', () => {
             return chai
                 .request(server)
-                .put(baseUrl + '/admin/ginasio/editar/' + idGinasio)
+                .put('/admin/ginasio/editar/' + idGinasio)
                 .set("Authorization", tokenInvalido)
                 .then(res => {
                     res.should.have.status(500)
@@ -60,7 +60,7 @@ describe("Teste editar ginasio", () => {
         it('Deve retornar erro de body incompleto', () => {
             return chai
                 .request(server)
-                .put(baseUrl + '/admin/ginasio/editar/' + idGinasio)
+                .put('/admin/ginasio/editar/' + idGinasio)
                 .set("Authorization", token)
                 .then(res => {
                     res.should.have.status(500)
@@ -74,7 +74,7 @@ describe("Teste editar ginasio", () => {
         it('Deve retornar ginasio editada com sucesso', () => {
             return chai
                 .request(server)
-                .put(baseUrl + '/admin/ginasio/editar/' + idGinasio)
+                .put('/admin/ginasio/editar/' + idGinasio)
                 .set("Authorization", token)
                 .send({
                     nome: "Ginásio da Prozis #VSKI",

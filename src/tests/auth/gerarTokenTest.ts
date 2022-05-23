@@ -34,8 +34,7 @@ describe("Teste registar um ginásio:", () => {
         .post('/auth/token')
         .set("Authorization", token)
         .send({
-            id: "332b256d-d646-4877-8a4f-f5538472e0d4",
-            
+            refresh_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTMyNDE5MzgsImV4cCI6MTY4NDc5OTUzOCwic3ViIjoiMzMyYjI1NmQtZDY0Ni00ODc3LThhNGYtZjU1Mzg0NzJlMGQ0In0.VudvSKQalyyZwJI83-PM8upFHBDALPSj-smiF5xmzGA"
           })
 
         .then(res => {
@@ -48,9 +47,7 @@ describe("Teste registar um ginásio:", () => {
           chai.expect(res.body).to.have.property("token")
 
           chai.expect(res.body['token']).to.be.a("string")
-
         })
-
     })
   })
 

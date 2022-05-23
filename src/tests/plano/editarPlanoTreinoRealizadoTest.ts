@@ -6,7 +6,7 @@ chai.use(chaiHttp);
 const expect = chai.expect;
 const should = chai.should();
 const baseUrl = "/api/v1"
-const server = "localhost:8000"
+const server = "localhost:2900"
 const planoTreinoId = "07fe955a-9332-4f71-a944-05b7b096f02f"
 const tokenInvalido = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTAwMjQ1MzgsImV4cCI6MTY1MDAyNTQzOCwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.b0U-__cRpH8YBsAtZEtClr0fAj4t9IOwDAcI2R3j-qk'
 
@@ -16,7 +16,7 @@ describe("Teste editar plano de treino realizado aluno", () => {
     beforeEach((done) => {
         chai
             .request(server)
-            .post(baseUrl + "/auth/login")
+            .post("/auth/login")
             .send({
                 email: "biancasilva@gmail.com",
                 password: "passwd",
@@ -29,7 +29,7 @@ describe("Teste editar plano de treino realizado aluno", () => {
     });
     describe('- Sem token', () => {
         it('Deve retornar erro de authToken invalido', () => {
-            return chai.request(server).put(baseUrl + '/aluno/plano/' + planoTreinoId + '/realizado/')
+            return chai.request(server).put('/aluno/plano/' + planoTreinoId + '/realizado/')
                 .then(res => {
                     res.should.have.status(500)
                     chai.expect(res.body).to.have.property("status")
@@ -42,7 +42,7 @@ describe("Teste editar plano de treino realizado aluno", () => {
         it('Deve retornar erro de authToken invalido', () => {
             return chai
                 .request(server)
-                .put(baseUrl + '/aluno/plano/' + planoTreinoId + '/realizado/')
+                .put('/aluno/plano/' + planoTreinoId + '/realizado/')
                 .set("Authorization", tokenInvalido)
                 .then(res => {
                     res.should.have.status(500)
@@ -56,7 +56,7 @@ describe("Teste editar plano de treino realizado aluno", () => {
         it('Deve editar plano de treino realizado aluno', () => {
             return chai
                 .request(server)
-                .put(baseUrl + '/aluno/plano/' + planoTreinoId + '/realizado/')
+                .put('/aluno/plano/' + planoTreinoId + '/realizado/')
                 .set("Authorization", token)
                 .then(res => {
                     res.should.have.status(200)

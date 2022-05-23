@@ -6,7 +6,7 @@ chai.use(chaiHttp);
 const expect = chai.expect;
 const should = chai.should();
 const baseUrl = "/api/v1"
-const server = "localhost:8000"
+const server = "localhost:2900"
 const startDate = "2022-05-13"
 const endDate = "2022-05-19"
 const tokenInvalido = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTAwMjQ1MzgsImV4cCI6MTY1MDAyNTQzOCwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.b0U-__cRpH8YBsAtZEtClr0fAj4t9IOwDAcI2R3j-qk'
@@ -17,7 +17,7 @@ describe("Teste obter plano de treino semanal", () => {
     beforeEach((done) => {
         chai
             .request(server)
-            .post(baseUrl + "/auth/login")
+            .post("/auth/login")
             .send({
                 email: "biancasilva@gmail.com",
                 password: "passwd",
@@ -30,7 +30,7 @@ describe("Teste obter plano de treino semanal", () => {
     });
     describe('- Sem token', () => {
         it('Deve retornar erro de authToken invalido', () => {
-            return chai.request(server).get(baseUrl + '/aluno/planoTreino/' + startDate + '/' + endDate)
+            return chai.request(server).get('/aluno/planoTreino/' + startDate + '/' + endDate)
                 .then(res => {
                     res.should.have.status(500)
                     chai.expect(res.body).to.have.property("status")
@@ -43,7 +43,7 @@ describe("Teste obter plano de treino semanal", () => {
         it('Deve retornar erro de authToken invalido', () => {
             return chai
                 .request(server)
-                .get(baseUrl + '/aluno/planoTreino/' + startDate + '/' + endDate)
+                .get('/aluno/planoTreino/' + startDate + '/' + endDate)
                 .set("Authorization", tokenInvalido)
                 .then(res => {
                     res.should.have.status(500)
@@ -57,7 +57,7 @@ describe("Teste obter plano de treino semanal", () => {
         it('Deve obter plano de treino semanal do utilizador', () => {
             return chai
                 .request(server)
-                .get(baseUrl + '/aluno/planoTreino/' + startDate + '/' + endDate)
+                .get('/aluno/planoTreino/' + startDate + '/' + endDate)
                 .set("Authorization", token)
                 .then(res => {
                     res.should.have.status(200)

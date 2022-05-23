@@ -6,9 +6,8 @@ import 'mocha';
 chai.use(chaiHttp);
 const expect = chai.expect;
 const should = chai.should();
-const baseUrl = "/api/v1"
-const server = "localhost:8000"
-const ginasioaId = 'dc8acc46-89eb-4d0f-a14a-2388b21c90a0'
+const server = "localhost:2900"
+const ginasioId = 'dc8acc46-89eb-4d0f-a14a-2388b21c90a0'
 const tokenInvalido = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTAwMjQ1MzgsImV4cCI6MTY1MDAyNTQzOCwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.b0U-__cRpH8YBsAtZEtClr0fAj4t9IOwDAcI2R3j-qk'
 
 let token = ''
@@ -16,7 +15,7 @@ describe("Teste criar desafio ginasio", () => {
     beforeEach((done) => {
         chai
             .request(server)
-            .post(baseUrl + "/auth/login")
+            .post("/auth/login")
             .send({
                 email: "admin@admin.com",
                 password: "admin"
@@ -33,7 +32,10 @@ describe("Teste criar desafio ginasio", () => {
         it('Deve retornar erro de authToken invalido', () => {
             return chai
                 .request(server)
-                .post(baseUrl + '/adminTreinador/ginasio/' + ginasioaId +'/desafio/')
+                .post('/adminTreinador/ginasio/desafio/')
+                .send({
+                    ginasioId: ginasioId
+                })
                 .then(res => {
                     res.should.have.status(500)
                     chai.expect(res.body).to.have.property("status")
@@ -46,8 +48,11 @@ describe("Teste criar desafio ginasio", () => {
         it('Deve retornar erro de authToken invalido', () => {
             return chai
                 .request(server)
-                .post(baseUrl + '/adminTreinador/ginasio/' + ginasioaId +'/desafio/')
+                .post('/adminTreinador/ginasio/desafio/')
                 .set("Authorization", tokenInvalido)
+                .send({
+                    ginasioId: ginasioId
+                })
                 .then(res => {
                     res.should.have.status(500)
                     chai.expect(res.body).to.have.property("status")
@@ -60,8 +65,11 @@ describe("Teste criar desafio ginasio", () => {
         it('Deve retornar erro de body incompleto', () => {
             return chai
                 .request(server)
-                .post(baseUrl + '/adminTreinador/ginasio/' + ginasioaId +'/desafio/')
+                .post('/adminTreinador/ginasio/desafio/')
                 .set("Authorization", token)
+                .send({
+                    ginasioId: ginasioId
+                })
                 .then(res => {
                     res.should.have.status(500)
                     chai.expect(res.body).to.have.property("status")
@@ -74,9 +82,10 @@ describe("Teste criar desafio ginasio", () => {
         it('Deve retornar criar desafio com sucesso', () => {
             return chai
                 .request(server)
-                .post(baseUrl + '/adminTreinador/ginasio/' + ginasioaId +'/desafio/')
+                .post('/adminTreinador/ginasio/desafio/')
                 .set("Authorization", token)
                 .send({
+                    ginasioId: ginasioId,
                     nome: "Crossfit2",
                     modalidadeId: "047ea26d-bc43-4463-a3d1-8ea726a27b9f",
                     dataInicio: "2022-06-23T15:51:45.663Z",

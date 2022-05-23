@@ -7,8 +7,7 @@ chai.use(chaiHttp);
 const expect = chai.expect;
 const should = chai.should();
 const alunoId = "000d1e14-617e-423e-8a1a-f63d4fa5af6a"
-const baseUrl = "/api/v1"
-const server = "localhost:8000"
+const server = "localhost:2900"
 const tokenInvalido = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTAwMjQ1MzgsImV4cCI6MTY1MDAyNTQzOCwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.b0U-__cRpH8YBsAtZEtClr0fAj4t9IOwDAcI2R3j-qk'
 
 let token = ''
@@ -17,7 +16,7 @@ describe("Teste criar avaliacao treinador", () => {
     beforeEach((done) => {
         chai
             .request(server)
-            .post(baseUrl + "/auth/login")
+            .post("/auth/login")
             .send({
                 email: "treinador@treinador.com",
                 password: "treinador"
@@ -34,7 +33,10 @@ describe("Teste criar avaliacao treinador", () => {
         it('Deve retornar erro de authToken invalido', () => {
             return chai
                 .request(server)
-                .post(baseUrl + '/treinador/avaliacoes/' + alunoId)
+                .post('/treinador/avaliacoes')
+                .send({
+                    aluno_id: "000d1e14-617e-423e-8a1a-f63d4fa5af6a"
+                })
                 .then(res => {
                     res.should.have.status(500)
                     chai.expect(res.body).to.have.property("status")
@@ -47,8 +49,11 @@ describe("Teste criar avaliacao treinador", () => {
         it('Deve retornar erro de authToken invalido', () => {
             return chai
                 .request(server)
-                .post(baseUrl + '/treinador/avaliacoes/' + alunoId)
+                .post('/treinador/avaliacoes')
                 .set("Authorization", tokenInvalido)
+                .send({
+                    aluno_id: "000d1e14-617e-423e-8a1a-f63d4fa5af6a"
+                })
                 .then(res => {
                     res.should.have.status(500)
                     chai.expect(res.body).to.have.property("status")
@@ -61,8 +66,11 @@ describe("Teste criar avaliacao treinador", () => {
         it('Deve retornar erro de body incompleto', () => {
             return chai
                 .request(server)
-                .post(baseUrl + '/treinador/avaliacoes/' + alunoId)
+                .post('/treinador/avaliacoes')
                 .set("Authorization", token)
+                .send({
+                    aluno_id: "000d1e14-617e-423e-8a1a-f63d4fa5af6a"
+                })
                 .then(res => {
                     res.should.have.status(500)
                     chai.expect(res.body).to.have.property("status")
@@ -75,9 +83,10 @@ describe("Teste criar avaliacao treinador", () => {
         it('Deve retornar criar avaliacao treinador com sucesso', () => {
             return chai
                 .request(server)
-                .post(baseUrl + '/treinador/avaliacoes/' + alunoId)
+                .post('/treinador/avaliacoes')
                 .set("Authorization", token)
                 .send({
+                    aluno_id: "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
                     peso: 55,
                     unidadePeso: "Kg",
                     musculo: 80,
@@ -139,11 +148,7 @@ describe("Teste criar avaliacao treinador", () => {
                     chai.expect(res.body['proteina']).to.be.a("number")
                     chai.expect(res.body['massa_ossea']).to.be.a("number")
                     chai.expect(res.body['metabolismo_basal']).to.be.a("number")
-                    chai.expect(res.body['isDeleted']).to.be.a("boolean")
-
-
-
-                 
+                    chai.expect(res.body['isDeleted']).to.be.a("boolean")  
                 })
         })
     })

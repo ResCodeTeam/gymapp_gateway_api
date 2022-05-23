@@ -6,13 +6,13 @@ chai.use(chaiHttp);
 const expect = chai.expect;
 const should = chai.should();
 const baseUrl = "/api/v1"
-const server = "localhost:8000"
+const server = "localhost:2900"
 
 describe('- Criar musculo sem body', () => {
   it('Deve retornar erro de body incompleto', () => {
     return chai
       .request(server)
-      .post(baseUrl + '/backend/musculos/')
+      .post('/backend/musculos/')
       .then(res => {
         // não mando nenhum send - tem que retornar mensagem 500 - erro
         res.should.have.status(500)
@@ -26,7 +26,7 @@ describe('- Criar musculo corretamente', () => {
   it('Deve retornar musculo criada', () => {
     return chai
       .request(server)
-      .post(baseUrl + '/backend/musculos/')
+      .post('/backend/musculos/')
       .send({
         nome: "Teste3",
         image: "http://imagem/teste3",

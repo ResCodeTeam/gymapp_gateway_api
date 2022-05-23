@@ -6,7 +6,7 @@ chai.use(chaiHttp);
 const expect = chai.expect;
 const should = chai.should();
 const baseUrl = "/api/v1"
-const server = "localhost:8000"
+const server = "localhost:2900"
 const marcaId = '2c4fc500-7373-44ed-a665-270f19da455c'
 const localId = 'ef0e94f8-ea14-46a7-b704-b067f113444e'
 const tokenInvalido = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTAwMjQ1MzgsImV4cCI6MTY1MDAyNTQzOCwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.b0U-__cRpH8YBsAtZEtClr0fAj4t9IOwDAcI2R3j-qk'
@@ -18,7 +18,7 @@ describe("Teste remover local medida", () => {
     beforeEach((done) => {
         chai
             .request(server)
-            .post(baseUrl + "/auth/login")
+            .post("/auth/login")
             .send({
                 email: "admin@admin.com",
                 password: "admin"
@@ -35,7 +35,7 @@ describe("Teste remover local medida", () => {
         it('Deve retornar erro de authToken invalido', () => {
             return chai
                 .request(server)
-                .delete(baseUrl + '/admin/marca/' + marcaId + '/localMedida/' + localId)
+                .delete('/admin/marca/' + marcaId + '/localMedida/' + localId)
                 .then(res => {
                     res.should.have.status(500)
                     chai.expect(res.body).to.have.property("status")
@@ -48,7 +48,7 @@ describe("Teste remover local medida", () => {
         it('Deve retornar erro de authToken invalido', () => {
             return chai
                 .request(server)
-                .delete(baseUrl + '/admin/marca/' + marcaId + '/localMedida/' + localId)
+                .delete('/admin/marca/' + marcaId + '/localMedida/' + localId)
                     .set("Authorization", tokenInvalido)
                     .then(res => {
                         res.should.have.status(500)
@@ -63,7 +63,7 @@ describe("Teste remover local medida", () => {
         it('Deve retornar remover local medida com sucesso', () => {
             return chai
                 .request(server)
-                .delete(baseUrl + '/admin/marca/' + marcaId + '/localMedida/' + localId)
+                .delete('/admin/marca/' + marcaId + '/localMedida/' + localId)
                 .set("Authorization", token)
                 .then(res => {
                     res.should.have.status(200)

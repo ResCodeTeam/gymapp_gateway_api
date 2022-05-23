@@ -6,7 +6,7 @@ chai.use(chaiHttp);
 const expect = chai.expect;
 const should = chai.should();
 const baseUrl = "/api/v1"
-const server = "localhost:8000"
+const server = "localhost:2900"
 const idNoti = '05b13445-faf5-471d-807e-b27f5770a228'
 const idNoti2 = '123'
 
@@ -18,7 +18,7 @@ describe("Teste alterar visto", () => {
   beforeEach((done) => {
     chai
       .request(server)
-      .post(baseUrl + "/auth/login")
+      .post("/auth/login")
       .send({
         email: "stephanyduarte@gmail.com",
         password: "passwd",
@@ -33,7 +33,7 @@ describe("Teste alterar visto", () => {
     it('Deve retornar erro de authToken invalido', () => {
       return chai
         .request(server)
-        .put(baseUrl + '/destinosNotificacao/notificacao/' + idNoti)
+        .put('/destinosNotificacao/notificacao/' + idNoti)
         .then(res => {
           res.should.have.status(500)
           chai.expect(res.body).to.have.property("status")
@@ -46,7 +46,7 @@ describe("Teste alterar visto", () => {
     it('Deve retornar erro de authToken invalido', () => {
       return chai
         .request(server)
-        .put(baseUrl + '/destinosNotificacao/notificacao/' + idNoti)
+        .put('/destinosNotificacao/notificacao/' + idNoti)
         .set("Authorization", tokenInvalido)
         .then(res => {
           res.should.have.status(500)
@@ -60,7 +60,7 @@ describe("Teste alterar visto", () => {
     it('Deve retornar erro', () => {
       return chai
         .request(server)
-        .put(baseUrl + '/destinosNotificacao/notificacao/' + idNoti2)
+        .put('/destinosNotificacao/notificacao/' + idNoti2)
         .set("Authorization", token)
         .then(res => {
           res.should.have.status(500)
@@ -74,7 +74,7 @@ describe("Teste alterar visto", () => {
     it('Deve retornar alterar visto editado', () => {
       return chai
         .request(server)
-        .put(baseUrl + '/destinosNotificacao/notificacao/' + idNoti)
+        .put('/destinosNotificacao/notificacao/' + idNoti)
         .set("Authorization", token)
         .then(res => {
           res.should.have.status(200)

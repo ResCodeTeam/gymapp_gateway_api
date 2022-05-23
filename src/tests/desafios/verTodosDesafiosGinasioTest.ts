@@ -6,7 +6,7 @@ chai.use(chaiHttp);
 const expect = chai.expect;
 const should = chai.should();
 const baseUrl = "/api/v1"
-const server = "localhost:8000"
+const server = "localhost:2900"
 const tokenInvalido = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTAwMjQ1MzgsImV4cCI6MTY1MDAyNTQzOCwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.b0U-__cRpH8YBsAtZEtClr0fAj4t9IOwDAcI2R3j-qk'
 const idGim = "a97e6887-31dc-4186-ad27-09e0fb7d645e"
 let token = ''
@@ -15,7 +15,7 @@ describe("Teste Obter todos os desafios de um ginasio", () => {
   beforeEach((done) => {
     chai
       .request(server)
-      .post(baseUrl + "/auth/login")
+      .post("/auth/login")
       .send({
         email: "admin@admin.com",
         password: "admin",
@@ -30,7 +30,7 @@ describe("Teste Obter todos os desafios de um ginasio", () => {
     it('Deve retornar erro de authToken invalido', () => {
       return chai
         .request(server)
-        .get(baseUrl + '/ginasio/' + idGim + '/desafios/')
+        .get('/ginasio/' + idGim + '/desafios/')
         .then(res => {
           res.should.have.status(500)
           chai.expect(res.body).to.have.property("status")
@@ -43,7 +43,7 @@ describe("Teste Obter todos os desafios de um ginasio", () => {
     it('Deve retornar erro de authToken invalido', () => {
       return chai
         .request(server)
-        .get(baseUrl + '/ginasio/' + idGim + '/desafios/')
+        .get('/ginasio/' + idGim + '/desafios/')
         .set("Authorization", tokenInvalido)
         .then(res => {
           res.should.have.status(500)
@@ -57,7 +57,7 @@ describe("Teste Obter todos os desafios de um ginasio", () => {
     it('Deve retornar os desafios', () => {
       return chai
         .request(server)
-        .get(baseUrl + '/ginasio/' + idGim + '/desafios/')
+        .get('/ginasio/' + idGim + '/desafios/')
         .set("Authorization", token)
         .then(res => {
           res.should.have.status(200)

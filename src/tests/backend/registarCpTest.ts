@@ -5,8 +5,7 @@ import 'mocha';
 chai.use(chaiHttp);
 const expect = chai.expect;
 const should = chai.should();
-const baseUrl = "/api/v1"
-const server = "localhost:8000"
+const server = "localhost:2900"
 
 let token = ''
 
@@ -16,7 +15,7 @@ describe("Teste registar CP:", () => {
     it('Deve retornar cp criada', () => {
       return chai
         .request(server)
-        .post(baseUrl + '/backend/cp')
+        .post('/backend/cp')
         .set("Authorization", token)
         .send({
             cp: 4760,

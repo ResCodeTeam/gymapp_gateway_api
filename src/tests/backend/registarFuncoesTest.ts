@@ -6,7 +6,7 @@ chai.use(chaiHttp);
 const expect = chai.expect;
 const should = chai.should();
 const baseUrl = "/api/v1"
-const server = "localhost:8000"
+const server = "localhost:2900"
 
 let token = ''
 
@@ -16,10 +16,10 @@ describe("Teste registar função:", () => {
     it('Deve retornar funcao criada', () => {
       return chai
         .request(server)
-        .post(baseUrl + '/backend/funcoes')
+        .post('/backend/funcoes')
         .set("Authorization", token)
         .send({
-            nome: "Tester"
+            nome: "Teste"
           })
 
         .then(res => {

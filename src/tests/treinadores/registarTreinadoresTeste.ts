@@ -6,7 +6,7 @@ chai.use(chaiHttp);
 const expect = chai.expect;
 const should = chai.should();
 const baseUrl = "/api/v1"
-const server = "localhost:8000"
+const server = "localhost:2900"
 const tokenInvalido = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTAwMjQ1MzgsImV4cCI6MTY1MDAyNTQzOCwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.b0U-__cRpH8YBsAtZEtClr0fAj4t9IOwDAcI2R3j-qk'
 const idMarca = "d9017634-c824-423d-96a3-6da7f162917a"
 let token = ''
@@ -15,7 +15,7 @@ describe("Teste registar treinadores numa marca:", () => {
   beforeEach((done) => {
     chai
       .request(server)
-      .post(baseUrl + "/auth/login")
+      .post("/auth/login")
       .send({
         email: "admin@admin.com",
         password: "admin",
@@ -30,7 +30,7 @@ describe("Teste registar treinadores numa marca:", () => {
   describe('- Sem token', () => {
     it('Deve retornar erro de authToken invalido', () => {
 
-      return chai.request(server).post(baseUrl + '/admin/marca/' + idMarca + '/treinadores/')
+      return chai.request(server).post('/admin/marca/' + idMarca + '/treinadores/')
         .send({
           email: "treinador10@treinador.pt",
           nome: "treinador Berto",
@@ -51,7 +51,7 @@ describe("Teste registar treinadores numa marca:", () => {
   describe('-Registar aluno corretamente', () => {
     it('Deve retornar aluno criado', () => {
 
-      return chai.request(server).post(baseUrl + '/admin/marca/' + idMarca + '/treinadores/')
+      return chai.request(server).post('/admin/marca/' + idMarca + '/treinadores/')
         .set("Authorization", token)
 
         .send({

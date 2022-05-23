@@ -6,7 +6,7 @@ chai.use(chaiHttp);
 const expect = chai.expect;
 const should = chai.should();
 const baseUrl = "/api/v1"
-const server = "localhost:8000"
+const server = "localhost:2900"
 const tokenInvalido = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTIyNTk1MzAsImV4cCI6MTY1MjI2MDQzMCwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.WEtDbxCu7zu8jA2cFsIlgz7vYreilB0xrhN4qmNcP0I'
 const idMarca = "f34fdd41-8670-4b50-9311-ebdb0ad993c4"
 let token = ''
@@ -15,7 +15,7 @@ describe("Teste Obter uma marca", () => {
   beforeEach((done) => {
     chai
       .request(server)
-      .post(baseUrl + "/auth/login")
+      .post("/auth/login")
       .send({
         email: "admin@admin.com",
         password: "admin",
@@ -30,7 +30,7 @@ describe("Teste Obter uma marca", () => {
     it('Deve retornar erro de authToken invalido', () => {
       return chai
         .request(server)
-        .get(baseUrl + '/admin/marca/' + idMarca)
+        .get('/admin/marca/' + idMarca)
         .then(res => {
           res.should.have.status(500)
           chai.expect(res.body).to.have.property("status")
@@ -43,7 +43,7 @@ describe("Teste Obter uma marca", () => {
     it('Deve retornar erro de authToken invalido', () => {
       return chai
         .request(server)
-        .get(baseUrl + '/admin/marca/' + idMarca)
+        .get('/admin/marca/' + idMarca)
         .set("Authorization", tokenInvalido)
         .then(res => {
           res.should.have.status(500)
@@ -57,7 +57,7 @@ describe("Teste Obter uma marca", () => {
     it('Deve retornar a marca', () => {
       return chai
         .request(server)
-        .get(baseUrl + '/admin/marca/' + idMarca)
+        .get('/admin/marca/' + idMarca)
         .set("Authorization", token)
         .then(res => {
           res.should.have.status(200)

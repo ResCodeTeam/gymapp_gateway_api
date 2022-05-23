@@ -7,8 +7,7 @@ chai.use(chaiHttp);
 const expect = chai.expect;
 const should = chai.should();
 const alunoId = "000d1e14-617e-423e-8a1a-f63d4fa5af6a"
-const baseUrl = "/api/v1"
-const server = "localhost:8000"
+const server = "localhost:2900"
 const tokenInvalido = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTAwMjQ1MzgsImV4cCI6MTY1MDAyNTQzOCwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.b0U-__cRpH8YBsAtZEtClr0fAj4t9IOwDAcI2R3j-qk'
 
 let token = ''
@@ -17,7 +16,7 @@ describe("Teste obter avaliacao do aluno treinador", () => {
     beforeEach((done) => {
         chai
             .request(server)
-            .post(baseUrl + "/auth/login")
+            .post("/auth/login")
             .send({
                 email: "treinador@treinador.com",
                 password: "treinador"
@@ -34,7 +33,7 @@ describe("Teste obter avaliacao do aluno treinador", () => {
         it('Deve retornar erro de authToken invalido', () => {
             return chai
                 .request(server)
-                .get(baseUrl + '/treinador/avaliacoes/' + alunoId)
+                .get('/treinador/avaliacoes/' + alunoId)
                 .then(res => {
                     res.should.have.status(500)
                     chai.expect(res.body).to.have.property("status")
@@ -47,7 +46,7 @@ describe("Teste obter avaliacao do aluno treinador", () => {
         it('Deve retornar erro de authToken invalido', () => {
             return chai
                 .request(server)
-                .get(baseUrl + '/treinador/avaliacoes/' + alunoId)
+                .get('/treinador/avaliacoes/' + alunoId)
                 .set("Authorization", tokenInvalido)
                 .then(res => {
                     res.should.have.status(500)
@@ -62,7 +61,7 @@ describe("Teste obter avaliacao do aluno treinador", () => {
         it('Deve retornar avaliacao do aluno treinador com sucesso', () => {
             return chai
                 .request(server)
-                .get(baseUrl + '/treinador/avaliacoes/' + alunoId)
+                .get('/treinador/avaliacoes/' + alunoId)
                 .set("Authorization", token)
 
                 .then(res => {

@@ -6,7 +6,7 @@ chai.use(chaiHttp);
 const expect = chai.expect;
 const should = chai.should();
 const baseUrl = "/api/v1"
-const server = "localhost:8000"
+const server = "localhost:2900"
 const destinoId = '000d1e14-617e-423e-8a1a-f63d4fa5af6a'
 const tokenInvalido = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTAwMjQ1MzgsImV4cCI6MTY1MDAyNTQzOCwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.b0U-__cRpH8YBsAtZEtClr0fAj4t9IOwDAcI2R3j-qk'
 
@@ -15,7 +15,7 @@ describe("Teste criar notificação users", () => {
     beforeEach((done) => {
         chai
             .request(server)
-            .post(baseUrl + "/auth/login")
+            .post("/auth/login")
             .send({
                 email: "admin@admin.com",
                 password: "admin"
@@ -32,7 +32,7 @@ describe("Teste criar notificação users", () => {
         it('Deve retornar erro de authToken invalido', () => {
             return chai
                 .request(server)
-                .post(baseUrl + '/admin/notificacao/user/' + destinoId)
+                .post('/admin/notificacao/user/' + destinoId)
                 .then(res => {
                     res.should.have.status(500)
                     chai.expect(res.body).to.have.property("status")
@@ -45,7 +45,7 @@ describe("Teste criar notificação users", () => {
         it('Deve retornar erro de authToken invalido', () => {
             return chai
                 .request(server)
-                .post(baseUrl + '/admin/notificacao/user/' + destinoId)
+                .post('/admin/notificacao/user/' + destinoId)
                 .set("Authorization", tokenInvalido)
                 .then(res => {
                     res.should.have.status(500)
@@ -59,7 +59,7 @@ describe("Teste criar notificação users", () => {
         it('Deve retornar erro de body incompleto', () => {
             return chai
                 .request(server)
-                .post(baseUrl + '/admin/notificacao/user/' + destinoId)
+                .post('/admin/notificacao/user/' + destinoId)
                 .set("Authorization", token)
                 .then(res => {
                     res.should.have.status(500)
@@ -73,7 +73,7 @@ describe("Teste criar notificação users", () => {
         it('Deve retornar criar notificação users com sucesso', () => {
             return chai
                 .request(server)
-                .post(baseUrl + '/admin/notificacao/user/' + destinoId)
+                .post('/admin/notificacao/user/' + destinoId)
                 .set("Authorization", token)
                 .send({
                     conteudo: "O seu agendamento foi aceite",

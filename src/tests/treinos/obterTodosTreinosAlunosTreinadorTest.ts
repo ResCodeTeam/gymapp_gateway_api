@@ -6,7 +6,7 @@ chai.use(chaiHttp);
 const expect = chai.expect;
 const should = chai.should();
 const baseUrl = "/api/v1"
-const server = "localhost:8000"
+const server = "localhost:2900"
 const tokenInvalido = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTAwMjQ1MzgsImV4cCI6MTY1MDAyNTQzOCwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.b0U-__cRpH8YBsAtZEtClr0fAj4t9IOwDAcI2R3j-qk'
 const userId = "000d1e14-617e-423e-8a1a-f63d4fa5af6a"
 
@@ -16,7 +16,7 @@ describe("Teste obter todos os treinos dos alunos treinador", () => {
     beforeEach((done) => {
         chai
             .request(server)
-            .post(baseUrl + "/auth/login")
+            .post("/auth/login")
             .send({
                 email: "treinador@treinador.com",
                 password: "treinador"
@@ -29,7 +29,7 @@ describe("Teste obter todos os treinos dos alunos treinador", () => {
     });
     describe('- Sem token', () => {
         it('Deve retornar erro de authToken invalido', () => {
-            return chai.request(server).get(baseUrl + '/treinador/treinos/')
+            return chai.request(server).get('/treinador/treinos/')
                 .then(res => {
                     res.should.have.status(500)
                     chai.expect(res.body).to.have.property("status")
@@ -42,7 +42,7 @@ describe("Teste obter todos os treinos dos alunos treinador", () => {
         it('Deve retornar erro de authToken invalido', () => {
             return chai
                 .request(server)
-                .get(baseUrl + '/treinador/treinos/')
+                .get('/treinador/treinos/')
                 .set("Authorization", tokenInvalido)
                 .then(res => {
                     res.should.have.status(500)
@@ -56,7 +56,7 @@ describe("Teste obter todos os treinos dos alunos treinador", () => {
         it('Deve obter todos os treinos dos alunos treinador', () => {
             return chai
                 .request(server)
-                .get(baseUrl + '/treinador/treinos/')
+                .get('/treinador/treinos/')
                 .set("Authorization", token)
                 .then(res => {
                     res.should.have.status(200)

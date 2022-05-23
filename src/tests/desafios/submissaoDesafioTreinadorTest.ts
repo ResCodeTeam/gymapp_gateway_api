@@ -7,7 +7,7 @@ chai.use(chaiHttp);
 const expect = chai.expect;
 const should = chai.should();
 const baseUrl = "/api/v1"
-const server = "localhost:8000"
+const server = "localhost:2900"
 const desafioId = '098a8100-2ca9-400a-bb3a-cbd87692fd4b'
 const tokenInvalido = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTAwMjQ1MzgsImV4cCI6MTY1MDAyNTQzOCwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.b0U-__cRpH8YBsAtZEtClr0fAj4t9IOwDAcI2R3j-qk'
 
@@ -16,7 +16,7 @@ describe("Teste submeter desafio", () => {
     beforeEach((done) => {
         chai
             .request(server)
-            .post(baseUrl + "/auth/login")
+            .post("/auth/login")
             .send({
                 email: "treinador@treinador.com",
                 password: "treinador"
@@ -33,7 +33,10 @@ describe("Teste submeter desafio", () => {
         it('Deve retornar erro de authToken invalido', () => {
             return chai
                 .request(server)
-                .post(baseUrl + '/treinador/desafio/' + desafioId + '/submissoes')
+                .post('/treinador/desafio/submissoes')
+                .send({
+                    "desafioId": desafioId,
+                })
                 .then(res => {
                     res.should.have.status(500)
                     chai.expect(res.body).to.have.property("status")
@@ -46,8 +49,11 @@ describe("Teste submeter desafio", () => {
         it('Deve retornar erro de authToken invalido', () => {
             return chai
                 .request(server)
-                .post(baseUrl + '/treinador/desafio/' + desafioId + '/submissoes')
+                .post('/treinador/desafio/submissoes')
                 .set("Authorization", tokenInvalido)
+                .send({
+                    "desafioId": desafioId,
+                })
                 .then(res => {
                     res.should.have.status(500)
                     chai.expect(res.body).to.have.property("status")
@@ -60,8 +66,11 @@ describe("Teste submeter desafio", () => {
         it('Deve retornar erro de body incompleto', () => {
             return chai
                 .request(server)
-                .post(baseUrl + '/treinador/desafio/' + desafioId + '/submissoes')
+                .post('/treinador/desafio/submissoes')
                 .set("Authorization", token)
+                .send({
+                    "desafioId": desafioId,
+                })
                 .then(res => {
                     res.should.have.status(500)
                     chai.expect(res.body).to.have.property("status")
@@ -74,9 +83,10 @@ describe("Teste submeter desafio", () => {
         it('Deve retornar submeter desafio com sucesso', () => {
             return chai
                 .request(server)
-                .post(baseUrl + '/treinador/desafio/' + desafioId + '/submissoes')
+                .post('/treinador/desafio/submissoes')
                 .set("Authorization", token)
                 .send({
+                    "desafioId": desafioId,
                     uid: "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
                     valor: "teste submissao",
                     ginasioId: "a70e117f-4b53-447f-b67d-6b1c93bd501d"
