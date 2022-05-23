@@ -22,11 +22,11 @@ authRouter.post('/auth/token', (req, res) => {
   gymapp_api.post(`/auth/token`,
     req.body
   ).then(resp => {
-
+    console.log(resp.data, resp.status)
     res.send(resp.data)
   }).catch(err => {
     const resp = err.response
-
+    console.log(resp.data, resp.status)
     res.status(resp.status).send(resp.data)
   })
 })

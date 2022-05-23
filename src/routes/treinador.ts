@@ -140,6 +140,52 @@ treinadorRouter.post('/treinador/exercicios/imagens', verificarAutenticacao, ver
   })
 })
 
+treinadorRouter.get('/treinador/planosTreinoAlunos', verificarAutenticacao, verificarTreinador, (req, res) => {
+  const userId = res.locals.uid;
+  gymapp_api.get(`/treinador/${userId}/planosTreinoAlunos`,
+  ).then(resp => {
+    res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
+  })
+})
+
+treinadorRouter.get('/treinador/planosTreinoAlunos/:startDate/:endDate', verificarAutenticacao, verificarTreinador, (req, res) => {
+  const userId = res.locals.uid;
+  const startDate = req.params.startDate;
+  const endDate = req.params.endDate;
+  gymapp_api.get(`/treinador/${userId}/planosTreinoAlunos/${startDate}/${endDate}`,
+  ).then(resp => {
+    res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
+  })
+})
+
+treinadorRouter.get('/treinador/top10/', verificarAutenticacao, verificarTreinador, (req, res) => {
+  const userId = res.locals.uid;
+  gymapp_api.get(`/treinador/${userId}/top10/`,
+  ).then(resp => {
+    res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
+  })
+})
+treinadorRouter.get('/treinador/desafiosMarca/', verificarAutenticacao, verificarTreinador, (req, res) => {
+  console.log('aqui')
+  const userId = res.locals.uid;
+  gymapp_api.get(`/treinador/${userId}/desafiosMarca/`,
+  ).then(resp => {
+    res.send(resp.data)
+  }).catch(err => {
+    const resp = err.response
+    res.send(resp.data).status(resp.status)
+  })
+})
+
 treinadorRouter.delete('/treinador/exercicios/:exercicioId/imagens/:imagemId', verificarAutenticacao, verificarTreinador, (req, res) => {
   const userId = res.locals.uid;
   const exercicioId = req.params.exercicioId;
