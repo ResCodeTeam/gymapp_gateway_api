@@ -73,11 +73,6 @@ describe("Teste remover submissao desafio treinador", () => {
 
           // verificar se é um object
           chai.expect(res.body).to.be.an("object");
-
-          //verificar se as propriedades todas existem
-          chai.expect(res.body).to.have.property("msg");
-
-          chai.expect(res.body["msg"]).to.be.a("string");
         });
     });
   });

@@ -62,11 +62,7 @@ describe("Teste remover is aceite desafio", () => {
         .set("Authorization", token)
         .then((res) => {
           res.should.have.status(200);
-          //verificar se as propriedades todas existem
-          chai.expect(res.body).to.have.property("msg");
-
-          //verificar tipos das propriedades
-          chai.expect(res.body["msg"]).to.be.a("string");
+          chai.expect(res.body).to.be.an("object");
         });
     });
   });

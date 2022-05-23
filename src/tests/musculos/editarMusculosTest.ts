@@ -13,7 +13,10 @@ describe("- Editar musculo sem body", () => {
   it("Deve retornar erro de body incompleto", () => {
     return chai
       .request(server)
-      .put("/backend/musculos/" + idMusculo)
+      .put("/backend/musculos")
+      .send({
+        "musculoId": idMusculo
+      })
       .then((res) => {
         res.should.have.status(500);
         chai.expect(res.body).to.be.an("object");
@@ -25,8 +28,9 @@ describe("- Editar musculo corretamente", () => {
   it("Deve retornar musculo editada", () => {
     return chai
       .request(server)
-      .put("/backend/musculos/" + idMusculo)
+      .put("/backend/musculos")
       .send({
+        "musculoId": idMusculo,
         nome: "teste unitario41",
         imagem: "img3",
       })
