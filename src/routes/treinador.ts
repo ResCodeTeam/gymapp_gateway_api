@@ -1,11 +1,10 @@
-
 import express from "express";
 import { verificarAutenticacao } from "../api/middlewares/verificarAutenticacao";
 import { verificarTreinador } from "../api/middlewares/verificarTreinador";
 import { apiAdapter } from "../apiAdapter";
 const treinadorRouter = express.Router();
 
-const BASE_URL = 'http://localhost:8000/api/v1';
+const BASE_URL = "http://localhost:8000/api/v1";
 const gymapp_api = apiAdapter(BASE_URL);
 
 treinadorRouter.delete('/treinador/exercicios/:exercicioId', verificarAutenticacao, verificarTreinador, (req, res) => {
