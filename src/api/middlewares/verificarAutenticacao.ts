@@ -4,18 +4,18 @@ require('dotenv').config({ path: __dirname + '/.env' });
 import { verify, decode } from 'jsonwebtoken';
 
 export async function verificarAutenticacao(request: Request, response: Response, next: NextFunction) {
+
     const auth = request.headers.authorization;
-    if (!auth) {
-        return response.json({ 'msg': 'Token invalido' }).status(401)
+    if (!auth || auth === undefined || auth === null) {
+        response.status(401).json({ 'msg': 'Token invalido' })
     }
 
     const [, token] = auth.split(" ");
 
-
     try {
         verify(token, process.env.SECRET_KEY_TOKEN);
     } catch (e) {
-        return response.json({ 'msg': 'Token invalido' }).status(401)
+        response.status(401).json({ 'msg': 'Token invalido' })
     }
 
     const inBlackList = await checkInBlackList(token);
@@ -23,7 +23,8 @@ export async function verificarAutenticacao(request: Request, response: Response
         response.json({ 'msg': 'Token invalido' }).status(401)
     }
 
-    //obter id do user
+
+
     let uid = decode(token)['sub'].toString();
     response.locals.uid = uid;
     response.locals.token = token;
@@ -49,6 +50,9 @@ export async function verificarAutenticacao(request: Request, response: Response
     }
 
 
+
+
     next();
+
 
 }

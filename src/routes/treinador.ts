@@ -28,6 +28,7 @@ treinadorRouter.put('/treinador/exercicios', verificarAutenticacao, verificarTre
   gymapp_api.put(`/treinador/${userId}/exercicios/${exercicioId}`,
     body
   ).then(resp => {
+
     res.send(resp.data)
   }).catch(err => {
     const resp = err.response
@@ -58,6 +59,7 @@ treinadorRouter.post('/treinador/avaliacoes', verificarAutenticacao, verificarTr
     res.send(resp.data)
   }).catch(err => {
     const resp = err.response
+
     res.send(resp.data).status(resp.status)
   })
 })
@@ -183,7 +185,8 @@ treinadorRouter.delete('/treinador/exercicios/:exercicioId/musculos/:musculoId',
 })
 
 treinadorRouter.get('/treinador/agenda/desafios', verificarAutenticacao, verificarTreinador, (req, res) => {
-  gymapp_api.get(`/treinador/agenda/desafios/`,
+  const userId = res.locals.uid;
+  gymapp_api.get(`/treinador/${userId}/agenda/desafios/`,
   ).then(resp => {
     res.send(resp.data)
   }).catch(err => {
@@ -193,7 +196,8 @@ treinadorRouter.get('/treinador/agenda/desafios', verificarAutenticacao, verific
 })
 
 treinadorRouter.get('/treinador/agenda/avaliacoes', verificarAutenticacao, verificarTreinador, (req, res) => {
-  gymapp_api.get(`/treinador/agenda/avaliacoes/`,
+  const userId = res.locals.uid;
+  gymapp_api.get(`/treinador/${userId}/agenda/avaliacoes/`,
   ).then(resp => {
     res.send(resp.data)
   }).catch(err => {
@@ -228,7 +232,7 @@ treinadorRouter.get('/treinador/plano/:uid/:startDate/:endDate', verificarAutent
     res.send(resp.data)
   }).catch(err => {
     const resp = err.response
-    res.send(resp.data).status(resp.status)
+    res.status(resp.status).send(resp.data)
   })
 })
 
@@ -328,6 +332,7 @@ treinadorRouter.get('/treinador/treinos', verificarAutenticacao, verificarTreina
     res.send(resp.data)
   }).catch(err => {
     const resp = err.response
+
     res.send(resp.data).status(resp.status)
   })
 })
@@ -339,6 +344,7 @@ treinadorRouter.get('/treinador/locaisMedida', verificarAutenticacao, verificarT
     res.send(resp.data)
   }).catch(err => {
     const resp = err.response
+
     res.send(resp.data).status(resp.status)
   })
 })
