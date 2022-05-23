@@ -16,7 +16,7 @@ function verificarAdmin(request, response, next) {
         const uid = response.locals.uid;
         const user = (0, dbHelpers_1.checkUserIdExists)(uid);
         if (!user) {
-            return response.json({ 'msg': 'User inexistente' }).status(401);
+            response.status(401).json({ 'msg': 'User inexistente' });
         }
         const funcao_id = yield (0, dbHelpers_1.getUserFuncao)(uid);
         const admin_id = yield (0, dbHelpers_1.getFuncaoId)("Administrador");
@@ -24,7 +24,7 @@ function verificarAdmin(request, response, next) {
             next();
         }
         else {
-            return response.json({ 'msg': 'Não possui autorização' }).status(401);
+            response.status(401).json({ 'msg': 'Não possui autorização' });
         }
     });
 }

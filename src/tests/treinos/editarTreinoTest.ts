@@ -33,7 +33,10 @@ describe("Teste editar treino", () => {
     it("Deve retornar erro de authToken invalido", () => {
       return chai
         .request(server)
-        .put("/aluno/treinos/" + treinoId)
+        .put("/aluno/treinos")
+        .send({
+          "treinoId": treinoId
+        })
         .then((res) => {
           res.should.have.status(401);
           chai.expect(res.body).to.be.an("object");
@@ -45,7 +48,10 @@ describe("Teste editar treino", () => {
     it("Deve retornar erro de authToken invalido", () => {
       return chai
         .request(server)
-        .put("/aluno/treinos/" + treinoId)
+        .put("/aluno/treinos")
+        .send({
+          "treinoId": treinoId
+        })
         .set("Authorization", tokenInvalido)
         .then((res) => {
           res.should.have.status(401);
@@ -58,10 +64,13 @@ describe("Teste editar treino", () => {
     it("Deve retornar erro de body incompleto", () => {
       return chai
         .request(server)
-        .put("/aluno/treinos/" + treinoId)
+        .put("/aluno/treinos")
+        .send({
+          "treinoId": treinoId
+        })
         .set("Authorization", token)
         .then((res) => {
-          res.should.have.status(401);
+          res.should.have.status(500);
           chai.expect(res.body).to.be.an("object");
         });
     });
@@ -71,9 +80,10 @@ describe("Teste editar treino", () => {
     it("Deve retornar editar treino com sucesso", () => {
       return chai
         .request(server)
-        .put("/aluno/treinos/" + treinoId)
+        .put("/aluno/treinos")
         .set("Authorization", token)
         .send({
+          "treinoId": treinoId,
           atividadeId: null,
           modalidadeId: "4272f33a-b2c9-46bf-83ab-c8a1a85fbd52",
           duracao: "50",
