@@ -14,8 +14,7 @@ describe('- Criar admin sem body', () => {
       .post('/backend/registo')
       .then(res => {
         res.should.have.status(500)
-        chai.expect(res.body).to.have.property("status")
-        chai.expect(res.body).to.have.property("message")
+        chai.expect(res.body).to.be.an("object")
       })
   })
 })
@@ -26,7 +25,7 @@ describe('- Criar admin corretamente', () => {
       .request(server)
       .post('/backend/registo')
       .send({
-        email: "admin30@admin.com",
+        email: "admin32@admin.com",
         nome: "António",
         password: "admin",
         dataNasc: "2002-10-17",

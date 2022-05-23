@@ -1,16 +1,17 @@
-import chai from 'chai';
-import chaiHttp from 'chai-http';
-import 'mocha';
+import chai from "chai";
+import chaiHttp from "chai-http";
+import "mocha";
 
 chai.use(chaiHttp);
 const expect = chai.expect;
 const should = chai.should();
-const baseUrl = "/api/v1"
-const server = "localhost:2900"
-const tokenInvalido = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTAwMjQ1MzgsImV4cCI6MTY1MDAyNTQzOCwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.b0U-__cRpH8YBsAtZEtClr0fAj4t9IOwDAcI2R3j-qk'
-const idMarca = 'f34fdd41-8670-4b50-9311-ebdb0ad993c4'
+const baseUrl = "/api/v1";
+const server = "localhost:2900";
+const tokenInvalido =
+  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTAwMjQ1MzgsImV4cCI6MTY1MDAyNTQzOCwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.b0U-__cRpH8YBsAtZEtClr0fAj4t9IOwDAcI2R3j-qk";
+const idMarca = "f34fdd41-8670-4b50-9311-ebdb0ad993c4";
 
-let token = ''
+let token = "";
 
 describe("Teste Remover Marca:", () => {
   beforeEach((done) => {
@@ -28,52 +29,49 @@ describe("Teste Remover Marca:", () => {
       });
   });
 
-  describe('- Sem token', () => {
-    it('Deve retornar erro de token invalido', () => {
+  describe("- Sem token", () => {
+    it("Deve retornar erro de token invalido", () => {
       return chai
         .request(server)
-        .delete('/admin/marca/' + idMarca)
-        .then(res => {
-          res.should.have.status(500)
-          chai.expect(res.body).to.have.property("status")
-          chai.expect(res.body).to.have.property("message")
-        })
-    })
-  })
+        .delete("/admin/marca/" + idMarca)
+        .then((res) => {
+          res.should.have.status(401);
+          chai.expect(res.body).to.be.an("object");
+        });
+    });
+  });
 
-  describe('- Token expirado', () => {
-    it('Deve retornar erro de token invalido', () => {
+  describe("- Token expirado", () => {
+    it("Deve retornar erro de token invalido", () => {
       return chai
         .request(server)
-        .delete('/admin/marca/' + idMarca)
+        .delete("/admin/marca/" + idMarca)
         .set("Authorization", tokenInvalido)
-        .then(res => {
-          res.should.have.status(500)
-          chai.expect(res.body).to.have.property("status")
-          chai.expect(res.body).to.have.property("message")
-        })
-    })
-  })
+        .then((res) => {
+          res.should.have.status(401);
+          chai.expect(res.body).to.be.an("object");
+        });
+    });
+  });
 
-  describe('- Remover marca corretamente', () => {
-    it('Deve retornar mensagem de remoção', () => {
+  describe("- Remover marca corretamente", () => {
+    it("Deve retornar mensagem de remoção", () => {
       return chai
         .request(server)
-        .delete('/admin/marca/' + idMarca)
+        .delete("/admin/marca/" + idMarca)
         .set("Authorization", token)
-        .then(res => {
-          res.should.have.status(200)
+        .then((res) => {
+          res.should.have.status(200);
 
-          chai.expect(res.body).to.be.an("object")
+          chai.expect(res.body).to.be.an("object");
 
           //verificar se é um objeto
           //verificar se as propriedades todas existem
 
-          chai.expect(res.body).to.have.property("msg")
-        
-          chai.expect(res.body['msg']).to.be.a("string")
-        
-        })
-    })
-  })
-})
+          chai.expect(res.body).to.have.property("msg");
+
+          chai.expect(res.body["msg"]).to.be.a("string");
+        });
+    });
+  });
+});

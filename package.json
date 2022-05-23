@@ -26,7 +26,8 @@
     "test_desafios": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/desafios/*.ts'",
     "test_avaliacao": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/avaliacao/*.ts'",
     "test_plano": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/plano/*.ts'",
-    "test_exercicios": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/exercicios/*.ts'"
+    "test_exercicios": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/exercicios/*.ts'",
+    "test_exercicios_imagem": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './src/tests/exercicios/editar/*.ts'"
   },
   "repository": {
     "type": "git",

@@ -1,15 +1,16 @@
-import chai from 'chai';
-import chaiHttp from 'chai-http';
-import 'mocha';
+import chai from "chai";
+import chaiHttp from "chai-http";
+import "mocha";
 
 chai.use(chaiHttp);
 const expect = chai.expect;
 const should = chai.should();
-const server = "localhost:2900"
-const tokenInvalido = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTAwMjQ1MzgsImV4cCI6MTY1MDAyNTQzOCwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.b0U-__cRpH8YBsAtZEtClr0fAj4t9IOwDAcI2R3j-qk'
+const server = "localhost:2900";
+const tokenInvalido =
+  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTAwMjQ1MzgsImV4cCI6MTY1MDAyNTQzOCwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.b0U-__cRpH8YBsAtZEtClr0fAj4t9IOwDAcI2R3j-qk";
 
 // buscar o token de quem está logado - neste caso a Bianca - linha 25
-let token = ''
+let token = "";
 
 describe("Teste Obter as definições do user", () => {
   beforeEach((done) => {
@@ -26,55 +27,53 @@ describe("Teste Obter as definições do user", () => {
         done();
       });
   });
-  describe('- Sem token', () => {
-    it('Deve retornar erro de authToken invalido', () => {
+  describe("- Sem token", () => {
+    it("Deve retornar erro de authToken invalido", () => {
       return chai
         .request(server)
-        .get('/definicoes')
-        .then(res => {
-          res.should.have.status(500)
-          chai.expect(res.body).to.have.property("status")
-          chai.expect(res.body).to.have.property("message")
-        })
-    })
-  })
+        .get("/definicoes")
+        .then((res) => {
+          res.should.have.status(401);
+          chai.expect(res.body).to.be.an("object");
+        });
+    });
+  });
 
-  describe('- Token invalido', () => {
-    it('Deve retornar erro de authToken invalido', () => {
+  describe("- Token invalido", () => {
+    it("Deve retornar erro de authToken invalido", () => {
       return chai
         .request(server)
-        .get('/definicoes')
+        .get("/definicoes")
         .set("Authorization", tokenInvalido)
-        .then(res => {
-          res.should.have.status(500)
-          chai.expect(res.body).to.have.property("status")
-          chai.expect(res.body).to.have.property("message")
-        })
-    })
-  })
+        .then((res) => {
+          res.should.have.status(401);
+          chai.expect(res.body).to.be.an("object");
+        });
+    });
+  });
 
-  describe('- Obter as definicoes do user corretamente', () => {
-    it('Deve retornar definicoes', () => {
+  describe("- Obter as definicoes do user corretamente", () => {
+    it("Deve retornar definicoes", () => {
       return chai
         .request(server)
-        .get('/definicoes')
+        .get("/definicoes")
         .set("Authorization", token)
-        .then(res => {
-          res.should.have.status(200)
+        .then((res) => {
+          res.should.have.status(200);
           //verificar se as propriedades todas existem
-          chai.expect(res.body).to.have.property("def_id")
-          chai.expect(res.body).to.have.property("usersuid")
-          chai.expect(res.body).to.have.property("identificacoes")
-          chai.expect(res.body).to.have.property("is_privado")
-          chai.expect(res.body).to.have.property("mencoes")
+          chai.expect(res.body).to.have.property("def_id");
+          chai.expect(res.body).to.have.property("usersuid");
+          chai.expect(res.body).to.have.property("identificacoes");
+          chai.expect(res.body).to.have.property("is_privado");
+          chai.expect(res.body).to.have.property("mencoes");
 
-          //verificar tipos das propriedades 
-          chai.expect(res.body['def_id']).to.be.a("string")
-          chai.expect(res.body['usersuid']).to.be.a("string")
-          chai.expect(res.body['identificacoes']).to.be.a("boolean")
-          chai.expect(res.body['is_privado']).to.be.a("boolean")
-          chai.expect(res.body['mencoes']).to.be.a("boolean")
-        })
-    })
-  })
-})
+          //verificar tipos das propriedades
+          chai.expect(res.body["def_id"]).to.be.a("string");
+          chai.expect(res.body["usersuid"]).to.be.a("string");
+          chai.expect(res.body["identificacoes"]).to.be.a("boolean");
+          chai.expect(res.body["is_privado"]).to.be.a("boolean");
+          chai.expect(res.body["mencoes"]).to.be.a("boolean");
+        });
+    });
+  });
+});

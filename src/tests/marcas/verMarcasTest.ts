@@ -1,15 +1,16 @@
-import chai from 'chai';
-import chaiHttp from 'chai-http';
-import 'mocha';
+import chai from "chai";
+import chaiHttp from "chai-http";
+import "mocha";
 
 chai.use(chaiHttp);
 const expect = chai.expect;
 const should = chai.should();
-const baseUrl = "/api/v1"
-const server = "localhost:2900"
-const tokenInvalido = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTIyNTk1MzAsImV4cCI6MTY1MjI2MDQzMCwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.WEtDbxCu7zu8jA2cFsIlgz7vYreilB0xrhN4qmNcP0I'
+const baseUrl = "/api/v1";
+const server = "localhost:2900";
+const tokenInvalido =
+  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTIyNTk1MzAsImV4cCI6MTY1MjI2MDQzMCwic3ViIjoiMDAwZDFlMTQtNjE3ZS00MjNlLThhMWEtZjYzZDRmYTVhZjZhIn0.WEtDbxCu7zu8jA2cFsIlgz7vYreilB0xrhN4qmNcP0I";
 
-let token = ''
+let token = "";
 
 describe("Teste Obter toda a informação dos musculos", () => {
   beforeEach((done) => {
@@ -26,53 +27,51 @@ describe("Teste Obter toda a informação dos musculos", () => {
         done();
       });
   });
-  describe('- Sem token', () => {
-    it('Deve retornar erro de authToken invalido', () => {
+  describe("- Sem token", () => {
+    it("Deve retornar erro de authToken invalido", () => {
       return chai
         .request(server)
-        .get('/admin/marca/')
-        .then(res => {
-          res.should.have.status(500)
-          chai.expect(res.body).to.have.property("status")
-          chai.expect(res.body).to.have.property("message")
-        })
-    })
-  })
+        .get("/admin/marca/")
+        .then((res) => {
+          res.should.have.status(401);
+          chai.expect(res.body).to.be.an("object");
+        });
+    });
+  });
 
-  describe('- Token invalido', () => {
-    it('Deve retornar erro de authToken invalido', () => {
+  describe("- Token invalido", () => {
+    it("Deve retornar erro de authToken invalido", () => {
       return chai
         .request(server)
-        .get('/admin/marca/')
+        .get("/admin/marca/")
         .set("Authorization", tokenInvalido)
-        .then(res => {
-          res.should.have.status(500)
-          chai.expect(res.body).to.have.property("status")
-          chai.expect(res.body).to.have.property("message")
-        })
-    })
-  })
+        .then((res) => {
+          res.should.have.status(401);
+          chai.expect(res.body).to.be.an("object");
+        });
+    });
+  });
 
-  describe('- Obter todos os musculos corretamente', () => {
-    it('Deve retornar musculos', () => {
+  describe("- Obter todos os musculos corretamente", () => {
+    it("Deve retornar musculos", () => {
       return chai
         .request(server)
-        .get('/admin/marca/')
+        .get("/admin/marca/")
         .set("Authorization", token)
-        .then(res => {
-          res.should.have.status(200)
+        .then((res) => {
+          res.should.have.status(200);
 
-          chai.expect(res.body).to.be.an("array")
+          chai.expect(res.body).to.be.an("array");
           if (res.body.length > 0) {
             //verificar se as propriedades todas existem
-            chai.expect(res.body[0]).to.have.property("nome")
-            chai.expect(res.body[0]).to.have.property("logotipo")
+            chai.expect(res.body[0]).to.have.property("nome");
+            chai.expect(res.body[0]).to.have.property("logotipo");
 
-            //verificar tipos das propriedades 
-            chai.expect(res.body[0]['nome']).to.be.a("string")
-            chai.expect(res.body[0]['logotipo']).to.be.a("string")
+            //verificar tipos das propriedades
+            chai.expect(res.body[0]["nome"]).to.be.a("string");
+            chai.expect(res.body[0]["logotipo"]).to.be.a("string");
           }
-        })
-    })
-  })
-})
+        });
+    });
+  });
+});
