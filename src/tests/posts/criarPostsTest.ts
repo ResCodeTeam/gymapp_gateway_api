@@ -34,6 +34,7 @@ describe("Teste Criar Posts:", () => {
         .request(server)
         .post("/posts")
         .send({
+
           descricao: "teste",
           tipo: 1,
           ginasioId: "a97e6887-31dc-4186-ad27-09e0fb7d645e",
@@ -77,7 +78,7 @@ describe("Teste Criar Posts:", () => {
         .post("/posts")
         .set("Authorization", token)
         .then((res) => {
-          res.should.have.status(401);
+          res.should.have.status(500);
           chai.expect(res.body).to.be.an("object");
         });
     });
@@ -227,13 +228,13 @@ describe("Teste Criar Posts:", () => {
               .to.be.a("string");
             if (
               res.body["identificacoes_publicacoes"][0]["users"][
-                "imagem_url"
+              "imagem_url"
               ] != null
             )
               chai
                 .expect(
                   res.body["identificacoes_publicacoes"][0]["users"][
-                    "imagem_url"
+                  "imagem_url"
                   ]
                 )
                 .to.be.a("string");
@@ -435,13 +436,13 @@ describe("Teste Criar Posts:", () => {
               .to.be.a("string");
             if (
               res.body["identificacoes_publicacoes"][0]["users"][
-                "imagem_url"
+              "imagem_url"
               ] != null
             )
               chai
                 .expect(
                   res.body["identificacoes_publicacoes"][0]["users"][
-                    "imagem_url"
+                  "imagem_url"
                   ]
                 )
                 .to.be.a("string");

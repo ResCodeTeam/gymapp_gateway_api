@@ -32,7 +32,7 @@ describe("Teste Obter Info de um Post", () => {
     it("Deve retornar erro de token invalido", () => {
       return chai
         .request(server)
-        .get("/posts/post/" + idPost)
+        .get("/posts/" + idPost)
         .then((res) => {
           res.should.have.status(401);
           chai.expect(res.body).to.be.an("object");
@@ -44,7 +44,7 @@ describe("Teste Obter Info de um Post", () => {
     it("Deve retornar erro de token invalido", () => {
       return chai
         .request(server)
-        .get("/posts/post/" + idPost)
+        .get("/posts/" + idPost)
         .set("Authorization", tokenInvalido)
         .then((res) => {
           res.should.have.status(401);
@@ -57,7 +57,7 @@ describe("Teste Obter Info de um Post", () => {
     it("Deve retornar publicações", () => {
       return chai
         .request(server)
-        .get("/posts/post/" + idPost)
+        .get("/posts/" + idPost)
         .set("Authorization", token)
         .then((res) => {
           res.should.have.status(200);

@@ -33,7 +33,10 @@ describe("Teste criar comentario post", () => {
     it("Deve retornar erro de authToken invalido", () => {
       return chai
         .request(server)
-        .post("/posts/" + idPost + "/comentarios")
+        .post("/posts/comentarios")
+        .send({
+          "postId": idPost
+        })
         .then((res) => {
           res.should.have.status(401);
           chai.expect(res.body).to.be.an("object");
@@ -45,7 +48,10 @@ describe("Teste criar comentario post", () => {
     it("Deve retornar erro de authToken invalido", () => {
       return chai
         .request(server)
-        .post("/posts/" + idPost + "/comentarios")
+        .post("/posts/comentarios")
+        .send({
+          "postId": idPost
+        })
         .set("Authorization", tokenInvalido)
         .then((res) => {
           res.should.have.status(401);
@@ -58,10 +64,13 @@ describe("Teste criar comentario post", () => {
     it("Deve retornar erro de body incompleto", () => {
       return chai
         .request(server)
-        .post("/posts/" + idPost + "/comentarios")
+        .post("/posts/comentarios")
+        .send({
+          "postId": idPost
+        })
         .set("Authorization", token)
         .then((res) => {
-          res.should.have.status(401);
+          res.should.have.status(500);
           chai.expect(res.body).to.be.an("object");
         });
     });
@@ -71,9 +80,11 @@ describe("Teste criar comentario post", () => {
     it("Deve retornar criar comentario post com sucesso", () => {
       return chai
         .request(server)
-        .post("/posts/" + idPost + "/comentarios")
+        .post("/posts/comentarios")
+
         .set("Authorization", token)
         .send({
+          "postId": idPost,
           comentario: "Estou a comentar uma publicação",
           identificacao: [
             "000d1e14-617e-423e-8a1a-f63d4fa5af6a",
