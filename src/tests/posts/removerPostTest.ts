@@ -32,7 +32,7 @@ describe("Teste Remover Post:", () => {
     it("Deve retornar erro de token invalido", () => {
       return chai
         .request(server)
-        .delete("/posts/post/" + idPost)
+        .delete("/posts/" + idPost)
         .then((res) => {
           res.should.have.status(401);
           chai.expect(res.body).to.be.an("object");
@@ -44,7 +44,7 @@ describe("Teste Remover Post:", () => {
     it("Deve retornar erro de token invalido", () => {
       return chai
         .request(server)
-        .delete("/posts/post/" + idPost)
+        .delete("/posts/" + idPost)
         .set("Authorization", tokenInvalido)
         .then((res) => {
           res.should.have.status(401);
@@ -56,7 +56,7 @@ describe("Teste Remover Post:", () => {
     it("Deve retornar mensagem de remoção", () => {
       return chai
         .request(server)
-        .delete("/posts/post/" + idPost)
+        .delete("/posts/" + idPost)
         .set("Authorization", token)
         .then((res) => {
           res.should.have.status(401);

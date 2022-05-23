@@ -34,7 +34,11 @@ describe("Teste criar gosto comentario post", () => {
     it("Deve retornar erro de authToken invalido", () => {
       return chai
         .request(server)
-        .post("/posts/" + idPost + "/comentario/" + idComentario + "/gosto")
+        .post("/posts/comentario/gosto")
+        .send({
+          "comentarioId": idComentario,
+          "postId": idPost
+        })
         .then((res) => {
           res.should.have.status(401);
           chai.expect(res.body).to.be.an("object");
@@ -46,7 +50,11 @@ describe("Teste criar gosto comentario post", () => {
     it("Deve retornar erro de authToken invalido", () => {
       return chai
         .request(server)
-        .post("/posts/" + idPost + "/comentario/" + idComentario + "/gosto")
+        .post("/posts/comentario/gosto")
+        .send({
+          "comentarioId": idComentario,
+          "postId": idPost
+        })
         .set("Authorization", tokenInvalido)
         .then((res) => {
           res.should.have.status(401);
@@ -59,7 +67,11 @@ describe("Teste criar gosto comentario post", () => {
     it("Deve retornar criar gosto comentario post com sucesso", () => {
       return chai
         .request(server)
-        .post("/posts/" + idPost + "/comentario/" + idComentario + "/gosto")
+        .post("/posts/comentario/gosto")
+        .send({
+          "comentarioId": idComentario,
+          "postId": idPost
+        })
         .set("Authorization", token)
         .then((res) => {
           res.should.have.status(200);

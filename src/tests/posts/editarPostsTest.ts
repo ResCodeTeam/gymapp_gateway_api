@@ -33,7 +33,10 @@ describe("Teste editar posts", () => {
     it("Deve retornar erro de authToken invalido", () => {
       return chai
         .request(server)
-        .put("/posts/" + idPost)
+        .put("/posts/")
+        .send({
+          "postId": idPost
+        })
         .then((res) => {
           res.should.have.status(401);
           chai.expect(res.body).to.be.an("object");
@@ -45,7 +48,10 @@ describe("Teste editar posts", () => {
     it("Deve retornar erro de authToken invalido", () => {
       return chai
         .request(server)
-        .put("/posts/" + idPost)
+        .put("/posts/")
+        .send({
+          "postId": idPost
+        })
         .set("Authorization", tokenInvalido)
         .then((res) => {
           res.should.have.status(401);
@@ -58,10 +64,13 @@ describe("Teste editar posts", () => {
     it("Deve retornar erro de body incompleto", () => {
       return chai
         .request(server)
-        .put("/posts/" + idPost)
+        .put("/posts/")
+        .send({
+          "postId": idPost
+        })
         .set("Authorization", token)
         .then((res) => {
-          res.should.have.status(401);
+          res.should.have.status(500);
           chai.expect(res.body).to.be.an("object");
         });
     });
@@ -71,7 +80,10 @@ describe("Teste editar posts", () => {
     it("Deve retornar post editado com sucesso", () => {
       return chai
         .request(server)
-        .put("/posts/" + idPost)
+        .put("/posts/")
+        .send({
+          "postId": idPost
+        })
         .set("Authorization", token)
         .send({
           descricao: "Proteína da PROZIS #FATImaaa",
@@ -208,7 +220,7 @@ describe("Teste editar posts", () => {
               chai
                 .expect(
                   res.body["identificacoes_publicacoes"][0]["users"][
-                    "imagem_url"
+                  "imagem_url"
                   ]
                 )
                 .to.be.a("string");
