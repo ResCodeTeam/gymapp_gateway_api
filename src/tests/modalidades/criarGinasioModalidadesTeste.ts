@@ -33,7 +33,10 @@ describe("Teste criar ginásio modalidade", () => {
     it("Deve retornar erro de authToken invalido", () => {
       return chai
         .request(server)
-        .post("/admin/ginasio/" + idGinasio + "/modalidades/")
+        .post("/admin/ginasio/modalidades")
+        .send({
+          "ginasioId": idGinasio
+        })
         .then((res) => {
           res.should.have.status(401);
           chai.expect(res.body).to.be.an("object");
@@ -45,7 +48,10 @@ describe("Teste criar ginásio modalidade", () => {
     it("Deve retornar erro de authToken invalido", () => {
       return chai
         .request(server)
-        .post("/admin/ginasio/" + idGinasio + "/modalidades")
+        .post("/admin/ginasio/modalidades")
+        .send({
+          "ginasioId": idGinasio
+        })
         .set("Authorization", tokenInvalido)
         .then((res) => {
           res.should.have.status(401);
@@ -58,10 +64,13 @@ describe("Teste criar ginásio modalidade", () => {
     it("Deve retornar erro de body incompleto", () => {
       return chai
         .request(server)
-        .post("/admin/ginasio/" + idGinasio + "/modalidades")
+        .post("/admin/ginasio/modalidades")
+        .send({
+          "ginasioId": idGinasio
+        })
         .set("Authorization", token)
         .then((res) => {
-          res.should.have.status(401);
+          res.should.have.status(500);
           chai.expect(res.body).to.be.an("object");
         });
     });
@@ -71,9 +80,11 @@ describe("Teste criar ginásio modalidade", () => {
     it("Deve retornar riar ginásio modalidade com sucesso", () => {
       return chai
         .request(server)
-        .post("/admin/ginasio/" + idGinasio + "/modalidades")
+        .post("/admin/ginasio/modalidades")
+
         .set("Authorization", token)
         .send({
+          "ginasioId": idGinasio,
           nome: "Cardio",
           imagemUrl: "teste",
         })

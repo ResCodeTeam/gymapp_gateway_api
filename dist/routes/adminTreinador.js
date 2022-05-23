@@ -10,46 +10,76 @@ const verificarAutenticacao_1 = require("../api/middlewares/verificarAutenticaca
 const apiAdapter_1 = require("../apiAdapter");
 const adminTreinadorRouter = express_1.default.Router();
 exports.adminTreinadorRouter = adminTreinadorRouter;
-const BASE_URL = 'http://localhost:8000/api/v1';
+const BASE_URL = "http://localhost:8000/api/v1";
 const gymapp_api = (0, apiAdapter_1.apiAdapter)(BASE_URL);
-adminTreinadorRouter.post('/adminTreinador/ginasio/desafio/', verificarAutenticacao_1.verificarAutenticacao, verificarAdminTreinador_1.verificarAdminTreinador, (req, res) => {
+adminTreinadorRouter.post("/adminTreinador/ginasio/desafio/", verificarAutenticacao_1.verificarAutenticacao, verificarAdminTreinador_1.verificarAdminTreinador, (req, res) => {
     const userId = res.locals.uid;
     const ginasioId = req.body.ginasioId;
     let body = req.body;
-    delete body['ginasioId'];
-    gymapp_api.post(`/adminTreinador/${userId}/ginasio/${ginasioId}/desafio/`, body).then(resp => {
+    delete body["ginasioId"];
+    gymapp_api
+        .post(`/adminTreinador/${userId}/ginasio/${ginasioId}/desafio/`, body)
+        .then((resp) => {
         res.send(resp.data);
+    })
+        .catch((err) => {
+        const resp = err.response;
+        res.status(resp.status).send(resp.data);
     });
 });
-adminTreinadorRouter.delete('/adminTreinador/desafio/:desafioId', verificarAutenticacao_1.verificarAutenticacao, verificarAdminTreinador_1.verificarAdminTreinador, (req, res) => {
+adminTreinadorRouter.delete("/adminTreinador/desafio/:desafioId", verificarAutenticacao_1.verificarAutenticacao, verificarAdminTreinador_1.verificarAdminTreinador, (req, res) => {
     const userId = res.locals.uid;
     const desafioId = req.params.desafioId;
-    gymapp_api.delete(`/adminTreinador/${userId}/desafio/${desafioId}`).then(resp => {
+    gymapp_api
+        .delete(`/adminTreinador/${userId}/desafio/${desafioId}`)
+        .then((resp) => {
         res.send(resp.data);
+    })
+        .catch((err) => {
+        const resp = err.response;
+        res.status(resp.status).send(resp.data);
     });
 });
-adminTreinadorRouter.put('/adminTreinador/desafio/', verificarAutenticacao_1.verificarAutenticacao, verificarAdminTreinador_1.verificarAdminTreinador, (req, res) => {
+adminTreinadorRouter.put("/adminTreinador/desafio", verificarAutenticacao_1.verificarAutenticacao, verificarAdminTreinador_1.verificarAdminTreinador, (req, res) => {
     const userId = res.locals.uid;
     const desafioId = req.body.desafioId;
     let body = req.body;
-    delete body['desafioId'];
-    gymapp_api.put(`/adminTreinador/${userId}/desafio/${desafioId}`, body).then(resp => {
+    delete body["desafioId"];
+    gymapp_api
+        .put(`/adminTreinador/${userId}/desafio/${desafioId}`, body)
+        .then((resp) => {
         res.send(resp.data);
+    })
+        .catch((err) => {
+        const resp = err.response;
+        res.status(resp.status).send(resp.data);
     });
 });
-adminTreinadorRouter.put('/adminTreinador/desafio/editar', verificarAutenticacao_1.verificarAutenticacao, verificarAdminTreinador_1.verificarAdminTreinador, (req, res) => {
+adminTreinadorRouter.put("/adminTreinador/desafio/editar", verificarAutenticacao_1.verificarAutenticacao, verificarAdminTreinador_1.verificarAdminTreinador, (req, res) => {
     const userId = res.locals.uid;
     const desafioId = req.body.desafioId;
     let body = req.body;
-    delete body['desafioId'];
-    gymapp_api.put(`/adminTreinador/${userId}/desafio/${desafioId}/editar`, body).then(resp => {
+    delete body["desafioId"];
+    gymapp_api
+        .put(`/adminTreinador/${userId}/desafio/${desafioId}/editar`, body)
+        .then((resp) => {
         res.send(resp.data);
+    })
+        .catch((err) => {
+        const resp = err.response;
+        res.status(resp.status).send(resp.data);
     });
 });
-adminTreinadorRouter.get('/adminTreinador/musculos/', verificarAutenticacao_1.verificarAutenticacao, verificarAdminTreinador_1.verificarAdminTreinador, (req, res) => {
+adminTreinadorRouter.get("/adminTreinador/musculos/", verificarAutenticacao_1.verificarAutenticacao, verificarAdminTreinador_1.verificarAdminTreinador, (req, res) => {
     const userId = res.locals.uid;
-    gymapp_api.get(`/adminTreinador/${userId}/musculos/`).then(resp => {
+    gymapp_api
+        .get(`/adminTreinador/${userId}/musculos/`)
+        .then((resp) => {
         res.send(resp.data);
+    })
+        .catch((err) => {
+        const resp = err.response;
+        res.status(resp.status).send(resp.data);
     });
 });
 //# sourceMappingURL=adminTreinador.js.map
