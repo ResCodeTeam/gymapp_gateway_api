@@ -64,7 +64,8 @@ describe("Teste remover ginásio modalidade", () => {
         .set("Authorization", token)
         .then((res) => {
           res.should.have.status(200);
-          chai.expect(res.body).to.have.property("msg");
+          
+          chai.expect(res.body).to.be.an("object");
         });
     });
   });

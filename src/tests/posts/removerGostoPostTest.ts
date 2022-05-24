@@ -62,11 +62,8 @@ describe("Teste remover gosto publicacao", () => {
         .set("Authorization", token)
         .then((res) => {
           res.should.have.status(200);
-
-          // verificar se é um object
+          
           chai.expect(res.body).to.be.an("object");
-
-
         });
     });
   });
