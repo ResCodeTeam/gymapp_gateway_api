@@ -3714,3 +3714,6 @@
 ::1 - - [23/May/2022:14:12:21 +0000] "GET /api-docs/swagger-ui.css HTTP/1.1" 304 - "http://localhost:2900/api-docs/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36"
 ::1 - - [23/May/2022:14:12:21 +0000] "GET /api-docs/swagger-ui-bundle.js HTTP/1.1" 304 - "http://localhost:2900/api-docs/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36"
 ::1 - - [23/May/2022:14:12:21 +0000] "GET /api-docs/swagger-ui-standalone-preset.js HTTP/1.1" 304 - "http://localhost:2900/api-docs/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36"
+::1 - - [24/May/2022:08:52:39 +0000] "GET /treinador/exercicios/treinador HTTP/1.1" 200 4068 "http://localhost:4200/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36"
+::1 - - [24/May/2022:08:52:54 +0000] "GET /treinador/exercicios/treinador HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36"
+::1 - - [24/May/2022:08:53:12 +0000] "GET /treinador/exercicios/treinador HTTP/1.1" 304 - "http://localhost:4200/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36"
