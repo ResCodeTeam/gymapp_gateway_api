@@ -119,6 +119,25 @@ alunoRouter.delete(
   }
 );
 
+alunoRouter.get(
+  "/aluno/avaliacao/:avaliacaoId",
+  verificarAutenticacao,
+  verificarAluno,
+  (req, res) => {
+    const alunoId = res.locals.uid;
+    const avaliacaoId = req.params.avaliacaoId;
+    gymapp_api
+      .get(`/aluno/${alunoId}/avaliacao/${avaliacaoId}`)
+      .then((resp) => {
+        res.send(resp.data);
+      })
+      .catch((err) => {
+        const resp = err.response;
+        res.status(resp.status).send(resp.data);
+      });
+  }
+);
+
 alunoRouter.delete(
   "/aluno/agenda/desafios/:agendamentoId/agendamento",
   verificarAutenticacao,
