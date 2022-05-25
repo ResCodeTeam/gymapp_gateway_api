@@ -7,6 +7,24 @@ const alunoRouter = express.Router();
 const BASE_URL = "http://localhost:8000/api/v1";
 const gymapp_api = apiAdapter(BASE_URL);
 
+alunoRouter.get(
+  "/aluno/ginasios",
+  verificarAutenticacao,
+  verificarAluno,
+  (req, res) => {
+    const userId = res.locals.uid;
+    gymapp_api
+      .get(`/aluno/${userId}/ginasios`)
+      .then((resp) => {
+        res.send(resp.data);
+      })
+      .catch((err) => {
+        const resp = err.response;
+        res.status(resp.status).send(resp.data);
+      });
+  }
+);
+
 alunoRouter.post(
   "/aluno/agenda/avaliacao",
   verificarAutenticacao,

@@ -6452,6 +6452,30 @@
           }
         }
       }
+    },
+    "/aluno/ginasios": {
+      "get": {
+        "summary": "Ver todos os ginásios de um aluno",
+        "description": "Esta rota vai apresentar todos os ginásios de um aluno",
+        "tags": ["Marca"],
+        "security": [{ "basicAuth": [] }],
+        "responses": {
+          "500": { "description": "ERROR" },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "properties": { "msg": { "type": "string" } } },
+                "examples": {
+                  "Ver Ginásios de um Aluno": {
+                    "value": { "msg": "Operação realizada com sucesso" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
