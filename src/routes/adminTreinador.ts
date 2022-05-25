@@ -107,5 +107,23 @@ adminTreinadorRouter.get(
       });
   }
 );
+adminTreinadorRouter.get(
+  "/adminTreinador/marca/:marcaId/alunos/",
+  verificarAutenticacao,
+  verificarAdminTreinador,
+  (req, res) => {
+    const userId = res.locals.uid;
+    const marcaId = req.params.marcaId;
+    gymapp_api
+      .get(`/adminTreinador/${userId}/marca/${marcaId}/alunos`)
+      .then((resp) => {
+        res.send(resp.data);
+      })
+      .catch((err) => {
+        const resp = err.response;
+        res.status(resp.status).send(resp.data);
+      });
+  }
+);
 
 export { adminTreinadorRouter };
