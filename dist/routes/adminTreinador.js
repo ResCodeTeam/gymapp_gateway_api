@@ -82,4 +82,17 @@ adminTreinadorRouter.get("/adminTreinador/musculos/", verificarAutenticacao_1.ve
         res.status(resp.status).send(resp.data);
     });
 });
+adminTreinadorRouter.get("/adminTreinador/marca/:marcaId/alunos/", verificarAutenticacao_1.verificarAutenticacao, verificarAdminTreinador_1.verificarAdminTreinador, (req, res) => {
+    const userId = res.locals.uid;
+    const marcaId = req.params.marcaId;
+    gymapp_api
+        .get(`/adminTreinador/${userId}/marca/${marcaId}/alunos`)
+        .then((resp) => {
+        res.send(resp.data);
+    })
+        .catch((err) => {
+        const resp = err.response;
+        res.status(resp.status).send(resp.data);
+    });
+});
 //# sourceMappingURL=adminTreinador.js.map

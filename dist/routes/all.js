@@ -201,8 +201,10 @@ allRouter.get("/definicoes", verificarAutenticacao_1.verificarAutenticacao, (req
 allRouter.put("/destinosNotificacao/notificacao", verificarAutenticacao_1.verificarAutenticacao, (req, res) => {
     const userId = res.locals.uid;
     const notiId = req.body.notiId;
+    let body = req.body;
+    delete body["notiId"];
     gymapp_api
-        .put(`/${userId}/destinosNotificacao/notificacao/${notiId}`)
+        .put(`/${userId}/destinosNotificacao/notificacao/${notiId}`, body)
         .then((resp) => {
         res.send(resp.data);
     })

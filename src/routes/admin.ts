@@ -43,6 +43,25 @@ adminRouter.get(
   }
 );
 
+adminRouter.get(
+  "/admin/marca/filtro/:id",
+  verificarAutenticacao,
+  verificarAdmin,
+  (req, res) => {
+    const donoId = res.locals.uid;
+    const filtroId = req.params.id;
+    gymapp_api
+      .get(`/admin/${donoId}/marca/filtro/${filtroId}`)
+      .then((resp) => {
+        res.send(resp.data);
+      })
+      .catch((err) => {
+        const resp = err.response;
+        res.status(resp.status).send(resp.data)
+      });
+  }
+);
+
 adminRouter.put(
   "/admin/ginasio/editar",
   verificarAutenticacao,

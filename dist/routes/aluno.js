@@ -12,6 +12,18 @@ const alunoRouter = express_1.default.Router();
 exports.alunoRouter = alunoRouter;
 const BASE_URL = "http://localhost:8000/api/v1";
 const gymapp_api = (0, apiAdapter_1.apiAdapter)(BASE_URL);
+alunoRouter.get("/aluno/ginasios", verificarAutenticacao_1.verificarAutenticacao, verificarAluno_1.verificarAluno, (req, res) => {
+    const userId = res.locals.uid;
+    gymapp_api
+        .get(`/aluno/${userId}/ginasios`)
+        .then((resp) => {
+        res.send(resp.data);
+    })
+        .catch((err) => {
+        const resp = err.response;
+        res.status(resp.status).send(resp.data);
+    });
+});
 alunoRouter.post("/aluno/agenda/avaliacao", verificarAutenticacao_1.verificarAutenticacao, verificarAluno_1.verificarAluno, (req, res) => {
     const userId = res.locals.uid;
     gymapp_api
@@ -68,6 +80,19 @@ alunoRouter.delete("/aluno/treino/:treinoId", verificarAutenticacao_1.verificarA
     const treinoId = req.params.treinoId;
     gymapp_api
         .delete(`/aluno/${userId}/treino/${treinoId}/`)
+        .then((resp) => {
+        res.send(resp.data);
+    })
+        .catch((err) => {
+        const resp = err.response;
+        res.status(resp.status).send(resp.data);
+    });
+});
+alunoRouter.get("/aluno/avaliacao/:avaliacaoId", verificarAutenticacao_1.verificarAutenticacao, verificarAluno_1.verificarAluno, (req, res) => {
+    const alunoId = res.locals.uid;
+    const avaliacaoId = req.params.avaliacaoId;
+    gymapp_api
+        .get(`/aluno/${alunoId}/avaliacao/${avaliacaoId}`)
         .then((resp) => {
         res.send(resp.data);
     })
